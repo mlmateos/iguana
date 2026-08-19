@@ -15,7 +15,7 @@ TemplateManager::TemplateManager(QObject *parent) :
 QString TemplateManager::builtinTemplateDir()
 {
 #ifdef Q_OS_MAC
-	QString fn = "/Applications/texstudio.app/Contents/Resources/";
+	QString fn = "/Applications/iguana.app/Contents/Resources/";
 	if (!QDir(fn).isReadable()) { // fallback if program is not installed
 		fn = QCoreApplication::applicationDirPath();
 		fn.chop(6);
@@ -36,11 +36,11 @@ QString TemplateManager::builtinTemplateDir()
     QStringList paths;
 
 #if QT_VERSION_MAJOR>=6
-    paths << QLibraryInfo::path(QLibraryInfo::PrefixPath)+"/share/texstudio/";
+    paths << QLibraryInfo::path(QLibraryInfo::PrefixPath)+"/share/iguana/";
 #else
-    paths << PREFIX"/share/texstudio/";
+    paths << PREFIX"/share/iguana/";
 #endif
-    paths << "/usr/share/texstudio/"<< "/usr/local/share/texstudio/";
+    paths << "/usr/share/iguana/"<< "/usr/local/share/iguana/";
     paths<<QCoreApplication::applicationDirPath() + "/templates/";
     QString fn;
     for(const QString &pathName:paths){
@@ -76,9 +76,9 @@ void TemplateManager::checkForOldUserTemplates()
 	if (!cfg) return;
 	QStringList userTemplateList = cfg->getOption("User/Templates").toStringList();
 	if (!userTemplateList.isEmpty()) {
-		bool move = UtilsUi::txsConfirmWarning(tr("TeXstudio found user templates in deprecated locations.\n"
+		bool move = UtilsUi::txsConfirmWarning(tr("Iguana found user templates in deprecated locations.\n"
 		                                 "From now on user templates are hosted at\n%1\n"
-		                                 "Should TeXstudio move the existing user templates there?\n"
+		                                 "Should Iguana move the existing user templates there?\n"
 		                                 "If not, they will not be available via the Make Template dialog.").arg(userTemplateDir()));
 		if (move) {
 			foreach (const QString &fname, userTemplateList) {
@@ -99,7 +99,7 @@ void TemplateManager::checkForOldUserTemplates()
 			}
 		}
 		if (!userTemplateList.isEmpty()) {
-			if (UtilsUi::txsConfirmWarning(tr("There are still unmoved templates. Should TeXstudio stop monitoring them?"))) {
+			if (UtilsUi::txsConfirmWarning(tr("There are still unmoved templates. Should Iguana stop monitoring them?"))) {
 				userTemplateList.clear();
 			}
 		}
@@ -116,7 +116,7 @@ TemplateSelector *TemplateManager::createLatexTemplateDialog()
 
     LocalLatexTemplateResource *builtinTemplates= new LocalLatexTemplateResource(builtinTemplateDir(), tr("Builtin"), this, getRealIcon("builtin"));
     LocalLatexTemplateResource *userTemplates= new LocalLatexTemplateResource(userTemplateDir(), tr("User"), this, getRealIcon("user"));
-    QString description = tr("Basic template files shipped with TeXstudio.");
+    QString description = tr("Basic template files shipped with Iguana.");
     builtinTemplates->setDescription(description);
     description = tr("User created template files");
     userTemplates->setDescription(description);

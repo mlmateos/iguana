@@ -1292,7 +1292,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 		movie->realPlay();
 #else
 		Q_UNUSED(page)
-		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option -DTEXSTUDIO_ENABLE_MEDIAPLAYER=on (cmake)");
+		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile Iguana with the option -DTEXSTUDIO_ENABLE_MEDIAPLAYER=on (cmake)");
 #endif
 		break;
 	}
@@ -2968,7 +2968,7 @@ QRectF PDFWidget::horizontalTextRangeF()
 	qreal textXmax = -1.e99;
 	if (!horizontalTextRange.isValid()) {
 		// horitontalTextRangeF() may be called concurrently, in particular during startup
-		// see e.g. https://sourceforge.net/p/texstudio/bugs/1292/
+		// see e.g. https://sourceforge.net/p/iguana/bugs/1292/
 		// The crash therein is probably caused by a simultaneous access to poppler, so one
 		// could limit the access there. However, since textWidth calculation is currently
 		// quite expensive, we do not want to do it multiple times. I assume that the call
@@ -3202,8 +3202,8 @@ void PDFDocument::setupMenus(bool embedded)
     configManager->newManagedAction(menuroot,menuFile, "split", tr("Split && Merge..."), this,SLOT(splitMergeTool()), QList<QKeySequence>() );
     actionClose=configManager->newManagedAction(menuroot,menuFile, "close", tr("&Close"), this,SLOT(close()), QList<QKeySequence>()<< QKeySequence(Qt::CTRL | Qt::Key_W) ,"close");
 	menuFile->addSeparator();
-    configManager->newManagedAction(menuroot,menuFile, "quit", tr("&Quit TeXstudio"), this,SIGNAL(triggeredQuit()), QList<QKeySequence>());
-    actionPreferences=configManager->newManagedAction(menuroot,menuEdit, "preferences", tr("&Configure TeXstudio"), this, SIGNAL(triggeredConfigure()), QList<QKeySequence>());
+    configManager->newManagedAction(menuroot,menuFile, "quit", tr("&Quit Iguana"), this,SIGNAL(triggeredQuit()), QList<QKeySequence>());
+    actionPreferences=configManager->newManagedAction(menuroot,menuEdit, "preferences", tr("&Configure Iguana"), this, SIGNAL(triggeredConfigure()), QList<QKeySequence>());
 	menuEdit->addSeparator();
     actionScrolling_follows_cursor=configManager->newManagedAction(menuroot,menuEdit, "followCursor", tr("Scrolling follows cursor"), this, "", QList<QKeySequence>());
     actionScrolling_follows_cursor->setCheckable(true);

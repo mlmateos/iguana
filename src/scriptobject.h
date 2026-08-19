@@ -6,7 +6,7 @@
 #include "qdocumentcursor.h"
 class ProcessX;
 class BuildManager;
-class Texstudio;
+class Iguana;
 class ScriptObject;
 
 //script object  for texworks compatibility
@@ -35,10 +35,10 @@ class ScriptObject : public QObject
 	Q_OBJECT
 
 	Q_PROPERTY(SubScriptObject *script READ getScript DESIGNABLE false STORED false)
-    //Q_PROPERTY(Texstudio *app READ getApp DESIGNABLE false STORED false)
+    //Q_PROPERTY(Iguana *app READ getApp DESIGNABLE false STORED false)
 
 public:
-	explicit ScriptObject(const QString &script, BuildManager *buildManager, Texstudio *app);
+	explicit ScriptObject(const QString &script, BuildManager *buildManager, Iguana *app);
 
 	bool backgroundScript;
 
@@ -93,11 +93,11 @@ public:
 
 	BuildManager *buildManager;
 
-    Texstudio *getApp();
+    Iguana *getApp();
 
 private:
 	const QString &script;
-	Texstudio *app;
+	Iguana *app;
 	QByteArray scriptHash;
 	SubScriptObject subScriptObject;
 	SubScriptObject *getScript();

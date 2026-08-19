@@ -2,7 +2,7 @@
  *   copyright       : (C) 2003-2007 by Pascal Brachet                     *
  *   http://www.xm1math.net/texmaker/                                      *
  *                         2008-2009 by Benito van der Zander              *
- *   http://texstudio.sourceforge.net
+ *   http://iguana.sourceforge.net
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -57,7 +57,7 @@
 #include <QFileSystemModel>
 
 /*!
- * \file texstudio.h
+ * \file iguana.h
  * \brief Definition for Mainwindow
  */
 
@@ -74,13 +74,13 @@ class StructureTreeView;
 Q_DECLARE_METATYPE(std::set<QString>)
 #endif
 
-class Texstudio : public QMainWindow
+class Iguana : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-    Texstudio(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), QSplashScreen *splash = nullptr);
-	~Texstudio();
+    Iguana(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), QSplashScreen *splash = nullptr);
+	~Iguana();
 
 	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = ""); ///< treats the path relative to the compiled .tex file
@@ -802,6 +802,6 @@ signals:
 	void imgPreview(const QString &fn);
 };
 
-//Q_DECLARE_METATYPE(Texstudio *)
+//Q_DECLARE_METATYPE(Iguana *)
 
 #endif

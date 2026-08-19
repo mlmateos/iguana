@@ -157,53 +157,53 @@
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
-        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
-        <translation>TeXstudio بولسا  Hunspell (GPL) ،QtCreator (GPL，ھوقۇق نوكىياغا(C) مەنسۇپ )  KILE (GPL) ھەمدە SyncTeX ( ئاپتور:  Jerome Laurens) لارنىڭ كودىنى ئۆز ئىچىگە ئالىدۇ.</translation>
+        <source>Iguana contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
+        <translation>Iguana بولسا  Hunspell (GPL) ،QtCreator (GPL，ھوقۇق نوكىياغا(C) مەنسۇپ )  KILE (GPL) ھەمدە SyncTeX ( ئاپتور:  Jerome Laurens) لارنىڭ كودىنى ئۆز ئىچىگە ئالىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="69"/>
-        <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>TeXstudio TeXworks نىڭ PDF كۆرگۈچنى ئىشلىتىدۇ.</translation>
+        <source>Iguana uses the PDF viewer of TeXworks.</source>
+        <translation>Iguana TeXworks نىڭ PDF كۆرگۈچنى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
-        <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>TeXstudio DSingleApplication تۈرى ( ئاپتورى: Dima Fedorov Levit - ھوقۇق© BioImage Informatics - مەنسۇپ (C) كىلىشىم：GPL) نى ئىشلىتىدۇ.</translation>
+        <source>Iguana uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
+        <translation>Iguana DSingleApplication تۈرى ( ئاپتورى: Dima Fedorov Levit - ھوقۇق© BioImage Informatics - مەنسۇپ (C) كىلىشىم：GPL) نى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="71"/>
-        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation>TeXstudio TexTablet (MIT ھوقۇقىغا  (C) مەنسۈپ 2012 Steven Lovegrove) نى ئىشلىتىدۇ.</translation>
+        <source>Iguana uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
+        <translation>Iguana TexTablet (MIT ھوقۇقىغا  (C) مەنسۈپ 2012 Steven Lovegrove) نى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="72"/>
-        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation>TeXstudio QuaZip (LGPL، ھوقۇقى© 2005-2012 (C) Sergey A. Tachenov ) لارنى ئىشلىتىدۇ.</translation>
+        <source>Iguana uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation>Iguana QuaZip (LGPL، ھوقۇقى© 2005-2012 (C) Sergey A. Tachenov ) لارنى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="73"/>
-        <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation>TeXstudio To Title Case (MIT ھوقۇقى، تەۋەلىك (c) 2008-2013 David Gouch) لارنى ئىشلىتىدۇ.</translation>
+        <source>Iguana uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
+        <translation>Iguana To Title Case (MIT ھوقۇقى، تەۋەلىك (c) 2008-2013 David Gouch) لارنى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="74"/>
-        <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation>TeXstudio Alexander Klink. تەمىنلىگەن رەسىمنى ئىشلىتىدۇ.</translation>
+        <source>Iguana contains an image by Alexander Klink.</source>
+        <translation>Iguana Alexander Klink. تەمىنلىگەن رەسىمنى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="75"/>
-        <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
+        <source>Iguana uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="76"/>
-        <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation>TeXstudio Qt5.6 نىڭ flowlayout نى ئىشلىتىدۇ.</translation>
+        <source>Iguana uses flowlayout from Qt5.6 examples.</source>
+        <translation>Iguana Qt5.6 نىڭ flowlayout نى ئىشلىتىدۇ.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="77"/>
-        <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation>TeXstudio adwaita-qt（GPL2） نى ئىشلىتىدۇ </translation>
+        <source>Iguana uses adwaita-qt (GPL2) from </source>
+        <translation>Iguana adwaita-qt（GPL2） نى ئىشلىتىدۇ </translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="79"/>
@@ -227,8 +227,8 @@
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="14"/>
-        <source>About TeXstudio</source>
-        <translation>TeXstudio ھەققىدە</translation>
+        <source>About Iguana</source>
+        <translation>Iguana ھەققىدە</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="81"/>
@@ -745,10 +745,10 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
         <location filename="../src/buildmanager.cpp" line="1079"/>
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
-Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
+Please change your configuration and define command lists only at &apos;Options -&gt; Configure Iguana -&gt; Build&apos; not at &apos;Options -&gt; Configure Iguana -&gt; Commands&apos;.</source>
         <translation>%1 بۇيرۇقىنىڭ ئاتوم بولۇشى مۆلچەرلەنمەكتە. قانداقلا بولمىسۇن ، ئۇ ھازىر%2 بۇيرۇقنى ئۆز ئىچىگە ئالغان بۇيرۇق زەنجىرى دەپ ئېنىقلىما بېرىلگەن. بۇ ئۆلچەمدىن ئېشىپ كەتكەن بولۇپ ، ھەيران قالارلىق ئەكىس تەسىرلەرنى كەلتۈرۈپ چىقىرىشى مۇمكىن.
 
-سەپلىمىلىرىڭىزنى ئۆزگەرتىپ ، بۇيرۇق تىزىملىكىنى پەقەت «تاللانما -&gt; TeXstudio نى تەڭشەش -&gt; قۇرۇش» تا «تاللانما -&gt; TeXstudio -&gt; بۇيرۇق» تا ئەمەس.</translation>
+سەپلىمىلىرىڭىزنى ئۆزگەرتىپ ، بۇيرۇق تىزىملىكىنى پەقەت «تاللانما -&gt; Iguana نى تەڭشەش -&gt; قۇرۇش» تا «تاللانما -&gt; Iguana -&gt; بۇيرۇق» تا ئەمەس.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1113"/>
@@ -798,8 +798,8 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1569"/>
         <location filename="../src/buildmanager.cpp" line="1582"/>
-        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;(La) TeX ئورناتقانلىقىڭىزنى جەزملەشتۈرۈڭ&lt;/b&gt;مەسىلەن MiKTeX ياكى TeX Live ، ھەمدە بۇيرۇق سەپلەش بېتىدە بۇ تارقىتىشنىڭ توغرا يولىنى بەلگىلىدى.&lt;br&gt;TeXstudio غا ئوخشاش A (La) TeX تەھرىرى بۇنداق تەقسىمات تەمىنلىگەن (La) TeX بۇيرۇقلىرى بولمىسا ئىشلىمەيدۇ.</translation>
+        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like Iguana cannot work without the (La)TeX commands provided by such a distribution.</source>
+        <translation>&lt;b&gt;(La) TeX ئورناتقانلىقىڭىزنى جەزملەشتۈرۈڭ&lt;/b&gt;مەسىلەن MiKTeX ياكى TeX Live ، ھەمدە بۇيرۇق سەپلەش بېتىدە بۇ تارقىتىشنىڭ توغرا يولىنى بەلگىلىدى.&lt;br&gt;Iguana غا ئوخشاش A (La) TeX تەھرىرى بۇنداق تەقسىمات تەمىنلىگەن (La) TeX بۇيرۇقلىرى بولمىسا ئىشلىمەيدۇ.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1578"/>
@@ -904,8 +904,8 @@ Please change your configuration and define command lists only at &apos;Options 
     <name>ConfigDialog</name>
     <message>
         <location filename="../src/configdialog.ui" line="14"/>
-        <source>Configure TeXstudio</source>
-        <translation>TeXstudio نى تەڭشەش</translation>
+        <source>Configure Iguana</source>
+        <translation>Iguana نى تەڭشەش</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="160"/>
@@ -1738,7 +1738,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3741"/>
-        <source>The LLM receives a list of available functions from TeXstudio.
+        <source>The LLM receives a list of available functions from Iguana.
 It can ask the program to run those functions during an ai query to retrieve more information on the document.
 This may lead to unwanted data transfer to the AI provider.
 </source>
@@ -2745,7 +2745,7 @@ to render the characters. Since Unicode is not natively supported by LaTeX, you 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2513"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into TeXstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into Iguana by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;iguana --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within a citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2800,7 +2800,7 @@ Examples:
     <message>
         <location filename="../src/configdialog.ui" line="3930"/>
         <location filename="../src/configdialog.ui" line="3992"/>
-        <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
+        <source>Arguments passed when starting LanguageTool. This option only has an effect if LanguageTool is started from Iguana (i.e. not for an already running server).</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4630,8 +4630,8 @@ Do you want to remove them?</source>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2039"/>
-        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation>ئىچكى pdf- كۆرگۈچنى تولۇق ئىشلىتىش ئۈچۈن ، ماس قەدەملىك قوزغىتىش كېرەك. TeXstudio ھازىر قىلامدۇ؟</translation>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall Iguana do it now?</source>
+        <translation>ئىچكى pdf- كۆرگۈچنى تولۇق ئىشلىتىش ئۈچۈن ، ماس قەدەملىك قوزغىتىش كېرەك. Iguana ھازىر قىلامدۇ؟</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2054"/>
@@ -5590,8 +5590,8 @@ The wizard does not support command </source>
     <name>LatexDocument</name>
     <message>
         <location filename="../src/diffoperations.cpp" line="26"/>
-        <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation>نامەلۇم خاتالىق. يوشۇرۇن ھادىسە. TeXstudio نى قايتا قوزغىتىش تەۋسىيە قىلىنىدۇ</translation>
+        <source>Unknown error. Potential crash. You are advised to restart Iguana</source>
+        <translation>نامەلۇم خاتالىق. يوشۇرۇن ھادىسە. Iguana نى قايتا قوزغىتىش تەۋسىيە قىلىنىدۇ</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2841"/>
@@ -6476,13 +6476,13 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3205"/>
-        <source>&amp;Quit TeXstudio</source>
-        <translation>TeXstudio ېكىنىش(&amp;Q)</translation>
+        <source>&amp;Quit Iguana</source>
+        <translation>Iguana ېكىنىش(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3206"/>
-        <source>&amp;Configure TeXstudio</source>
-        <translation>TeXstudio نى سەپلەش(&amp;C)</translation>
+        <source>&amp;Configure Iguana</source>
+        <translation>Iguana نى سەپلەش(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3208"/>
@@ -7201,8 +7201,8 @@ You can now enter the password:</source>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2623"/>
-        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;(La) TeX تارقىتىشنى ئورناتقانلىقىڭىزنى جەزملەشتۈرۈڭ&lt;/b&gt;مەسىلەن MiKTeX ياكى TeX Live ، ھەمدە بۇيرۇق سەپلەش بېتىدە بۇ تارقىتىشنىڭ توغرا يولىنى بەلگىلىدىمۇ&lt;br&gt;TeXstudio غا ئوخشاش A (La) TeX تەھرىرى بۇنداق تەقسىمات تەمىنلىگەن (La) TeX بۇيرۇقلىرى بولمىسا ئىشلىمەيدۇ.</translation>
+        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like Iguana cannot work without the (La)TeX commands provided by such a distribution.</source>
+        <translation>&lt;b&gt;(La) TeX تارقىتىشنى ئورناتقانلىقىڭىزنى جەزملەشتۈرۈڭ&lt;/b&gt;مەسىلەن MiKTeX ياكى TeX Live ، ھەمدە بۇيرۇق سەپلەش بېتىدە بۇ تارقىتىشنىڭ توغرا يولىنى بەلگىلىدىمۇ&lt;br&gt;Iguana غا ئوخشاش A (La) TeX تەھرىرى بۇنداق تەقسىمات تەمىنلىگەن (La) TeX بۇيرۇقلىرى بولمىسا ئىشلىمەيدۇ.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2627"/>
@@ -7524,7 +7524,7 @@ Free space: %3 kB
 
 You should clean up some space and retry. Alternatively you can
 cancel the save operation and save to another location instead.
-When ignoring this warning TeXstudio will try save to the specified
+When ignoring this warning Iguana will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
@@ -7534,7 +7534,7 @@ result in data loss.
 بار بوشلۇق: %3 kB
 بەزى بوشلۇقلارنى تازىلاپ قايتا سىناڭ. ئۇنىڭدىن باشقا سىز قىلالايسىز
 ساقلاش مەشغۇلاتىنى ئەمەلدىن قالدۇرۇپ ، ئۇنىڭ ئورنىغا باشقا ئورۇنغا ساقلاڭ.
-بۇ ئاگاھلاندۇرۇشقا پەرۋا قىلماي ، TeXstudio كۆرسىتىلگەننى ساقلاشقا تىرىشىدۇ
+بۇ ئاگاھلاندۇرۇشقا پەرۋا قىلماي ، Iguana كۆرسىتىلگەننى ساقلاشقا تىرىشىدۇ
 ئورنى. ئەگەر راستىنلا يېتەرلىك بوشلۇق بولمىسا ، بۇ بولىدۇ
 سانلىق مەلۇماتلارنىڭ يوقىلىشىنى كەلتۈرۈپ چىقىرىدۇ.
 </translation>
@@ -7597,13 +7597,13 @@ Probably someone else restored it and therefore I&apos;m not going to override t
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1273"/>
         <source>%1
-was changed outside of TeXstudio. Reload from disk?
+was changed outside of Iguana. Reload from disk?
 
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
         <translation>%1
-TeXstudio نىڭ سىرتىدا ئۆزگەرتىلدى. دىسكىدىن قايتا يۈكلەڭ؟
+Iguana نىڭ سىرتىدا ئۆزگەرتىلدى. دىسكىدىن قايتا يۈكلەڭ؟
 
 ئىزاھات:
 - قايتا يۈكلەش تەھرىرلىگۈچ مەزمۇنىنى دىسكىدىن ھۆججەت بىلەن قاپلايدۇ. بۇنى ئەمەلدىن قالدۇرغىلى بولمايدۇ.
@@ -9947,15 +9947,15 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <name>TemplateManager</name>
     <message>
         <location filename="../src/templatemanager.cpp" line="79"/>
-        <source>TeXstudio found user templates in deprecated locations.
+        <source>Iguana found user templates in deprecated locations.
 From now on user templates are hosted at
 %1
-Should TeXstudio move the existing user templates there?
+Should Iguana move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation>TeXstudio ۋاقتى ئۆتكەن ئورۇنلاردا ئىشلەتكۈچى قېلىپىنى تاپتى.
+        <translation>Iguana ۋاقتى ئۆتكەن ئورۇنلاردا ئىشلەتكۈچى قېلىپىنى تاپتى.
 ھازىردىن باشلاپ ئىشلەتكۈچى قېلىپلىرى ساھىبخانلىق قىلىندى
 %1
-TeXstudio ھازىر بار بولغان ئىشلەتكۈچى قېلىپىنى يۆتكىشى كېرەكمۇ؟
+Iguana ھازىر بار بولغان ئىشلەتكۈچى قېلىپىنى يۆتكىشى كېرەكمۇ؟
 ئەگەر ئۇنداق بولمىسا ، ئۇلار «قېلىپنى ياساش» دىئالوگى ئارقىلىق ئىشلىمەيدۇ.</translation>
     </message>
     <message>
@@ -9982,8 +9982,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="102"/>
-        <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation>يۆتكەلمىگەن قېلىپلار يەنىلا بار. TeXstudio ئۇلارنى نازارەت قىلىشنى توختىتىشى كېرەكمۇ؟</translation>
+        <source>There are still unmoved templates. Should Iguana stop monitoring them?</source>
+        <translation>يۆتكەلمىگەن قېلىپلار يەنىلا بار. Iguana ئۇلارنى نازارەت قىلىشنى توختىتىشى كېرەكمۇ؟</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="117"/>
@@ -9992,8 +9992,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="119"/>
-        <source>Basic template files shipped with TeXstudio.</source>
-        <translation>TeXstudio بىلەن ئەۋەتىلگەن ئاساسىي قېلىپ ھۆججەتلىرى.</translation>
+        <source>Basic template files shipped with Iguana.</source>
+        <translation>Iguana بىلەن ئەۋەتىلگەن ئاساسىي قېلىپ ھۆججەتلىرى.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="118"/>
@@ -10204,7 +10204,7 @@ template to edit individual files.</source>
     </message>
 </context>
 <context>
-    <name>Texstudio</name>
+    <name>Iguana</name>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="344"/>
         <source>Custom</source>
@@ -10252,7 +10252,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="353"/>
-        <location filename="../src/texstudio.cpp" line="275"/>
+        <location filename="../src/iguana.cpp" line="275"/>
         <source>Central</source>
         <translation>مەركەزلەش</translation>
     </message>
@@ -10346,1692 +10346,1692 @@ template to edit individual files.</source>
         <translation>ماكرونى تەھرىرلەش(&amp;M)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="378"/>
-        <location filename="../src/texstudio.cpp" line="6785"/>
+        <location filename="../src/iguana.cpp" line="378"/>
+        <location filename="../src/iguana.cpp" line="6785"/>
         <source>Ready</source>
         <translation>تەييار</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="454"/>
+        <location filename="../src/iguana.cpp" line="454"/>
         <source>TeX files</source>
         <translation>TeX ھۆججىتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="455"/>
+        <location filename="../src/iguana.cpp" line="455"/>
         <source>LilyPond files</source>
         <translation>LilyPond ھۆججىتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="456"/>
+        <location filename="../src/iguana.cpp" line="456"/>
         <source>Plaintext files</source>
         <translation>ساپ ھۆججەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="457"/>
+        <location filename="../src/iguana.cpp" line="457"/>
         <source>Pweave files</source>
         <translation>Pweave ھۆججىتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="458"/>
+        <location filename="../src/iguana.cpp" line="458"/>
         <source>Sweave files</source>
         <translation>Sweave ھۆججىتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="459"/>
+        <location filename="../src/iguana.cpp" line="459"/>
         <source>Asymptote files</source>
         <translation>Asymptote ھۆججىتىۈ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="460"/>
+        <location filename="../src/iguana.cpp" line="460"/>
         <source>PDF files</source>
         <translation>PDF ھۆججىتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="461"/>
-        <location filename="../src/texstudio.cpp" line="10745"/>
-        <location filename="../src/texstudio.cpp" line="10752"/>
+        <location filename="../src/iguana.cpp" line="461"/>
+        <location filename="../src/iguana.cpp" line="10745"/>
+        <location filename="../src/iguana.cpp" line="10752"/>
         <source>All files</source>
         <translation>بارلىق ھۆججەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="672"/>
+        <location filename="../src/iguana.cpp" line="672"/>
         <source>Macros</source>
         <translation>ماكرولار</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="691"/>
+        <location filename="../src/iguana.cpp" line="691"/>
         <source>Side Panel</source>
         <translation>يانتاختا</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="710"/>
+        <location filename="../src/iguana.cpp" line="710"/>
         <source>Structure</source>
         <translation>قۇرۇلما</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="729"/>
+        <location filename="../src/iguana.cpp" line="729"/>
         <source>Bookmarks</source>
         <translation>خەتكۈچ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="739"/>
+        <location filename="../src/iguana.cpp" line="739"/>
         <source>Symbols</source>
         <translation>بەلگە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="774"/>
+        <location filename="../src/iguana.cpp" line="774"/>
         <source>Left/Right Brackets</source>
         <translation>ئوڭ\سول تىرناق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="776"/>
+        <location filename="../src/iguana.cpp" line="776"/>
         <source>MetaPost Commands</source>
         <translation>MetaPost بۇيرۇقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="775"/>
+        <location filename="../src/iguana.cpp" line="775"/>
         <source>PSTricks Commands</source>
         <translation>PSTricks بۇيرۇقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="721"/>
+        <location filename="../src/iguana.cpp" line="721"/>
         <source>TOC</source>
         <translation>مۇندەرىجە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="777"/>
+        <location filename="../src/iguana.cpp" line="777"/>
         <source>TikZ Commands</source>
         <translation>مۇندەرىجە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="778"/>
+        <location filename="../src/iguana.cpp" line="778"/>
         <source>Asymptote Commands</source>
         <translation>Asymptote بۇيرۇقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="779"/>
+        <location filename="../src/iguana.cpp" line="779"/>
         <source>Beamer Commands</source>
         <translation>Beamer بۇيرۇقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="780"/>
+        <location filename="../src/iguana.cpp" line="780"/>
         <source>XY Commands</source>
         <translation>XY بۇيرۇقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/iguana.cpp" line="912"/>
         <source>&amp;File</source>
         <translation>باشلاش(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="914"/>
+        <location filename="../src/iguana.cpp" line="914"/>
         <source>&amp;New</source>
         <translation>يېڭى(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="915"/>
+        <location filename="../src/iguana.cpp" line="915"/>
         <source>New From &amp;Template...</source>
         <translation>ئۇسلۇپتىن قۇرۇش(&amp;T)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="916"/>
+        <location filename="../src/iguana.cpp" line="916"/>
         <source>&amp;Open...</source>
         <translation>ئېچىش(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="918"/>
+        <location filename="../src/iguana.cpp" line="918"/>
         <source>Open &amp;Recent</source>
         <translation>يېقىنقىسى(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/iguana.cpp" line="920"/>
         <source>Session</source>
         <translation>دىيالوگ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="921"/>
+        <location filename="../src/iguana.cpp" line="921"/>
         <source>Load Session...</source>
         <translation>دىيالوگنى ئېچىش...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="922"/>
+        <location filename="../src/iguana.cpp" line="922"/>
         <source>Save Session...</source>
         <translation>دىيالوگنى ساقلاش...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
+        <location filename="../src/iguana.cpp" line="923"/>
         <source>Restore Previous Session</source>
         <translation>دىيالوگنى ئەسلىگە كەلتۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="932"/>
+        <location filename="../src/iguana.cpp" line="932"/>
         <source>&amp;Save</source>
         <translation>ساقلاش(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="933"/>
+        <location filename="../src/iguana.cpp" line="933"/>
         <source>Save &amp;As...</source>
         <translation>باشقا ساقلاش(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="934"/>
+        <location filename="../src/iguana.cpp" line="934"/>
         <source>Save A&amp;ll</source>
         <translation>ھەممىنى ساقلاش(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="935"/>
+        <location filename="../src/iguana.cpp" line="935"/>
         <source>&amp;Make Template...</source>
         <translation>ئۇسلۇپ قۇرۇش(&amp;M)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="938"/>
+        <location filename="../src/iguana.cpp" line="938"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="939"/>
+        <location filename="../src/iguana.cpp" line="939"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>ئۆزگەرتىلگەن / يۆتكەلگەن ھۆججەتنى ساقلاش (&amp;m)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
+        <location filename="../src/iguana.cpp" line="940"/>
         <source>Save copied file...</source>
         <translation>كۆچۈرۈلگەن ھۆججەتنى ساقلاش ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="941"/>
+        <location filename="../src/iguana.cpp" line="941"/>
         <source>&amp;Delete file</source>
         <translation>ھۆججەتنى يۇيۇش(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/iguana.cpp" line="942"/>
         <source>Set &amp;permissions...</source>
         <translation>ھوقۇق تەڭشەش(&amp;p)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="944"/>
+        <location filename="../src/iguana.cpp" line="944"/>
         <source>&amp;Revert to saved...</source>
         <translation>ساقلانسى قىلىش(&amp;r)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/iguana.cpp" line="946"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>ھۆججەت نامىنى چاپلاش تاختىسىغا كۆچۈر(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="949"/>
+        <location filename="../src/iguana.cpp" line="949"/>
         <source>S&amp;VN/GIT...</source>
         <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="950"/>
+        <location filename="../src/iguana.cpp" line="950"/>
         <source>Check &amp;in...</source>
         <translation>تاپشۇرۇش(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="951"/>
+        <location filename="../src/iguana.cpp" line="951"/>
         <source>SVN &amp;update...</source>
         <translation>SVN يىڭىلاش(&amp;U)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="952"/>
+        <location filename="../src/iguana.cpp" line="952"/>
         <source>SVN update &amp;work directory</source>
         <translation>&amp;SVN يىڭىلانما تۈرلىرى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="953"/>
+        <location filename="../src/iguana.cpp" line="953"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>كونا نەشىرىىنى كۆرسەت(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="954"/>
+        <location filename="../src/iguana.cpp" line="954"/>
         <source>Lock &amp;PDF</source>
         <translation>قۇلۇپلاش &amp;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="955"/>
+        <location filename="../src/iguana.cpp" line="955"/>
         <source>Check in P&amp;DF</source>
         <translation>تاپشۇرۇش PDF(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
+        <location filename="../src/iguana.cpp" line="956"/>
         <source>Show difference between two files</source>
         <translation>ئىككى ھۆججەتنىڭ پەرقىنى كۆرسەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/iguana.cpp" line="957"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>ئاساسى ھۆججەتكە مۇناسىۋەتلىك ئىككى ھۆججەتنىڭ پەرقىنى كۆرسەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="958"/>
+        <location filename="../src/iguana.cpp" line="958"/>
         <source>Check SVN Conflict</source>
         <translation>SVN توقۇنۇشىنى تەكشۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/iguana.cpp" line="959"/>
         <source>Try to merge differences</source>
         <translation>ئوخشىماسلىقنى بىرلەشتۈرۈشكە تىرىشىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="960"/>
+        <location filename="../src/iguana.cpp" line="960"/>
         <source>Remove Difference-Markers</source>
         <translation>پەرقلىق بەلگىلەرنى ئۆچۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="961"/>
+        <location filename="../src/iguana.cpp" line="961"/>
         <source>Declare Conflict Resolved</source>
         <translation>زىددىيەتنىڭ ھەل قىلىنغانلىقىنى بايان قىل</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
+        <location filename="../src/iguana.cpp" line="962"/>
         <source>Jump to next difference</source>
         <translation>كېيىنكى پەرقكە ئاتلا</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/iguana.cpp" line="963"/>
         <source>Jump to previous difference</source>
         <translation>ئىلگىرىكى پەرقكە ئاتلا</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
-        <location filename="../src/texstudio.cpp" line="11011"/>
+        <location filename="../src/iguana.cpp" line="966"/>
+        <location filename="../src/iguana.cpp" line="11011"/>
         <source>&amp;Close</source>
         <translation>تاقاش(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
+        <location filename="../src/iguana.cpp" line="967"/>
         <source>Clos&amp;e All</source>
         <translation>ھەممىنى تاقاش(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="970"/>
+        <location filename="../src/iguana.cpp" line="970"/>
         <source>Print Source Code...</source>
         <translation>ئەسلى كودنى پىرىنتېرلاش...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/iguana.cpp" line="973"/>
         <source>Exit</source>
         <translation>چېكىنىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="976"/>
+        <location filename="../src/iguana.cpp" line="976"/>
         <source>&amp;Edit</source>
         <translation>تەھرىرلەش(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="977"/>
+        <location filename="../src/iguana.cpp" line="977"/>
         <source>&amp;Undo</source>
         <translation>يېنىۋىلىش(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/iguana.cpp" line="978"/>
         <source>&amp;Redo</source>
         <translation>قايتىلاش(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/iguana.cpp" line="980"/>
         <source>Debug undo stack</source>
         <translation>Debug undo stack</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="984"/>
+        <location filename="../src/iguana.cpp" line="984"/>
         <source>&amp;Copy</source>
         <translation>كۆپەيتىش(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
+        <location filename="../src/iguana.cpp" line="983"/>
         <source>C&amp;ut</source>
         <translation>كېسىش(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="759"/>
+        <location filename="../src/iguana.cpp" line="759"/>
         <source>Insert filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="764"/>
+        <location filename="../src/iguana.cpp" line="764"/>
         <source>Files</source>
         <translation>ھۆججەتلەر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="771"/>
+        <location filename="../src/iguana.cpp" line="771"/>
         <source>Git</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="947"/>
+        <location filename="../src/iguana.cpp" line="947"/>
         <source>Copy root filename to clipboard</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
+        <location filename="../src/iguana.cpp" line="985"/>
         <source>&amp;Paste</source>
         <translation>چاپلاش(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
+        <location filename="../src/iguana.cpp" line="987"/>
         <source>&amp;Selection</source>
         <translation>تاللاش(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/iguana.cpp" line="988"/>
         <source>Select &amp;All</source>
         <translation>ھەممىنى تاللاش(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/iguana.cpp" line="989"/>
         <source>Select All &amp;Occurrences</source>
         <translation>ھەممە تۈرنى تاللاش(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="990"/>
+        <location filename="../src/iguana.cpp" line="990"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation>ئالدىنقىنى تاللاش(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="991"/>
+        <location filename="../src/iguana.cpp" line="991"/>
         <source>Select &amp;Next Occurrence</source>
         <translation>كىيىنكىنى تاللاش(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="992"/>
+        <location filename="../src/iguana.cpp" line="992"/>
         <source>Also Select Prev Occurrence</source>
         <translation>ئالدىنقىنى تەڭ تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="993"/>
+        <location filename="../src/iguana.cpp" line="993"/>
         <source>Also Select Next Occurrence</source>
         <translation>كىيىنكىنى تەڭ تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="994"/>
+        <location filename="../src/iguana.cpp" line="994"/>
         <source>Expand Selection to Word</source>
         <translation>خەت ئاخىرغىچە تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/iguana.cpp" line="995"/>
         <source>Expand Selection to Line</source>
         <translation>قۇر ئاخىرغىچە تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/iguana.cpp" line="997"/>
         <source>&amp;Line Operations</source>
         <translation>قۇت مەشغۇلاتى(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
+        <location filename="../src/iguana.cpp" line="998"/>
         <source>Delete &amp;Line</source>
         <translation>قۇرنى ئۆچۈرۈش(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1001"/>
-        <location filename="../src/texstudio.cpp" line="1003"/>
+        <location filename="../src/iguana.cpp" line="1001"/>
+        <location filename="../src/iguana.cpp" line="1003"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>قۇر ئاخىرغىچە ئۆچۈرۈش(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1005"/>
+        <location filename="../src/iguana.cpp" line="1005"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>قۇر بېشىدىن باشلاپ ئۆچۈرۈش(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
+        <location filename="../src/iguana.cpp" line="1006"/>
         <source>Move Line &amp;Up</source>
         <translation>قۇرنى ئۈستىگە(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/iguana.cpp" line="1007"/>
         <source>Move Line &amp;Down</source>
         <translation>قۇرنى ئاستىغا(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
+        <location filename="../src/iguana.cpp" line="1008"/>
         <source>Du&amp;plicate Line</source>
         <translation>قۇرنى نۇسخىلاش(&amp;p)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1009"/>
+        <location filename="../src/iguana.cpp" line="1009"/>
         <source>S&amp;ort Lines</source>
         <translation>قۇرنى تەرتىپلەش ( &amp;o )</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/iguana.cpp" line="1010"/>
         <source>&amp;Align Cursors</source>
         <translation>ئىستىرىلكىغا توغرىلاش(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1012"/>
+        <location filename="../src/iguana.cpp" line="1012"/>
         <source>&amp;Text Operations</source>
         <translation>تېكسىت قۇر يۆتكىلىش(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1013"/>
+        <location filename="../src/iguana.cpp" line="1013"/>
         <source>To Lowercase</source>
         <translation>كىچىك يېزىلىشقا ئالماشتۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1014"/>
+        <location filename="../src/iguana.cpp" line="1014"/>
         <source>To Uppercase</source>
         <translation>چوڭ يېزىلىشقا ئالماشتۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1015"/>
+        <location filename="../src/iguana.cpp" line="1015"/>
         <source>To Titlecase (strict)</source>
         <translation>ماۋزۇغا (قاتتىق)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1016"/>
+        <location filename="../src/iguana.cpp" line="1016"/>
         <source>To Titlecase (smart)</source>
         <translation>ماۋزۇغا (ئەقلى)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1020"/>
+        <location filename="../src/iguana.cpp" line="1020"/>
         <source>&amp;Searching</source>
         <translation>ئىزدەش(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1021"/>
+        <location filename="../src/iguana.cpp" line="1021"/>
         <source>&amp;Find</source>
         <translation>ئىزدەش(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1022"/>
+        <location filename="../src/iguana.cpp" line="1022"/>
         <source>Find &amp;Next</source>
         <translation>كىيىنكىنى ئىزدەش(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1023"/>
+        <location filename="../src/iguana.cpp" line="1023"/>
         <source>Find &amp;Prev</source>
         <translation>ئالدىنقىنى ئىزدەش(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1024"/>
+        <location filename="../src/iguana.cpp" line="1024"/>
         <source>Continue F&amp;ind</source>
         <translation>داۋاملىق ئىزدەش(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1025"/>
+        <location filename="../src/iguana.cpp" line="1025"/>
         <source>&amp;Count</source>
         <translation>ساناش(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1026"/>
+        <location filename="../src/iguana.cpp" line="1026"/>
         <source>&amp;Select all matches...</source>
         <translation>ماسلىرىنى تاللاش(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1028"/>
+        <location filename="../src/iguana.cpp" line="1028"/>
         <source>&amp;Replace</source>
         <translation>ئالماشتۇرۇش(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1029"/>
+        <location filename="../src/iguana.cpp" line="1029"/>
         <source>Replace Next</source>
         <translation>كىيىنكىنى ئالماشتۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1030"/>
+        <location filename="../src/iguana.cpp" line="1030"/>
         <source>Replace Prev</source>
         <translation>ئالدىنقىنى ئالماشتۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
+        <location filename="../src/iguana.cpp" line="1031"/>
         <source>Replace &amp;All</source>
         <translation>ھەممىنى ئالماشتۇرۇش(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1034"/>
+        <location filename="../src/iguana.cpp" line="1034"/>
         <source>Go to</source>
         <translation>سەكرەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1036"/>
-        <location filename="../src/texstudio.cpp" line="8584"/>
-        <location filename="../src/texstudio.cpp" line="8609"/>
-        <location filename="../src/texstudio.cpp" line="8629"/>
+        <location filename="../src/iguana.cpp" line="1036"/>
+        <location filename="../src/iguana.cpp" line="8584"/>
+        <location filename="../src/iguana.cpp" line="8609"/>
+        <location filename="../src/iguana.cpp" line="8629"/>
         <source>Line</source>
         <translation>قۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1037"/>
+        <location filename="../src/iguana.cpp" line="1037"/>
         <source>Previous Change</source>
         <translation>ئالدىنقى ئۆزگۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1039"/>
-        <location filename="../src/texstudio.cpp" line="1041"/>
+        <location filename="../src/iguana.cpp" line="1039"/>
+        <location filename="../src/iguana.cpp" line="1041"/>
         <source>Next Change</source>
         <translation>كىيىنكى ئۆزگۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1044"/>
+        <location filename="../src/iguana.cpp" line="1044"/>
         <source>Previous mark</source>
         <translation>ئالدىنقى بەلگە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1045"/>
+        <location filename="../src/iguana.cpp" line="1045"/>
         <source>Next mark</source>
         <translation>كىيىنكى بەلگە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1048"/>
+        <location filename="../src/iguana.cpp" line="1048"/>
         <source>Go Back</source>
         <translation>كەينىگە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1049"/>
+        <location filename="../src/iguana.cpp" line="1049"/>
         <source>Go Forward</source>
         <translation>ئالدىغا</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1052"/>
+        <location filename="../src/iguana.cpp" line="1052"/>
         <source>Goto Bookmark</source>
         <translation>خەتكۈچكە سەكرەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1065"/>
-        <location filename="../src/texstudio.cpp" line="1074"/>
-        <location filename="../src/texstudio.cpp" line="1078"/>
+        <location filename="../src/iguana.cpp" line="1065"/>
+        <location filename="../src/iguana.cpp" line="1074"/>
+        <location filename="../src/iguana.cpp" line="1078"/>
         <source>Bookmark %1</source>
         <translation>خەتكۈچ %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1069"/>
+        <location filename="../src/iguana.cpp" line="1069"/>
         <source>Toggle Bookmark</source>
         <translation>خەتكۈچ ئالماشتۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1072"/>
-        <location filename="../src/texstudio.cpp" line="1076"/>
+        <location filename="../src/iguana.cpp" line="1072"/>
+        <location filename="../src/iguana.cpp" line="1076"/>
         <source>Unnamed Bookmark</source>
         <translation>نامسىز خەتكۈچ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1083"/>
+        <location filename="../src/iguana.cpp" line="1083"/>
         <source>Line Ending</source>
         <translation>قۇر تاشلىغۇچ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1085"/>
+        <location filename="../src/iguana.cpp" line="1085"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1089"/>
+        <location filename="../src/iguana.cpp" line="1089"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1093"/>
+        <location filename="../src/iguana.cpp" line="1093"/>
         <source>Old Mac (CR)</source>
         <translation>كونا Mac (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1099"/>
+        <location filename="../src/iguana.cpp" line="1099"/>
         <source>Setup Encoding...</source>
         <translation>كودلاش تەڭشىكى...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1101"/>
-        <location filename="../src/texstudio.cpp" line="1103"/>
+        <location filename="../src/iguana.cpp" line="1101"/>
+        <location filename="../src/iguana.cpp" line="1103"/>
         <source>Insert Unicode Character...</source>
         <translation>Unicode ھەرپى قىستۇرۇش...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1109"/>
+        <location filename="../src/iguana.cpp" line="1109"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1110"/>
+        <location filename="../src/iguana.cpp" line="1110"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>&amp;Word/Cmd/Env ئۆچۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1113"/>
+        <location filename="../src/iguana.cpp" line="1113"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>LaTeX گە چاپلاش(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1114"/>
+        <location filename="../src/iguana.cpp" line="1114"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>LaTeX گە ئالماشتۇرۇش (&amp;n)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1117"/>
+        <location filename="../src/iguana.cpp" line="1117"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>تاللانما\كۆرسىتىشلەرنى كۆرۈش(v)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1118"/>
+        <location filename="../src/iguana.cpp" line="1118"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>ئىچكى كۆرنۈشنى تازلاش(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/iguana.cpp" line="1120"/>
         <source>Preview Dis&amp;play Mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/iguana.cpp" line="1122"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>ئەگەر گۇرۇپپا يوشۇرۇن بولسا ئالدىن كۆرۈشنى قورال كۆرسەتكۈچى قىلىپ كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1126"/>
+        <location filename="../src/iguana.cpp" line="1126"/>
         <source>Always show preview in preview panel</source>
         <translation>ئالدىن كۆرۈش تاختىسىدا ھەمىشە ئالدىن كۆرۈشنى كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1130"/>
+        <location filename="../src/iguana.cpp" line="1130"/>
         <source>Always show preview as tool tip</source>
         <translation>ئالدىن كۆرۈشنى قورال ئۇچى سۈپىتىدە كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1134"/>
+        <location filename="../src/iguana.cpp" line="1134"/>
         <source>Always show both</source>
         <translation>ھەمىشە ھەر ئىككىسىنى كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1138"/>
+        <location filename="../src/iguana.cpp" line="1138"/>
         <source>Inline</source>
         <translation>قۇرئىچى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1144"/>
+        <location filename="../src/iguana.cpp" line="1144"/>
         <source>Show in embedded viewer</source>
         <translation>قىستۇرما كۆرگۈچتە كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1153"/>
+        <location filename="../src/iguana.cpp" line="1153"/>
         <source>Toggle &amp;Comment</source>
         <translation>ئىزاھلاش ياكى ئىزاھلىماسلىق(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
+        <location filename="../src/iguana.cpp" line="1154"/>
         <source>&amp;Comment</source>
         <translation>ئىزاھ(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/iguana.cpp" line="1155"/>
         <source>&amp;Uncomment</source>
         <translation>ئىزاھلىماسلىق(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1156"/>
+        <location filename="../src/iguana.cpp" line="1156"/>
         <source>&amp;Indent</source>
         <translation>تارىيىش(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1157"/>
+        <location filename="../src/iguana.cpp" line="1157"/>
         <source>Unin&amp;dent</source>
         <translation>تارايمىغان(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/iguana.cpp" line="1158"/>
         <source>Hard Line &amp;Break...</source>
         <translation>مەجبۇرى قۇر تاشلاش(&amp;B)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1159"/>
+        <location filename="../src/iguana.cpp" line="1159"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>تەكرار مەجبۇرى قۇر تاشلاش(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1162"/>
+        <location filename="../src/iguana.cpp" line="1162"/>
         <source>&amp;Go to</source>
         <translation>سەكرەش(&amp;G)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1164"/>
+        <location filename="../src/iguana.cpp" line="1164"/>
         <source>Previous Error</source>
         <translation>ئالدىنقى خاتالىق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1164"/>
-        <location filename="../src/texstudio.cpp" line="1165"/>
+        <location filename="../src/iguana.cpp" line="1164"/>
+        <location filename="../src/iguana.cpp" line="1165"/>
         <source>No LaTeX errors detected !</source>
         <translation>LaTeX خاتالىق بايقالمىدى!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1165"/>
+        <location filename="../src/iguana.cpp" line="1165"/>
         <source>Next Error</source>
         <translation>كىيىنكى خاتالىق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1166"/>
+        <location filename="../src/iguana.cpp" line="1166"/>
         <source>Previous Warning</source>
         <translation>ئالدىنقى ئەسكەرتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1166"/>
-        <location filename="../src/texstudio.cpp" line="1167"/>
+        <location filename="../src/iguana.cpp" line="1166"/>
+        <location filename="../src/iguana.cpp" line="1167"/>
         <source>No LaTeX warnings detected !</source>
         <translation>LaTeX ئەسكەرتىش بايقالمىدى!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1167"/>
+        <location filename="../src/iguana.cpp" line="1167"/>
         <source>Next Warning</source>
         <translation>كىيىنكى ئەسكەرتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1168"/>
+        <location filename="../src/iguana.cpp" line="1168"/>
         <source>Previous Bad Box</source>
         <translation>كىيىنكى چوڭ ساندۇق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1168"/>
-        <location filename="../src/texstudio.cpp" line="1169"/>
+        <location filename="../src/iguana.cpp" line="1168"/>
+        <location filename="../src/iguana.cpp" line="1169"/>
         <source>No bad boxes detected !</source>
         <translation>LaTeX چوڭ ساندۇق بايقالمىدى!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1169"/>
+        <location filename="../src/iguana.cpp" line="1169"/>
         <source>Next Bad Box</source>
         <translation>كىيىنكى چوڭ ساندۇق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1172"/>
+        <location filename="../src/iguana.cpp" line="1172"/>
         <source>Definition</source>
         <translation>ئېنىقلىما</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1175"/>
+        <location filename="../src/iguana.cpp" line="1175"/>
         <source>Re&amp;name Environment</source>
         <translation>مۇھىتنى قايتا ناملاش(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/iguana.cpp" line="1177"/>
         <source>Parenthesis</source>
         <translation>Parenthesis</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1179"/>
-        <location filename="../src/texstudio.cpp" line="1189"/>
+        <location filename="../src/iguana.cpp" line="1179"/>
+        <location filename="../src/iguana.cpp" line="1189"/>
         <source>Jump to Match</source>
         <translation>ماس كەلگىنىگە سەكرە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1180"/>
-        <location filename="../src/texstudio.cpp" line="1190"/>
+        <location filename="../src/iguana.cpp" line="1180"/>
+        <location filename="../src/iguana.cpp" line="1190"/>
         <source>Select Inner</source>
         <translation>ئىچ تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1181"/>
-        <location filename="../src/texstudio.cpp" line="1191"/>
+        <location filename="../src/iguana.cpp" line="1181"/>
+        <location filename="../src/iguana.cpp" line="1191"/>
         <source>Select Outer</source>
         <translation>تاش تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1182"/>
-        <location filename="../src/texstudio.cpp" line="1192"/>
+        <location filename="../src/iguana.cpp" line="1182"/>
+        <location filename="../src/iguana.cpp" line="1192"/>
         <source>Select Command</source>
         <translation>بۇيرۇق تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1183"/>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/iguana.cpp" line="1183"/>
+        <location filename="../src/iguana.cpp" line="1193"/>
         <source>Select Line</source>
         <translation>قۇر تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1184"/>
-        <location filename="../src/texstudio.cpp" line="1194"/>
+        <location filename="../src/iguana.cpp" line="1184"/>
+        <location filename="../src/iguana.cpp" line="1194"/>
         <source>Select Inverting</source>
         <translation>تەتۈر تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
-        <location filename="../src/texstudio.cpp" line="1197"/>
+        <location filename="../src/iguana.cpp" line="1187"/>
+        <location filename="../src/iguana.cpp" line="1197"/>
         <source>Find Mismatch</source>
         <translation>ماس كەلمىگىنىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
+        <location filename="../src/iguana.cpp" line="1200"/>
         <source>Complete</source>
         <translation>تاماملاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/iguana.cpp" line="1201"/>
         <source>Normal</source>
         <translation>نۇرمال</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1202"/>
+        <location filename="../src/iguana.cpp" line="1202"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ Completion</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1203"/>
+        <location filename="../src/iguana.cpp" line="1203"/>
         <source>Normal Text</source>
         <translation>نۇرمال تېكسىت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
+        <location filename="../src/iguana.cpp" line="1207"/>
         <source>update TOC</source>
         <translation>مۇندەرىجە يىڭىلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
+        <location filename="../src/iguana.cpp" line="1208"/>
         <source>Refresh Structure</source>
         <translation>قۇرۇلما يېڭىلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1209"/>
+        <location filename="../src/iguana.cpp" line="1209"/>
         <source>Refresh Language Model</source>
         <translation>تىل ئەندىزىسىنى يېڭىلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1210"/>
+        <location filename="../src/iguana.cpp" line="1210"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>يورۇتۇش ۋە قاتلاشقا ئىشلىتىلىدىغان ھەرىكەتچان تىل ئەندىزىسىنى يېڭىلاشقا زورلاڭ. مۇمكىن ، بۇنى چاقىرىشنىڭ ھاجىتى يوق ، چۈنكى يېڭىلاش ئادەتتە ئاپتوماتىك بولىدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1211"/>
+        <location filename="../src/iguana.cpp" line="1211"/>
         <source>Remove Placeholders</source>
         <translation>ئورۇنچىنى ئېلىۋېتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1212"/>
+        <location filename="../src/iguana.cpp" line="1212"/>
         <source>Remove Current Placeholder</source>
         <translation>نۆۋەتتىكى ئورۇنچىنى ئېلىۋېتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/iguana.cpp" line="1217"/>
         <source>&amp;Tools</source>
         <translation>قۇرال(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1219"/>
+        <location filename="../src/iguana.cpp" line="1219"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>چىقرىش ھەم كۆرۈش(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1220"/>
+        <location filename="../src/iguana.cpp" line="1220"/>
         <source>&amp;Compile</source>
         <translation>تەرجىمىلەش(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1221"/>
+        <location filename="../src/iguana.cpp" line="1221"/>
         <source>Stop Compile</source>
         <translation>تەرجىمىنى توختات</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
-        <location filename="../src/texstudio.cpp" line="1384"/>
+        <location filename="../src/iguana.cpp" line="1225"/>
+        <location filename="../src/iguana.cpp" line="1384"/>
         <source>&amp;View</source>
         <translation>كۆرۈش(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
-        <location filename="../src/texstudio.cpp" line="1331"/>
+        <location filename="../src/iguana.cpp" line="1226"/>
+        <location filename="../src/iguana.cpp" line="1331"/>
         <source>&amp;Bibliography</source>
         <translation>پايدىلانما ماقالە(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1227"/>
+        <location filename="../src/iguana.cpp" line="1227"/>
         <source>&amp;Glossary</source>
         <translation>ئاتالغۇلار(&amp;G)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1228"/>
+        <location filename="../src/iguana.cpp" line="1228"/>
         <source>&amp;Index</source>
         <translation>ئىندېكىس(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
+        <location filename="../src/iguana.cpp" line="1231"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>بۇيرۇق(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1232"/>
+        <location filename="../src/iguana.cpp" line="1232"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1234"/>
-        <location filename="../src/texstudio.cpp" line="1288"/>
+        <location filename="../src/iguana.cpp" line="1234"/>
+        <location filename="../src/iguana.cpp" line="1288"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1235"/>
+        <location filename="../src/iguana.cpp" line="1235"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/iguana.cpp" line="1239"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/iguana.cpp" line="1240"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1241"/>
+        <location filename="../src/iguana.cpp" line="1241"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/iguana.cpp" line="1243"/>
         <source>View &amp;DVI</source>
         <translation>كۆرۈش &amp;DVI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/iguana.cpp" line="1244"/>
         <source>Vie&amp;w PS</source>
         <translation>كۆرۈش &amp;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/iguana.cpp" line="1245"/>
         <source>View PD&amp;F</source>
         <translation>كۆرۈش &amp;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1247"/>
+        <location filename="../src/iguana.cpp" line="1247"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/iguana.cpp" line="1248"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;BibTeX 8بىت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/iguana.cpp" line="1249"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1251"/>
+        <location filename="../src/iguana.cpp" line="1251"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
+        <location filename="../src/iguana.cpp" line="1252"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/iguana.cpp" line="1253"/>
         <source>&amp;Xindex</source>
         <translation>&amp;Xindex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1254"/>
+        <location filename="../src/iguana.cpp" line="1254"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1256"/>
+        <location filename="../src/iguana.cpp" line="1256"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1257"/>
+        <location filename="../src/iguana.cpp" line="1257"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1259"/>
+        <location filename="../src/iguana.cpp" line="1259"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>ئىشلەتكۈچى(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/iguana.cpp" line="1262"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>قوشۇمچە ھۆججەتلەرنى تازىلاش(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1263"/>
+        <location filename="../src/iguana.cpp" line="1263"/>
         <source>Open External &amp;Terminal</source>
         <translation>سىرىتقى تېرمىنالنى ئېچىش(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1265"/>
+        <location filename="../src/iguana.cpp" line="1265"/>
         <source>View &amp;Log</source>
         <translation>خاتېرىنى كۆرۈش(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1266"/>
+        <location filename="../src/iguana.cpp" line="1266"/>
         <source>Show Log Markers</source>
         <translation>خاتا قۇرنى كۆرسەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/iguana.cpp" line="1270"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Html ئالماشتۇرۇش (&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1271"/>
+        <location filename="../src/iguana.cpp" line="1271"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Html گە ئالماشتۇرۇش (&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1273"/>
+        <location filename="../src/iguana.cpp" line="1273"/>
         <source>Convert to Abridged Plaintext</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1274"/>
+        <location filename="../src/iguana.cpp" line="1274"/>
         <source>A&amp;nalyse Text...</source>
         <translation>تېكسىت ئانالىز(&amp;N)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1275"/>
+        <location filename="../src/iguana.cpp" line="1275"/>
         <source>Generate &amp;Random Text...</source>
         <translation>تېكسىت ھاسىللاش(&amp;R)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1277"/>
+        <location filename="../src/iguana.cpp" line="1277"/>
         <source>Start sharing folder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1278"/>
+        <location filename="../src/iguana.cpp" line="1278"/>
         <source>Connect to other user for collaboration</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1279"/>
+        <location filename="../src/iguana.cpp" line="1279"/>
         <source>Disconnect from collaboration</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1281"/>
+        <location filename="../src/iguana.cpp" line="1281"/>
         <source>Check Spelling...</source>
         <translation>ئىملا تەكشۈر...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1282"/>
+        <location filename="../src/iguana.cpp" line="1282"/>
         <source>Thesaurus...</source>
         <translation>لۇغەت...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1283"/>
+        <location filename="../src/iguana.cpp" line="1283"/>
         <source>Find Word Repetitions...</source>
         <translation>تەكرار سۆزنى تەكسۈرۈش...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1290"/>
+        <location filename="../src/iguana.cpp" line="1290"/>
         <source>Insert \ref to Next Label</source>
         <translation>كىينىكى بەلگىگە \ref قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1291"/>
+        <location filename="../src/iguana.cpp" line="1291"/>
         <source>Insert \ref to Previous Label</source>
         <translation>ئالدىنقى بەلگىگە \ref قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1292"/>
+        <location filename="../src/iguana.cpp" line="1292"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>جەدۋەل مەشغۇلاتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1293"/>
+        <location filename="../src/iguana.cpp" line="1293"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>قۇر قوشۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1294"/>
+        <location filename="../src/iguana.cpp" line="1294"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>رەت قوشۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1295"/>
+        <location filename="../src/iguana.cpp" line="1295"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>قۇر ئۆچۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1296"/>
+        <location filename="../src/iguana.cpp" line="1296"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>رەت ئۆچۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1297"/>
+        <location filename="../src/iguana.cpp" line="1297"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>رەت كېسىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1298"/>
+        <location filename="../src/iguana.cpp" line="1298"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>رەت چاپلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1299"/>
+        <location filename="../src/iguana.cpp" line="1299"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>قوشۇش \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1300"/>
+        <location filename="../src/iguana.cpp" line="1300"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>يۇيۇش \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1301"/>
+        <location filename="../src/iguana.cpp" line="1301"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>قېلىپ رەتلەش جەدۋەللىرىنى ئىشلىتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1302"/>
+        <location filename="../src/iguana.cpp" line="1302"/>
         <source>Align Columns</source>
         <translation>رەتنى توغرىلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1303"/>
+        <location filename="../src/iguana.cpp" line="1303"/>
         <source>Add magic comments ...</source>
         <translation>سېھىرگەرچە ئىزاھ قوشۇڭ ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1304"/>
+        <location filename="../src/iguana.cpp" line="1304"/>
         <source>Insert root document name as TeX comment</source>
         <translation>يىلتىز ھۆججىتىنى TeX ئىزاھاتى قىلىپ قىستۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1305"/>
-        <location filename="../src/texstudio.cpp" line="1716"/>
+        <location filename="../src/iguana.cpp" line="1305"/>
+        <location filename="../src/iguana.cpp" line="1716"/>
         <source>Insert language as TeX comment</source>
         <translation>تىلنى TeX ئىزاھاتى قىلىپ قىستۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1306"/>
+        <location filename="../src/iguana.cpp" line="1306"/>
         <source>Insert document coding as TeX comment</source>
         <translation>TeX ئىزاھاتى سۈپىتىدە ھۆججەت كودلاشنى قىستۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1307"/>
+        <location filename="../src/iguana.cpp" line="1307"/>
         <source>Insert program as TeX comment</source>
         <translation>TeX ئىزاھاتى سۈپىتىدە پروگراممىنى قىستۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1308"/>
+        <location filename="../src/iguana.cpp" line="1308"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>TeX ئىزاھاتى سۈپىتىدە ھۆججەت قورالى قىستۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1310"/>
+        <location filename="../src/iguana.cpp" line="1310"/>
         <source>&amp;Math</source>
         <translation>ماتېماتىكا(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1314"/>
+        <location filename="../src/iguana.cpp" line="1314"/>
         <source>&amp;Wizards</source>
         <translation>يىتەكچى(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1315"/>
+        <location filename="../src/iguana.cpp" line="1315"/>
         <source>Quick &amp;Start...</source>
         <translation>تىز باشلاش(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1316"/>
+        <location filename="../src/iguana.cpp" line="1316"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>يىتەكچىسى Beamer(&amp;B)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1317"/>
+        <location filename="../src/iguana.cpp" line="1317"/>
         <source>Quick &amp;Letter...</source>
         <translation>خەت-چەك يىتەكچىسى(&amp;L)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1320"/>
+        <location filename="../src/iguana.cpp" line="1320"/>
         <source>AI &amp;Chat...</source>
         <translation>AI &amp;Chat...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1323"/>
+        <location filename="../src/iguana.cpp" line="1323"/>
         <source>Quick &amp;Tabular...</source>
         <translation>جەدۋەل(tabular)يىتەكچىسى(&amp;T)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1324"/>
+        <location filename="../src/iguana.cpp" line="1324"/>
         <source>Quick T&amp;abbing...</source>
         <translation>جەدۋەل(T&amp;abbing)يىتەكچىسى...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1325"/>
+        <location filename="../src/iguana.cpp" line="1325"/>
         <source>Quick &amp;Array...</source>
         <translation>ماترىسسا يىتەكچىسى(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1326"/>
+        <location filename="../src/iguana.cpp" line="1326"/>
         <source>Insert &amp;Graphic...</source>
         <translation>رەسىم قىستۇرۇش(&amp;G)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1328"/>
+        <location filename="../src/iguana.cpp" line="1328"/>
         <source>Math Assistant...</source>
         <translation>ماتىماتىكا ياردەمچىسى...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1356"/>
+        <location filename="../src/iguana.cpp" line="1356"/>
         <source>&amp;Clean</source>
         <translation>تازىلاش(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1358"/>
+        <location filename="../src/iguana.cpp" line="1358"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>پايدىلانما ماقالە تۈرى قىستۇرۇش(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1360"/>
+        <location filename="../src/iguana.cpp" line="1360"/>
         <source>Type</source>
         <translation>تىپ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1364"/>
-        <location filename="../src/texstudio.cpp" line="1374"/>
+        <location filename="../src/iguana.cpp" line="1364"/>
+        <location filename="../src/iguana.cpp" line="1374"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
-        <location filename="../src/texstudio.cpp" line="1375"/>
+        <location filename="../src/iguana.cpp" line="1369"/>
+        <location filename="../src/iguana.cpp" line="1375"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1379"/>
+        <location filename="../src/iguana.cpp" line="1379"/>
         <source>Ma&amp;cros</source>
         <translation>ماكرو(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1385"/>
+        <location filename="../src/iguana.cpp" line="1385"/>
         <source>Previous Document</source>
         <translation>ئالدىنقى ھۆججەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1386"/>
+        <location filename="../src/iguana.cpp" line="1386"/>
         <source>Next Document</source>
         <translation>كىيىنكى ھۆججەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1387"/>
+        <location filename="../src/iguana.cpp" line="1387"/>
         <source>Open Documents</source>
         <translation>ھۆججەتنى ئېچىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1388"/>
+        <location filename="../src/iguana.cpp" line="1388"/>
         <source>List Of Open Documents</source>
         <translation>ئوچۇق ھۆججەتلەرنى تىزىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1389"/>
+        <location filename="../src/iguana.cpp" line="1389"/>
         <source>List Of Hidden Documents</source>
         <translation>يوشۇرۇن ھۆججەتلەرنى تىزىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1391"/>
+        <location filename="../src/iguana.cpp" line="1391"/>
         <source>Focus Editor</source>
         <translation>تەھرىرلىگۈچ تاللاندى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1392"/>
+        <location filename="../src/iguana.cpp" line="1392"/>
         <source>Focus Viewer</source>
         <translation>كۆرگۈچنى تاللاندى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1395"/>
+        <location filename="../src/iguana.cpp" line="1395"/>
         <source>Show</source>
         <translation>كۆرسىتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1398"/>
+        <location filename="../src/iguana.cpp" line="1398"/>
         <source>Statusbar</source>
         <translation>ھالەت ئىستونى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1401"/>
+        <location filename="../src/iguana.cpp" line="1401"/>
         <source>Reset Sidepanel/docks</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1424"/>
+        <location filename="../src/iguana.cpp" line="1424"/>
         <source>Show embedded PDF large</source>
         <translation>PDF نى چوڭ كۆرسىتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1426"/>
+        <location filename="../src/iguana.cpp" line="1426"/>
         <source>Show embedded PDF small</source>
         <translation>PDF نى كىچىك كۆرسىتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1428"/>
+        <location filename="../src/iguana.cpp" line="1428"/>
         <source>Close Element</source>
         <translation>ئېلېمېنتنى تاقاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1431"/>
+        <location filename="../src/iguana.cpp" line="1431"/>
         <source>Collapse</source>
         <translation>قاتلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1432"/>
-        <location filename="../src/texstudio.cpp" line="1437"/>
+        <location filename="../src/iguana.cpp" line="1432"/>
+        <location filename="../src/iguana.cpp" line="1437"/>
         <source>Everything</source>
         <translation>ھەممە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1433"/>
-        <location filename="../src/texstudio.cpp" line="1438"/>
+        <location filename="../src/iguana.cpp" line="1433"/>
+        <location filename="../src/iguana.cpp" line="1438"/>
         <source>Nearest Block</source>
         <translation>ئەڭ يېقىن توساق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1435"/>
-        <location filename="../src/texstudio.cpp" line="1440"/>
+        <location filename="../src/iguana.cpp" line="1435"/>
+        <location filename="../src/iguana.cpp" line="1440"/>
         <source>Level %1</source>
         <translation>%1 -جى قاتلام</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1436"/>
+        <location filename="../src/iguana.cpp" line="1436"/>
         <source>Expand</source>
         <translation>يېيىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1442"/>
+        <location filename="../src/iguana.cpp" line="1442"/>
         <source>Grammar errors</source>
         <translation>گىرامماتىكا خاتالىقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1445"/>
-        <location filename="../src/texstudio.cpp" line="10990"/>
+        <location filename="../src/iguana.cpp" line="1445"/>
+        <location filename="../src/iguana.cpp" line="10990"/>
         <source>Word Repetition</source>
         <translation>سۆز تەكرارلىقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1446"/>
-        <location filename="../src/texstudio.cpp" line="10991"/>
+        <location filename="../src/iguana.cpp" line="1446"/>
+        <location filename="../src/iguana.cpp" line="10991"/>
         <source>Long-range Word Repetition</source>
         <translation>چوڭ دائىرە سۆز تەكرارلىقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1447"/>
-        <location filename="../src/texstudio.cpp" line="10992"/>
+        <location filename="../src/iguana.cpp" line="1447"/>
+        <location filename="../src/iguana.cpp" line="10992"/>
         <source>Bad words</source>
         <translation>ھەلەق سۆزلەر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1448"/>
-        <location filename="../src/texstudio.cpp" line="10993"/>
+        <location filename="../src/iguana.cpp" line="1448"/>
+        <location filename="../src/iguana.cpp" line="10993"/>
         <source>Grammar Mistake</source>
         <translation>گىرامماتىكا خاتالىقى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1450"/>
-        <location filename="../src/texstudio.cpp" line="11000"/>
+        <location filename="../src/iguana.cpp" line="1450"/>
+        <location filename="../src/iguana.cpp" line="11000"/>
         <source>Grammar Mistake Special %1</source>
         <translation>ئالاھىدە گرامماتىكىلىق خاتالىق %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1459"/>
+        <location filename="../src/iguana.cpp" line="1459"/>
         <source>Editor Zoom</source>
         <translation>تەھرىرلىگۈچ چوڭايتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1460"/>
+        <location filename="../src/iguana.cpp" line="1460"/>
         <source>Zoom In</source>
         <translation>چوڭايتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1461"/>
+        <location filename="../src/iguana.cpp" line="1461"/>
         <source>Zoom Out</source>
         <translation>كىچىكلىتىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1462"/>
+        <location filename="../src/iguana.cpp" line="1462"/>
         <source>Reset Zoom</source>
         <translation>سۈكۈتكە قايتۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1464"/>
+        <location filename="../src/iguana.cpp" line="1464"/>
         <source>Full &amp;Screen</source>
         <translation>چوڭايتىش(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1471"/>
+        <location filename="../src/iguana.cpp" line="1471"/>
         <source>Highlighting</source>
         <translation>رەڭلىك</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1495"/>
+        <location filename="../src/iguana.cpp" line="1495"/>
         <source>&amp;Options</source>
         <translation>تاللانمىلار(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1496"/>
-        <source>&amp;Configure TeXstudio...</source>
-        <translation>TeXstudio نى تەڭشەش(&amp;C)...</translation>
+        <location filename="../src/iguana.cpp" line="1496"/>
+        <source>&amp;Configure Iguana...</source>
+        <translation>Iguana نى تەڭشەش(&amp;C)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1499"/>
+        <location filename="../src/iguana.cpp" line="1499"/>
         <source>Load &amp;Profile...</source>
         <translation>تەڭشەك ھۆججىتى چۈشۈرۈش(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1500"/>
+        <location filename="../src/iguana.cpp" line="1500"/>
         <source>S&amp;ave Profile...</source>
         <translation>تەڭشەكنى ساقلاش(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1501"/>
+        <location filename="../src/iguana.cpp" line="1501"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>نۆۋەتتىكى تەڭشەكنى ساقلاش(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1502"/>
+        <location filename="../src/iguana.cpp" line="1502"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>سۈكۈتتىكى تەڭشەككە قايتۇرۇش(&amp;D)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1505"/>
+        <location filename="../src/iguana.cpp" line="1505"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>باش ھۆججەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1508"/>
+        <location filename="../src/iguana.cpp" line="1508"/>
         <source>Detect &amp;Automatically</source>
         <translation>ئاپتوماتىك بايقاش(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1516"/>
+        <location filename="../src/iguana.cpp" line="1516"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>نۆۋەتتىكى ھۆججەتنى ئاساسلىق ھۆججەت قىلىپ بەلگىلەڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1519"/>
+        <location filename="../src/iguana.cpp" line="1519"/>
         <source>&amp;Help</source>
         <translation>ياردەم(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1520"/>
+        <location filename="../src/iguana.cpp" line="1520"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeX پايدىلانمىلار...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1521"/>
+        <location filename="../src/iguana.cpp" line="1521"/>
         <source>User Manual...</source>
         <translation>ئىشلىتىش كۆرسەتمىسى...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1522"/>
+        <location filename="../src/iguana.cpp" line="1522"/>
         <source>Packages Help...</source>
         <translation>بولاق ياردىمى...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1525"/>
+        <location filename="../src/iguana.cpp" line="1525"/>
         <source>Check LaTeX Installation</source>
         <translation>LaTeX قاچىلانمىسىنى تەكشۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1526"/>
+        <location filename="../src/iguana.cpp" line="1526"/>
         <source>Check Active Completion Files</source>
         <translation>قوزغىتىلغان ھۆججەتلەرنى تەكشۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1527"/>
+        <location filename="../src/iguana.cpp" line="1527"/>
         <source>Check LanguageTool</source>
         <translation>تىل قوراللىرىنى تەكشۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1528"/>
+        <location filename="../src/iguana.cpp" line="1528"/>
         <source>Show settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1529"/>
+        <location filename="../src/iguana.cpp" line="1529"/>
         <source>Bugs Report/Feature Request</source>
         <translation>تەكلىپ / يېڭى ئىقتىدارلارنى تەلەپ قىلىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1530"/>
-        <source>About TeXstudio...</source>
-        <translation>TeXstudio ھەققىدە...</translation>
+        <location filename="../src/iguana.cpp" line="1530"/>
+        <source>About Iguana...</source>
+        <translation>Iguana ھەققىدە...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1699"/>
-        <location filename="../src/texstudio.cpp" line="6291"/>
+        <location filename="../src/iguana.cpp" line="1699"/>
+        <location filename="../src/iguana.cpp" line="6291"/>
         <source>show more entries ...</source>
         <translation>تېخىمۇ كۆپ مەزمۇنلارنى كۆرسەت ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1707"/>
+        <location filename="../src/iguana.cpp" line="1707"/>
         <source>Default</source>
         <translation>سۈكۈتتىكى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1741"/>
+        <location filename="../src/iguana.cpp" line="1741"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>%1 دىكى تىل قۇرالىغا ئۇلاندى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1745"/>
+        <location filename="../src/iguana.cpp" line="1745"/>
         <source>No LanguageTool server found at %1</source>
         <translation>%1 دە ھېچقانداق تىل قۇرالى تېپىلمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1749"/>
+        <location filename="../src/iguana.cpp" line="1749"/>
         <source>LanguageTool status unknown</source>
         <translation>تىل قۇرالى ھالىتى نامەلۇم</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1753"/>
+        <location filename="../src/iguana.cpp" line="1753"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>ئىشلەتكۈچى گرامماتىكىسىنى تەكشۈرۈش چەكلەنگەن!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1821"/>
+        <location filename="../src/iguana.cpp" line="1821"/>
         <source>Language</source>
         <translation>تىل</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1833"/>
-        <location filename="../src/texstudio.cpp" line="1834"/>
-        <location filename="../src/texstudio.cpp" line="6321"/>
-        <location filename="../src/texstudio.cpp" line="6324"/>
-        <location filename="../src/texstudio.cpp" line="6325"/>
+        <location filename="../src/iguana.cpp" line="1833"/>
+        <location filename="../src/iguana.cpp" line="1834"/>
+        <location filename="../src/iguana.cpp" line="6321"/>
+        <location filename="../src/iguana.cpp" line="6324"/>
+        <location filename="../src/iguana.cpp" line="6325"/>
         <source>Encoding</source>
         <translation>ئىنكودلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1856"/>
+        <location filename="../src/iguana.cpp" line="1856"/>
         <source>More Encodings...</source>
         <translation>كۆپلىگەن كودلاش...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1864"/>
+        <location filename="../src/iguana.cpp" line="1864"/>
         <source>Insert encoding as TeX comment</source>
         <translation>TeX ئىزاھاتى سۈپىتىدە كودلاشتۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1878"/>
+        <location filename="../src/iguana.cpp" line="1878"/>
         <source>Go to bookmark</source>
         <translation>خەتكۈچكە سەكرەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1920"/>
+        <location filename="../src/iguana.cpp" line="1920"/>
         <source>Automatic</source>
         <translation>ئاپتوماتىك</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1921"/>
+        <location filename="../src/iguana.cpp" line="1921"/>
         <source>Automatic root document detection active</source>
         <translation>ئاپتوماتىك يىلتىز ھۆججىتىنى تەكشۈرۈش ئاكتىپ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1926"/>
+        <location filename="../src/iguana.cpp" line="1926"/>
         <source>&amp;Explicit</source>
         <translation>پارچەت(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1927"/>
+        <location filename="../src/iguana.cpp" line="1927"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>يىلتىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1928"/>
+        <location filename="../src/iguana.cpp" line="1928"/>
         <source>Explict root document:
 %1</source>
         <translation>ئېنىق يىلتىز ھۆججىتى:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2277"/>
+        <location filename="../src/iguana.cpp" line="2277"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>SyncTeX ھۆججىتىنى يېشىشنى خالامسىز؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2379"/>
-        <location filename="../src/texstudio.cpp" line="4503"/>
-        <location filename="../src/texstudio.cpp" line="6375"/>
-        <location filename="../src/texstudio.cpp" line="6429"/>
-        <location filename="../src/texstudio.cpp" line="7315"/>
-        <location filename="../src/texstudio.cpp" line="7496"/>
-        <location filename="../src/texstudio.cpp" line="7498"/>
-        <location filename="../src/texstudio.cpp" line="7508"/>
-        <location filename="../src/texstudio.cpp" line="7510"/>
-        <location filename="../src/texstudio.cpp" line="11490"/>
+        <location filename="../src/iguana.cpp" line="2379"/>
+        <location filename="../src/iguana.cpp" line="4503"/>
+        <location filename="../src/iguana.cpp" line="6375"/>
+        <location filename="../src/iguana.cpp" line="6429"/>
+        <location filename="../src/iguana.cpp" line="7315"/>
+        <location filename="../src/iguana.cpp" line="7496"/>
+        <location filename="../src/iguana.cpp" line="7498"/>
+        <location filename="../src/iguana.cpp" line="7508"/>
+        <location filename="../src/iguana.cpp" line="7510"/>
+        <location filename="../src/iguana.cpp" line="11490"/>
         <source>Error</source>
         <translation>خاتالىق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2379"/>
+        <location filename="../src/iguana.cpp" line="2379"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>سىز%1 ھۆججىتىگە ئىجازەت ئوقۇمىدىڭىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2431"/>
+        <location filename="../src/iguana.cpp" line="2431"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>%1 دىن كاشىلا ئەسلىگە كەلتۈرۈش ھۆججىتى «%2» ئۈچۈن تېپىلدى.
 ئۇنى ئەسلىگە كەلتۈرمەكچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2437"/>
+        <location filename="../src/iguana.cpp" line="2437"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>ئەسلىگە كەلتۈرۈش ھۆججىتى &quot;%1&quot; نى ئاچالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2610"/>
+        <location filename="../src/iguana.cpp" line="2610"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -12040,347 +12040,347 @@ Otherwise there might be random errors and crashes.</source>
 بولمىسا تاسادىپىي خاتالىق ۋە كاشىلا كۆرۈلۈشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2699"/>
+        <location filename="../src/iguana.cpp" line="2699"/>
         <source>Could not write template data:</source>
         <translation>قېلىپ سانلىق مەلۇماتلىرىنى يازالمىدى:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2731"/>
+        <location filename="../src/iguana.cpp" line="2731"/>
         <source>Could not write template meta data:</source>
         <translation>قېلىپ مېتا سانلىق مەلۇماتلىرىنى يازالمىدى:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2782"/>
-        <location filename="../src/texstudio.cpp" line="2846"/>
+        <location filename="../src/iguana.cpp" line="2782"/>
+        <location filename="../src/iguana.cpp" line="2846"/>
         <source>File not found:</source>
         <translation>ھۆججەت تېپىلمىدى:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2786"/>
-        <location filename="../src/texstudio.cpp" line="2850"/>
+        <location filename="../src/iguana.cpp" line="2786"/>
+        <location filename="../src/iguana.cpp" line="2850"/>
         <source>You do not have read permission to this file:</source>
         <translation>بۇ ھۆججەتنى ئوقۇش ھوقۇقىڭىز يوق:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2969"/>
-        <location filename="../src/texstudio.cpp" line="11319"/>
+        <location filename="../src/iguana.cpp" line="2969"/>
+        <location filename="../src/iguana.cpp" line="11319"/>
         <source>Open Files</source>
         <translation>ھۆججەت ئېچىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2987"/>
-        <location filename="../src/texstudio.cpp" line="2994"/>
+        <location filename="../src/iguana.cpp" line="2987"/>
+        <location filename="../src/iguana.cpp" line="2994"/>
         <source>Loading of last session failed.</source>
         <translation>دىيالوگنى يۈكلەش مەغلۇپ بولدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3060"/>
+        <location filename="../src/iguana.cpp" line="3060"/>
         <source>Save As</source>
         <translation>باشقا ساقلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3078"/>
+        <location filename="../src/iguana.cpp" line="3078"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
-with this name is open in TeXstudio. You have to save or close
+with this name is open in Iguana. You have to save or close
 this other file before you can overwrite it.</source>
         <translation>ئىسىم ئاستىدا تېجەش
 %1
 ھازىر مۇمكىن ئەمەس ، چۈنكى ھۆججەتنىڭ ئۆزگەرتىلگەن نۇسخىسى
-بۇ ئىسىم بىلەن TeXstudio دا ئوچۇق. ساقلاش ياكى تاقاش كېرەك
+بۇ ئىسىم بىلەن Iguana دا ئوچۇق. ساقلاش ياكى تاقاش كېرەك
 بۇ ھۆججەتنى قاپلىۋېلىشتىن بۇرۇن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3096"/>
+        <location filename="../src/iguana.cpp" line="3096"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>بۇ pdf نى تېكىست مەنبەسى بىلەن ماس قەدەمدە ماسلاشتۇرغىلى بولمايدۇ ، چۈنكى ساقلاش ھۆججىتى «ساقلاش» مەشغۇلاتى سەۋەبىدىن ئۆزگەرتىلگەن. ئۆزگەرتىلگەن ھۆججەتنى قايتا رەتلەپ ئۇنىڭ نەتىجىسىنى كۆرۈشىڭىز كېرەك.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3203"/>
+        <location filename="../src/iguana.cpp" line="3203"/>
         <source>Rename/Move</source>
         <translation>قايتام ناملاش\ئۆچۈرۈش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3203"/>
-        <location filename="../src/texstudio.cpp" line="13108"/>
+        <location filename="../src/iguana.cpp" line="3203"/>
+        <location filename="../src/iguana.cpp" line="13108"/>
         <source>Copy</source>
         <translation>نۇسخىلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3218"/>
+        <location filename="../src/iguana.cpp" line="3218"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>«%1» ھۆججىتىنى ئۆچۈرمەكچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3227"/>
+        <location filename="../src/iguana.cpp" line="3227"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>«%1» ھۆججىتىنى ئەسلىگە كەلتۈرمەكچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3254"/>
+        <location filename="../src/iguana.cpp" line="3254"/>
         <source>Numeric permissions</source>
         <translation>رەقەملىق ھوقۇق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3255"/>
+        <location filename="../src/iguana.cpp" line="3255"/>
         <source>Verbose permissions</source>
         <translation>تەپسىلىي ھوقۇق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3398"/>
+        <location filename="../src/iguana.cpp" line="3398"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>«%1» ھۆججىتىدە ساقلانمىغان ئەسەر بار. تاقاشتىن بۇرۇن ئۇنى ساقلىماقچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3539"/>
-        <location filename="../src/texstudio.cpp" line="3609"/>
-        <location filename="../src/texstudio.cpp" line="3689"/>
+        <location filename="../src/iguana.cpp" line="3539"/>
+        <location filename="../src/iguana.cpp" line="3609"/>
+        <location filename="../src/iguana.cpp" line="3689"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>«%1» ھۆججىتى ئەمدى مەۋجۇت ئەمەس. ئۇنى يېقىنقى ھۆججەت تىزىملىكىدىن ئۆچۈرمەكچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3702"/>
+        <location filename="../src/iguana.cpp" line="3702"/>
         <source>Loading of session failed.</source>
         <translation>دىيالوگنى يۈكلەش مەغلۇپ بولدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3719"/>
+        <location filename="../src/iguana.cpp" line="3719"/>
         <source>Load Session</source>
         <translation>دىيالوگنى ئېچىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3719"/>
-        <location filename="../src/texstudio.cpp" line="3737"/>
-        <source>TeXstudio Session</source>
-        <translation>TeXstudio دىيالوگى</translation>
+        <location filename="../src/iguana.cpp" line="3719"/>
+        <location filename="../src/iguana.cpp" line="3737"/>
+        <source>Iguana Session</source>
+        <translation>Iguana دىيالوگى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3737"/>
+        <location filename="../src/iguana.cpp" line="3737"/>
         <source>Save Session</source>
         <translation>دىيالوگنى ساقلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3743"/>
+        <location filename="../src/iguana.cpp" line="3743"/>
         <source>Saving of session failed.</source>
         <translation>دىيالوگنى ساقلاش مەغلۇپ بولدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3821"/>
+        <location filename="../src/iguana.cpp" line="3821"/>
         <source>Updating completer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3865"/>
+        <location filename="../src/iguana.cpp" line="3865"/>
         <source>The following files could not be loaded:</source>
         <translation>تۆۋەندىكى ھۆججەتلەرنى يۈكلەشكە بولمىدى:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4061"/>
+        <location filename="../src/iguana.cpp" line="4061"/>
         <source>Image Formats (%1)</source>
         <translation>رەسىم فورماتى (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4063"/>
+        <location filename="../src/iguana.cpp" line="4063"/>
         <source>Save Image</source>
         <translation>رەسىم ساقلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4068"/>
+        <location filename="../src/iguana.cpp" line="4068"/>
         <source>Could not save the image file.</source>
         <translation>رەسىم ھۆججىتىنى ساقلىيالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4156"/>
+        <location filename="../src/iguana.cpp" line="4156"/>
         <source>Ascending</source>
         <translation>ئۆرلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4156"/>
+        <location filename="../src/iguana.cpp" line="4156"/>
         <source>Descending</source>
         <translation>تۆۋەنلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4156"/>
+        <location filename="../src/iguana.cpp" line="4156"/>
         <source>No Sorting</source>
         <translation>تەرتىپسىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4156"/>
+        <location filename="../src/iguana.cpp" line="4156"/>
         <source>Random (Shuffle)</source>
         <translation>خالىغان</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4162"/>
+        <location filename="../src/iguana.cpp" line="4162"/>
         <source>Sorting</source>
         <translation>تەرتىپلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4163"/>
+        <location filename="../src/iguana.cpp" line="4163"/>
         <source>Complete Lines</source>
         <translation>پۈتۈن قۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4164"/>
+        <location filename="../src/iguana.cpp" line="4164"/>
         <source>Case Sensitive</source>
         <translation>سەزگۈر ئەھۋال</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4165"/>
+        <location filename="../src/iguana.cpp" line="4165"/>
         <source>Remove Duplicates</source>
         <translation>تەكرارنى چىقىرىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4466"/>
+        <location filename="../src/iguana.cpp" line="4466"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>نۇرغۇن ھەرپلەردىن كېيىن قاتتىق سىزىقنى قىستۇرۇش:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4467"/>
+        <location filename="../src/iguana.cpp" line="4467"/>
         <source>Smart scope selecting</source>
         <translation>ئەقلىي ئىقتىدار تاللاندى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4468"/>
+        <location filename="../src/iguana.cpp" line="4468"/>
         <source>Join lines before wrapping</source>
         <translation>ئوراشتىن بۇرۇن قۇر قوشۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4482"/>
-        <location filename="../src/texstudio.cpp" line="6886"/>
-        <location filename="../src/texstudio.cpp" line="6943"/>
+        <location filename="../src/iguana.cpp" line="4482"/>
+        <location filename="../src/iguana.cpp" line="6886"/>
+        <location filename="../src/iguana.cpp" line="6943"/>
         <source>No document open</source>
         <translation>ھېچقانداق ھۆججەت ئېچىلمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4488"/>
+        <location filename="../src/iguana.cpp" line="4488"/>
         <source>No dictionary available.</source>
         <translation>ھېچقانداق لۇغەت يوق.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4503"/>
+        <location filename="../src/iguana.cpp" line="4503"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>سۆزلۈك سانداننى يۈكلىيەلمەيدۇ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4929"/>
+        <location filename="../src/iguana.cpp" line="4929"/>
         <source>Storing session failed</source>
         <translation>ساقلاش مەغلۇپ بولدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4929"/>
+        <location filename="../src/iguana.cpp" line="4929"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>ساقلاش ئۇچۇرلىرىنى %1 گە ساقلاش مەغلۇب بولدى. ھۆججەت مەۋجۇت ، ئەمما يازغىلى بولمايدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5015"/>
-        <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
+        <location filename="../src/iguana.cpp" line="5015"/>
+        <source>This will reset all settings to their defaults. At the end, Iguana will be closed. Please start Iguana manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5025"/>
+        <location filename="../src/iguana.cpp" line="5025"/>
         <source>Unable to write to settings file %1</source>
         <translation>تەڭشەك ھۆججىتىگە%1 يېزىشقا ئامالسىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5078"/>
+        <location filename="../src/iguana.cpp" line="5078"/>
         <source>Settings file does not exist</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5894"/>
-        <location filename="../src/texstudio.cpp" line="5899"/>
+        <location filename="../src/iguana.cpp" line="5894"/>
+        <location filename="../src/iguana.cpp" line="5899"/>
         <source>AI Chat</source>
         <translation>AI Chat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5894"/>
+        <location filename="../src/iguana.cpp" line="5894"/>
         <source>AI chat disabled. Please select an AI provider in the settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5899"/>
+        <location filename="../src/iguana.cpp" line="5899"/>
         <source>Please set the API key in the settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5988"/>
+        <location filename="../src/iguana.cpp" line="5988"/>
         <source>Quick Start</source>
         <translation>باشلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6010"/>
+        <location filename="../src/iguana.cpp" line="6010"/>
         <source>Quick Beamer Presentation</source>
         <translation>Beamer باشلامچىسى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6047"/>
+        <location filename="../src/iguana.cpp" line="6047"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6079"/>
+        <location filename="../src/iguana.cpp" line="6079"/>
         <source>Type: %1</source>
         <translation>تىپ: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6124"/>
+        <location filename="../src/iguana.cpp" line="6124"/>
         <source>Edit User &amp;Tags</source>
         <translation>ئىشلەتكۈچى خەتكۈچلەرنى تەھرىرلەش(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6186"/>
+        <location filename="../src/iguana.cpp" line="6186"/>
         <source>empty</source>
         <translation>بوش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6190"/>
+        <location filename="../src/iguana.cpp" line="6190"/>
         <source>Labels:</source>
         <translation>بەلگىلەر:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6278"/>
+        <location filename="../src/iguana.cpp" line="6278"/>
         <source>show less entries ...</source>
         <translation>ئاز تۈرلەرنى كۆرسەت ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6319"/>
+        <location filename="../src/iguana.cpp" line="6319"/>
         <source>Encoding Aliases: </source>
         <translation>كودلاش ئۇسۇلى: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6375"/>
+        <location filename="../src/iguana.cpp" line="6375"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ھۆججەت نامىنى بايقىيالمىدى.
 ھۆججەتنى تۈزۈشتىن بۇرۇن ئۇنى ساقلىشىڭىز كېرەك.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6383"/>
+        <location filename="../src/iguana.cpp" line="6383"/>
         <source>Can&apos;t detect the file name</source>
         <translation>ھۆججەت نامىنى بايقىيالمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6423"/>
+        <location filename="../src/iguana.cpp" line="6423"/>
         <source>  Running this command: </source>
         <translation>  بۇ بۇيرۇقنى ئىجرا قىلىش: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6429"/>
+        <location filename="../src/iguana.cpp" line="6429"/>
         <source>could not start the command</source>
         <translation>بۇيرۇقنى قوزغىتالمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6552"/>
+        <location filename="../src/iguana.cpp" line="6552"/>
         <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
+However, you are using a version of Iguana that was compiled without the internal pdf viewer.</source>
         <translation>ئىچكى pdf كۆرگۈچنى ئېچىش بۇيرۇقىنى چاقىردىڭىز.
-قانداقلا بولمىسۇن ، سىز ئىچكى pdf كۆرگۈچسىز تۈزۈلگەن TeXstudio نىڭ نەشرىنى ئىشلىتىۋاتىسىز.</translation>
+قانداقلا بولمىسۇن ، سىز ئىچكى pdf كۆرگۈچسىز تۈزۈلگەن Iguana نىڭ نەشرىنى ئىشلىتىۋاتىسىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6572"/>
+        <location filename="../src/iguana.cpp" line="6572"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -12397,257 +12397,257 @@ Do you want to allow and run the new, overriding command?
 (c) ياق ، &quot;%3&quot; بۇيرۇقىنى ئىشلەتمەڭ ھەمدە سۈكۈتتىكى &quot;%2&quot; بۇيرۇقىنى ئىجرا قىلىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6656"/>
+        <location filename="../src/iguana.cpp" line="6656"/>
         <source>Unknown internal command: %1</source>
         <translation>نامەلۇم ئىچكى بۇيرۇق:%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6695"/>
+        <location filename="../src/iguana.cpp" line="6695"/>
         <source>%!TeX program used: %1</source>
         <translation>%! TeX پروگراممىسى ئىشلىتىلگەن:ۈ %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6698"/>
+        <location filename="../src/iguana.cpp" line="6698"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!TeX پروگراممىسى ئېتىراپ قىلىنمىدى! (%1). سۈكۈتتىكى ئىشلىتىش.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6760"/>
+        <location filename="../src/iguana.cpp" line="6760"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>ھۆججەتنى يازغىلى بولمايدىغان مۇندەرىجىدە تۈزەلمەيسىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6762"/>
+        <location filename="../src/iguana.cpp" line="6762"/>
         <source>Could not start %1.</source>
         <translation>%1 نى قوزغىتالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6792"/>
+        <location filename="../src/iguana.cpp" line="6792"/>
         <source>Error:</source>
         <translation>خاتالىق:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6876"/>
+        <location filename="../src/iguana.cpp" line="6876"/>
         <source>No open project or tex file to clean.</source>
         <translation>تازىلاش ئۈچۈن ئوچۇق تۈر ياكى تېكىست ھۆججىتى يوق.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6947"/>
+        <location filename="../src/iguana.cpp" line="6947"/>
         <source>Text Analysis</source>
         <translation>تېكسىت ئانالىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6971"/>
+        <location filename="../src/iguana.cpp" line="6971"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>ئىختىيارى تېكىست ھاسىللىغۇچ ھازىرقى سۆزلەردىن يېڭى تېكىستلەرنى قۇرىدۇ ، شۇڭا بەزى تېكىست ھۆججەتلىرىنى ئېچىشىڭىز كېرەك</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6994"/>
+        <location filename="../src/iguana.cpp" line="6994"/>
         <source>Do you want to share the folder &quot;%1&quot; and ALL its content with collaborators?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7013"/>
+        <location filename="../src/iguana.cpp" line="7013"/>
         <source>Collaboration server name or address</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7014"/>
+        <location filename="../src/iguana.cpp" line="7014"/>
         <source>Name:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7229"/>
+        <location filename="../src/iguana.cpp" line="7229"/>
         <source>Copy access code</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7252"/>
+        <location filename="../src/iguana.cpp" line="7252"/>
         <source>Collaboration: Connected in folder %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7254"/>
+        <location filename="../src/iguana.cpp" line="7254"/>
         <source>Collaboration: Not connected</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7315"/>
+        <location filename="../src/iguana.cpp" line="7315"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>خاتىرەنى كۆرۈشتىن بۇرۇن ھۆججەت چوقۇم ساقلىنىشى ۋە تۈزۈلۈشى كېرەك</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7496"/>
-        <location filename="../src/texstudio.cpp" line="7508"/>
+        <location filename="../src/iguana.cpp" line="7496"/>
+        <location filename="../src/iguana.cpp" line="7508"/>
         <source>File not found</source>
         <translation>ھۆججەت تېپىلمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7498"/>
-        <location filename="../src/texstudio.cpp" line="7510"/>
+        <location filename="../src/iguana.cpp" line="7498"/>
+        <location filename="../src/iguana.cpp" line="7510"/>
         <source>Could not open browser</source>
         <translation>توركۆرگۈنى ئاچالمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7835"/>
+        <location filename="../src/iguana.cpp" line="7835"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8121"/>
+        <location filename="../src/iguana.cpp" line="8121"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>ھۆججەتنى يىلتىز ھۆججىتى دەپ ئېنىقلىما بېرىشتىن بۇرۇن ساقلىشىڭىز كېرەك.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8587"/>
+        <location filename="../src/iguana.cpp" line="8587"/>
         <source>Label</source>
         <translation>بەلگە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8589"/>
-        <location filename="../src/texstudio.cpp" line="8611"/>
+        <location filename="../src/iguana.cpp" line="8589"/>
+        <location filename="../src/iguana.cpp" line="8611"/>
         <source>Beyond end of document.</source>
         <translation>ھۆججەتنىڭ سىرتىدا.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8592"/>
-        <location filename="../src/texstudio.cpp" line="8613"/>
+        <location filename="../src/iguana.cpp" line="8592"/>
+        <location filename="../src/iguana.cpp" line="8613"/>
         <source>In Appendix.</source>
         <translation>قوشۇمچە ھۆججەتتە.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8631"/>
+        <location filename="../src/iguana.cpp" line="8631"/>
         <source>File not found.</source>
         <translation>ھۆججەت تېپىلمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8646"/>
+        <location filename="../src/iguana.cpp" line="8646"/>
         <source> (Line %1)</source>
         <translation> (قۇر %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9987"/>
+        <location filename="../src/iguana.cpp" line="9987"/>
         <source>commit comment:</source>
         <translation>باھا بېرىش:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9991"/>
+        <location filename="../src/iguana.cpp" line="9991"/>
         <source>check in whole directory ?</source>
         <translation>پۈتۈن مۇندەرىجىنى تەكشۈرۈڭ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9993"/>
+        <location filename="../src/iguana.cpp" line="9993"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10355"/>
+        <location filename="../src/iguana.cpp" line="10355"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>دىققەت: تېكىست قولدا تەھرىرلەنسە دىئالوگ ئاپتوماتىك تاقىلىدۇ!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10695"/>
+        <location filename="../src/iguana.cpp" line="10695"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>&quot;%1&quot; ھۆججىتىنى ئاچالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
+        <location filename="../src/iguana.cpp" line="10697"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>&quot;%1&quot; ھۆججىتى مەۋجۇت ئەمەس.
 ئۇنى قۇرماقچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10745"/>
+        <location filename="../src/iguana.cpp" line="10745"/>
         <source>Save Profile</source>
         <translation>ئارخىپنى ساقلاڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10745"/>
-        <location filename="../src/texstudio.cpp" line="10752"/>
+        <location filename="../src/iguana.cpp" line="10745"/>
+        <location filename="../src/iguana.cpp" line="10752"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS ئارخىپى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10752"/>
+        <location filename="../src/iguana.cpp" line="10752"/>
         <source>Load Profile</source>
         <translation>ئارخىپىنى يۈكلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10805"/>
+        <location filename="../src/iguana.cpp" line="10805"/>
         <source>Failed to read profile file %1.</source>
         <translation>%1 دىن ئارخىپى يۈكلىيەلمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10978"/>
+        <location filename="../src/iguana.cpp" line="10978"/>
         <source>Problem</source>
         <translation>مەسىلە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10978"/>
+        <location filename="../src/iguana.cpp" line="10978"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>سۆز تەكرارلاشنى تېپىش پەقەت ئاكتىپلانغان تور ئىملاسىنى تەكشۈرۈش بىلەنلا ئىشلەيدۇ!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10983"/>
+        <location filename="../src/iguana.cpp" line="10983"/>
         <source>Find Word Repetitions</source>
         <translation>سۆز تەكرارلىقىنى تېپىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10989"/>
+        <location filename="../src/iguana.cpp" line="10989"/>
         <source>Spelling Mistake</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11007"/>
+        <location filename="../src/iguana.cpp" line="11007"/>
         <source>&amp;Find Next</source>
         <translation>كىيىنكىنى ئىزدەش(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11009"/>
+        <location filename="../src/iguana.cpp" line="11009"/>
         <source>&amp;Find Previous</source>
         <translation>ئالدىنقىنى ئىزدە(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11060"/>
+        <location filename="../src/iguana.cpp" line="11060"/>
         <source>Reached beginning of text.</source>
         <translation>تېكىستنىڭ باشلىنىشىغا يەتتى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11060"/>
+        <location filename="../src/iguana.cpp" line="11060"/>
         <source>Reached end of text.</source>
         <translation>تېكىستنىڭ ئاخىرىغا يەتتى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11319"/>
-        <location filename="../src/texstudio.cpp" line="11530"/>
-        <location filename="../src/texstudio.cpp" line="11533"/>
+        <location filename="../src/iguana.cpp" line="11319"/>
+        <location filename="../src/iguana.cpp" line="11530"/>
+        <location filename="../src/iguana.cpp" line="11533"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>TeX ھۆججىتى (*.tex);;بارلىق ھۆججەتلەر (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11490"/>
+        <location filename="../src/iguana.cpp" line="11490"/>
         <source>You do not have read permission to this file.</source>
         <translation>بۇ ھۆججەتكە ئىجازەت ئوقۇمىدىڭىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11530"/>
+        <location filename="../src/iguana.cpp" line="11530"/>
         <source>Open Compare File</source>
         <translation>سېلىشتۇرۇش ھۆججىتىنى ئېچىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11533"/>
+        <location filename="../src/iguana.cpp" line="11533"/>
         <source>Open Base File</source>
         <translation>ئاساس ھۆججىتىنى ئېچىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11701"/>
+        <location filename="../src/iguana.cpp" line="11701"/>
         <source>SVN Conflict!</source>
         <translation>SVN زىتلىقى!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11702"/>
+        <location filename="../src/iguana.cpp" line="11702"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -12658,14 +12658,14 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11799"/>
-        <location filename="../src/texstudio.cpp" line="11890"/>
-        <location filename="../src/texstudio.cpp" line="11896"/>
-        <source>TeXstudio Emergency</source>
-        <translation>TeXstudio جىددىيچىلىكى</translation>
+        <location filename="../src/iguana.cpp" line="11799"/>
+        <location filename="../src/iguana.cpp" line="11890"/>
+        <location filename="../src/iguana.cpp" line="11896"/>
+        <source>Iguana Emergency</source>
+        <translation>Iguana جىددىيچىلىكى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11803"/>
+        <location filename="../src/iguana.cpp" line="11803"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -12678,98 +12678,98 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11806"/>
-        <source>TeXstudio has CRASHED due to a %1.
+        <location filename="../src/iguana.cpp" line="11806"/>
+        <source>Iguana has CRASHED due to a %1.
 
-%2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation>TeXstudio %1 سەۋەبىدىن چۈشۈپ كەتتى.
+%2Do you want to keep Iguana running? This may cause data corruption.</source>
+        <translation>Iguana %1 سەۋەبىدىن چۈشۈپ كەتتى.
 
-%2 TeXstudio نى ئىجرا قىلامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
+%2 Iguana نى ئىجرا قىلامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11807"/>
+        <location filename="../src/iguana.cpp" line="11807"/>
         <source>Yes, try to recover</source>
         <translation>ھەئە ، ئەسلىگە كەلتۈرۈشكە تىرىشىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11808"/>
-        <location filename="../src/texstudio.cpp" line="11813"/>
+        <location filename="../src/iguana.cpp" line="11808"/>
+        <location filename="../src/iguana.cpp" line="11813"/>
         <source>No, kill the program</source>
         <translation>ياق ، پروگراممىنى ئۆلتۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11810"/>
-        <source>TeXstudio has been paused due to a possible endless loop.
+        <location filename="../src/iguana.cpp" line="11810"/>
+        <source>Iguana has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation>TeXstudio بەلكىم تۈگىمەس ئايلىنىش سەۋەبىدىن توختاپ قالدى.
+        <translation>Iguana بەلكىم تۈگىمەس ئايلىنىش سەۋەبىدىن توختاپ قالدى.
 
 %1 پروگراممىنى ئىجرا قىلىشنى خالامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11811"/>
+        <location filename="../src/iguana.cpp" line="11811"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>شۇنداق ، ئايلىنىشنى توختىتىپ ئەسلىگە كەلتۈرۈشكە تىرىشىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11812"/>
+        <location filename="../src/iguana.cpp" line="11812"/>
         <source>Yes, continue the loop</source>
         <translation>ھەئە ، دەۋرىيلىنىشنى داۋاملاشتۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11891"/>
-        <source>TeXstudio has CRASHED due to a %1 in thread %2.
+        <location filename="../src/iguana.cpp" line="11891"/>
+        <source>Iguana has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
-Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation>TeXstudio%2 تېمىدا%1 سەۋەبىدىن چۈشۈپ كەتتى.
+Do you want to keep Iguana running? This may cause data corruption.</source>
+        <translation>Iguana%2 تېمىدا%1 سەۋەبىدىن چۈشۈپ كەتتى.
 تېما توختىتىلدى.
-TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
+Iguana نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11896"/>
+        <location filename="../src/iguana.cpp" line="11896"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>مەن ئۆلمەكچى بولدۇم ، ئەمما ھېچ ئىش بولمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11928"/>
+        <location filename="../src/iguana.cpp" line="11928"/>
         <source>System Report</source>
         <translation>سىستېما دوكلاتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12066"/>
+        <location filename="../src/iguana.cpp" line="12066"/>
         <source>LT Report</source>
         <translation>LT دوكلاتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12092"/>
+        <location filename="../src/iguana.cpp" line="12092"/>
         <source>process failed to start
 </source>
         <translation>جەريان باشلىنامىدى
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12095"/>
+        <location filename="../src/iguana.cpp" line="12095"/>
         <source>process crashed
 </source>
         <translation>جەريان ۋايرانچىلىقتا
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12105"/>
+        <location filename="../src/iguana.cpp" line="12105"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>دەل ۋاقتىدا تەكشۈرۈش قوزغىتىلدى.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12107"/>
+        <location filename="../src/iguana.cpp" line="12107"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>دەل ۋاقتىدا تەكشۈرۈش قوزغىتىلمىدى!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12110"/>
+        <location filename="../src/iguana.cpp" line="12110"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -12778,7 +12778,7 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12112"/>
+        <location filename="../src/iguana.cpp" line="12112"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -12787,7 +12787,7 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12115"/>
+        <location filename="../src/iguana.cpp" line="12115"/>
         <source>Tries to start automatically.
 
 </source>
@@ -12796,7 +12796,7 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12117"/>
+        <location filename="../src/iguana.cpp" line="12117"/>
         <source>Autostart disabled.
 
 </source>
@@ -12805,214 +12805,214 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12122"/>
+        <location filename="../src/iguana.cpp" line="12122"/>
         <source>LT current status: </source>
         <translation>LT ھازىرقى ھالىتى: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12125"/>
+        <location filename="../src/iguana.cpp" line="12125"/>
         <source>working</source>
         <translation>خىزمەتتە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12128"/>
+        <location filename="../src/iguana.cpp" line="12128"/>
         <source>error</source>
         <translation>خاتالىق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12132"/>
+        <location filename="../src/iguana.cpp" line="12132"/>
         <source>unknown</source>
         <translation>نامەلۇم</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12135"/>
+        <location filename="../src/iguana.cpp" line="12135"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12492"/>
+        <location filename="../src/iguana.cpp" line="12492"/>
         <source>Error when communicating with LT: %1</source>
         <translation>LT بىلەن ئالاقىلاشقاندا خاتالىق:%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12801"/>
-        <location filename="../src/texstudio.cpp" line="13605"/>
+        <location filename="../src/iguana.cpp" line="12801"/>
+        <location filename="../src/iguana.cpp" line="13605"/>
         <source>untitled</source>
         <translation>ماۋزۇسىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12811"/>
-        <location filename="../src/texstudio.cpp" line="13648"/>
+        <location filename="../src/iguana.cpp" line="12811"/>
+        <location filename="../src/iguana.cpp" line="13648"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12945"/>
-        <location filename="../src/texstudio.cpp" line="12953"/>
-        <location filename="../src/texstudio.cpp" line="12994"/>
+        <location filename="../src/iguana.cpp" line="12945"/>
+        <location filename="../src/iguana.cpp" line="12953"/>
+        <location filename="../src/iguana.cpp" line="12994"/>
         <source>Document: </source>
         <translation>ھۆججەت: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13047"/>
+        <location filename="../src/iguana.cpp" line="13047"/>
         <source>Close document</source>
         <translation>ھۆججەتنى ياپ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13048"/>
+        <location filename="../src/iguana.cpp" line="13048"/>
         <source>Set as explicit root document</source>
         <translation>ئېنىق يىلتىز ھۆججىتى قىلىپ بەلگىلەڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13049"/>
+        <location filename="../src/iguana.cpp" line="13049"/>
         <source>Open all related documents</source>
         <translation>بارلىق مۇناسىۋەتلىك ھۆججەتلەرنى ئېچىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13050"/>
+        <location filename="../src/iguana.cpp" line="13050"/>
         <source>Close all related documents</source>
         <translation>بارلىق مۇناسىۋەتلىك ھۆججەتلەرنى تاقاڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13052"/>
+        <location filename="../src/iguana.cpp" line="13052"/>
         <source>Remove explicit root document role</source>
         <translation>ئېنىق يىلتىز ھۆججەت رولىنى ئۆچۈرۈڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13054"/>
+        <location filename="../src/iguana.cpp" line="13054"/>
         <source>Show all open documents in this tree</source>
         <translation>بۇ دەرەختىكى بارلىق ئوچۇق ھۆججەتلەرنى كۆرسەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13056"/>
+        <location filename="../src/iguana.cpp" line="13056"/>
         <source>Show only current document in this tree</source>
         <translation>بۇ دەرەختە پەقەت نۆۋەتتىكى ھۆججەتنىلا كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13069"/>
+        <location filename="../src/iguana.cpp" line="13069"/>
         <source>Copy filename</source>
         <translation>ھۆججەت نامىنى كۆچۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13070"/>
+        <location filename="../src/iguana.cpp" line="13070"/>
         <source>Copy file path</source>
         <translation>ھۆججەت يولىنى كۆچۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13079"/>
+        <location filename="../src/iguana.cpp" line="13079"/>
         <source>Insert</source>
         <translation>قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13080"/>
-        <location filename="../src/texstudio.cpp" line="13081"/>
+        <location filename="../src/iguana.cpp" line="13080"/>
+        <location filename="../src/iguana.cpp" line="13081"/>
         <source>Insert as %1</source>
         <translation>%1 گە قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13083"/>
+        <location filename="../src/iguana.cpp" line="13083"/>
         <source>Find Usages</source>
         <translation>ئىشلىتىلشىنى ئىزدە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13094"/>
+        <location filename="../src/iguana.cpp" line="13094"/>
         <source>Insert Label</source>
         <translation>بەلگە قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13098"/>
+        <location filename="../src/iguana.cpp" line="13098"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>%1 گە بەلگە قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13102"/>
+        <location filename="../src/iguana.cpp" line="13102"/>
         <source>Create Label</source>
         <translation>بەلگە قۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13106"/>
+        <location filename="../src/iguana.cpp" line="13106"/>
         <source>Cut</source>
         <translation>كىسىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13110"/>
+        <location filename="../src/iguana.cpp" line="13110"/>
         <source>Paste Before</source>
         <translation>ئالدىغا چاپلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13112"/>
+        <location filename="../src/iguana.cpp" line="13112"/>
         <source>Paste After</source>
         <translation>كەينىگە چاپلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13115"/>
+        <location filename="../src/iguana.cpp" line="13115"/>
         <source>Indent Section</source>
         <translation>بۆلەك تارايغان</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13117"/>
+        <location filename="../src/iguana.cpp" line="13117"/>
         <source>Unindent Section</source>
         <translation>بۆلەك تارايمىغان</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13063"/>
-        <location filename="../src/texstudio.cpp" line="13121"/>
+        <location filename="../src/iguana.cpp" line="13063"/>
+        <location filename="../src/iguana.cpp" line="13121"/>
         <source>Expand Subitems</source>
         <translation>تىزىملىكنى كېڭەرت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="999"/>
+        <location filename="../src/iguana.cpp" line="999"/>
         <source>C&amp;ut Line or Selection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1204"/>
+        <location filename="../src/iguana.cpp" line="1204"/>
         <source>Close latest open delimiter or environment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7227"/>
+        <location filename="../src/iguana.cpp" line="7227"/>
         <source>Collaboration: Connected in folder %1
 to join: teamtype join %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13064"/>
-        <location filename="../src/texstudio.cpp" line="13123"/>
+        <location filename="../src/iguana.cpp" line="13064"/>
+        <location filename="../src/iguana.cpp" line="13123"/>
         <source>Collapse Subitems</source>
         <translation>تىزىملىكنى يوشۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13136"/>
+        <location filename="../src/iguana.cpp" line="13136"/>
         <source>Open Document</source>
         <translation>ھۆججەتنى ئېچىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13137"/>
-        <location filename="../src/texstudio.cpp" line="13144"/>
+        <location filename="../src/iguana.cpp" line="13137"/>
+        <location filename="../src/iguana.cpp" line="13144"/>
         <source>Go to Definition</source>
         <translation>ئېنىقلىمىسىغا سەكرە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13632"/>
+        <location filename="../src/iguana.cpp" line="13632"/>
         <source>BIBLIOGRAPHY</source>
         <translation>پايدىلانما ماتېرىيال</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13640"/>
+        <location filename="../src/iguana.cpp" line="13640"/>
         <source>MAGIC_COMMENTS</source>
         <translation>سېھىرگەرچە ئىزاھ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13656"/>
+        <location filename="../src/iguana.cpp" line="13656"/>
         <source>BLOCK</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="13664"/>
+        <location filename="../src/iguana.cpp" line="13664"/>
         <source>LABELS</source>
         <translation>بەلگە</translation>
     </message>
@@ -13434,8 +13434,8 @@ included document in %1</source>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="184"/>
-        <source>A new release candidate of TeXstudio is available.</source>
-        <translation>TeXstudio نىڭ يېڭى كاندىدات نەشىرى بار.</translation>
+        <source>A new release candidate of Iguana is available.</source>
+        <translation>Iguana نىڭ يېڭى كاندىدات نەشىرى بار.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="185"/>
@@ -13460,8 +13460,8 @@ included document in %1</source>
         <location filename="../src/updatechecker.cpp" line="188"/>
         <location filename="../src/updatechecker.cpp" line="206"/>
         <location filename="../src/updatechecker.cpp" line="223"/>
-        <source>You can download it from the %1 TeXstudio website</source>
-        <translation>ئۇنى %1 TeXstudio تور بېتىدىن چۈشۈرەلەيسىز</translation>
+        <source>You can download it from the %1 Iguana website</source>
+        <translation>ئۇنى %1 Iguana تور بېتىدىن چۈشۈرەلەيسىز</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="217"/>
@@ -13470,8 +13470,8 @@ included document in %1</source>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="230"/>
-        <source>Your TeXstudio version %1 is up-to-date.</source>
-        <translation>سىزنىڭ TeXstudio نەشرى %1 ئەڭ يېڭى.</translation>
+        <source>Your Iguana version %1 is up-to-date.</source>
+        <translation>سىزنىڭ Iguana نەشرى %1 ئەڭ يېڭى.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="199"/>
@@ -13480,8 +13480,8 @@ included document in %1</source>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="202"/>
-        <source>A new development version of TeXstudio is available.</source>
-        <translation>TeXstudio يېڭى ئاچقۇچىلار نەشىرى بار.</translation>
+        <source>A new development version of Iguana is available.</source>
+        <translation>Iguana يېڭى ئاچقۇچىلار نەشىرى بار.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="205"/>
@@ -13490,18 +13490,18 @@ included document in %1</source>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="220"/>
-        <source>A new stable version of TeXstudio is available.</source>
-        <translation>TeXstudio نىڭ يېڭى مۇقىم نەشرى بار.</translation>
+        <source>A new stable version of Iguana is available.</source>
+        <translation>Iguana نىڭ يېڭى مۇقىم نەشرى بار.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="235"/>
-        <source>Failure to find current TeXstudio versions.</source>
-        <translation>ھازىرقى TeXstudio نەشرىنى تاپالمىدى.</translation>
+        <source>Failure to find current Iguana versions.</source>
+        <translation>ھازىرقى Iguana نەشرىنى تاپالمىدى.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="247"/>
-        <source>TeXstudio Update</source>
-        <translation>TeXstudio نى يىڭلاش</translation>
+        <source>Iguana Update</source>
+        <translation>Iguana نى يىڭلاش</translation>
     </message>
 </context>
 <context>

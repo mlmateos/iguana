@@ -94,7 +94,7 @@ set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/templatemanager_p.h
     ${CMAKE_CURRENT_SOURCE_DIR}/templateselector.h
     ${CMAKE_CURRENT_SOURCE_DIR}/texdocdialog.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/texstudio.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/iguana.h
     ${CMAKE_CURRENT_SOURCE_DIR}/textanalysis.h
     ${CMAKE_CURRENT_SOURCE_DIR}/thesaurusdialog.h
     ${CMAKE_CURRENT_SOURCE_DIR}/titledpanel.h
@@ -202,7 +202,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/templatemanager_p.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/templateselector.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/texdocdialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/texstudio.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/iguana.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/textanalysis.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/thesaurusdialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/titledpanel.cpp

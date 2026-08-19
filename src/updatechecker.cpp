@@ -54,8 +54,8 @@ void UpdateChecker::check(bool silent, int currentComboBoxUpdateLevel)
 
 	this->silent = silent;
     networkManager = new QNetworkAccessManager();
-    QNetworkRequest request = QNetworkRequest(QUrl("https://api.github.com/repos/texstudio-org/texstudio/git/refs/tags"));
-	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
+    QNetworkRequest request = QNetworkRequest(QUrl("https://api.github.com/repos/iguana-org/iguana/git/refs/tags"));
+	request.setRawHeader("User-Agent", "Iguana Update Checker");
 	QNetworkReply *reply = networkManager->get(request);
 	connect(reply, SIGNAL(finished()), this, SLOT(onRequestCompleted()));
 	if (!silent)
@@ -168,8 +168,8 @@ void UpdateChecker::checkForNewVersion()
 	bool checkReleaseCandidate = updateLevel >= 1;
 	bool checkDevVersions = updateLevel >= 2;
 	Version currentVersion = Version::current();
-	QString downloadAddress = "https://texstudio.org";
-	QString downloadAddressGit = "https://github.com/texstudio-org/texstudio/releases";
+	QString downloadAddress = "https://iguana.org";
+	QString downloadAddressGit = "https://github.com/iguana-org/iguana/releases";
 
 	if (!currentVersion.isValid() && !latestReleaseCandidateVersion.isValid() && !latestDevVersion.isValid()) {
 		if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
@@ -181,11 +181,11 @@ void UpdateChecker::checkForNewVersion()
 				if (!silent) UtilsUi::txsWarning(tr("Update check for release candidate failed (invalid update file format)."));
 			}
 			if (latestReleaseCandidateVersion > currentVersion && latestReleaseCandidateVersion > latestStableVersion) {
-                notify(QString(tr("A new release candidate of TeXstudio is available.")+"<br><table><tr><td>"+
+                notify(QString(tr("A new release candidate of Iguana is available.")+"<br><table><tr><td>"+
                                 tr("Current version:")+"</td><td>%1</td></tr>"+
                                 "<tr><td>"+tr("Latest stable version:")+"</td><td>%2</td></tr>"+
                                "<tr><td>"+tr("Release candidate:")+"</td><td>%3</td></tr></table><br><br>"+
-                                tr("You can download it from the %1 TeXstudio website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
+                                tr("You can download it from the %1 Iguana website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
                         )
 						.arg(Version::versionToString(currentVersion),
 							Version::versionToString(latestStableVersion),
@@ -199,11 +199,11 @@ void UpdateChecker::checkForNewVersion()
 				if (!silent) UtilsUi::txsWarning(tr("Update check for development version failed (invalid update file format)."));
 			}
 			if (latestDevVersion > currentVersion && (latestStableVersion.isEmpty() || latestDevVersion > latestStableVersion)) {
-                notify(QString(tr("A new development version of TeXstudio is available.")+"<br><table><tr><td>"+
+                notify(QString(tr("A new development version of Iguana is available.")+"<br><table><tr><td>"+
                                 tr("Current version:")+"    </td><td>%1</td></tr>"+
                                 "<tr><td>"+tr("Latest stable version:")+"</td><td>%2</td></tr>"+
                                 "<tr><td>"+tr("Latest development version:")+"</td><td>%3</td></tr></table><br><br>"+
-                                tr("You can download it from the %1 TeXstudio website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
+                                tr("You can download it from the %1 Iguana website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
                         )
 						.arg(Version::versionToString(currentVersion),
 							Version::versionToString(latestStableVersion),
@@ -217,22 +217,22 @@ void UpdateChecker::checkForNewVersion()
 				if (!silent) UtilsUi::txsWarning(tr("Update check for stable version failed (invalid update file format)."));
 			}
 			if (latestStableVersion > currentVersion) {
-                notify(QString(tr("A new stable version of TeXstudio is available.")+"<br><table><tr><td>"+
+                notify(QString(tr("A new stable version of Iguana is available.")+"<br><table><tr><td>"+
                                 tr("Current version:")+"</td><td>%1</td></tr>"+
                                 "<tr><td>"+tr("Latest stable version:")+"</td><td>%2</td></tr></table><br><br>"+
-                                tr("You can download it from the %1 TeXstudio website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
+                                tr("You can download it from the %1 Iguana website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
                         )
 						.arg(Version::versionToString(currentVersion),
                             Version::versionToString(latestStableVersion))
 				);
 			} else {
 				if (!silent) {
-					UtilsUi::txsInformation(tr("Your TeXstudio version %1 is up-to-date.").arg(Version::versionToString(currentVersion)));
+					UtilsUi::txsInformation(tr("Your Iguana version %1 is up-to-date.").arg(Version::versionToString(currentVersion)));
 				}
 			}
 			break;
 		} else {
-            if (!silent) UtilsUi::txsInformation(tr("Failure to find current TeXstudio versions."));
+            if (!silent) UtilsUi::txsInformation(tr("Failure to find current Iguana versions."));
 		}
 		break;
 	}
@@ -244,7 +244,7 @@ void UpdateChecker::checkForNewVersion()
 void UpdateChecker::notify(QString message)
 {
 	QMessageBox msgBox;
-	msgBox.setWindowTitle(tr("TeXstudio Update"));
+	msgBox.setWindowTitle(tr("Iguana Update"));
 	msgBox.setTextFormat(Qt::RichText);
 	msgBox.setText(message);
 	msgBox.setStandardButtons(QMessageBox::Ok);

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   copyright       : (C) 2009 by Jan Sundermeyer                         *
- *   http://texstudio.sourceforge.net/                                     *
+ *   http://iguana.sourceforge.net/                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -138,7 +138,7 @@ void TemplateSelector::addOnlineRepository()
     ft.setBold(true);
     topitem->setFont(0, ft);
     topitem->setData(0, ResourceRole, tr("Online available template files"));
-    topitem->setData(0, UrlRole, QString("https://api.github.com/repos/texstudio-org/texstudio-template/contents"));
+    topitem->setData(0, UrlRole, QString("https://api.github.com/repos/iguana-org/iguana-template/contents"));
     topitem->setData(0, PathRole, QString(""));
     topitem->setIcon(0,getRealIcon("folder-cloud"));
     ui.templatesTree->addTopLevelItem(topitem);
@@ -183,7 +183,7 @@ void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *it
         m_url=url;
     }
     QNetworkRequest request = QNetworkRequest(QUrl(m_url));
-    request.setRawHeader("User-Agent", "TeXstudio Template Browser");
+    request.setRawHeader("User-Agent", "Iguana Template Browser");
     request.setAttribute(tplAttributeDirectURL,download);
     request.setAttribute(tplAttributeURL,url);
     request.setAttribute(tplAttributePath,path);
@@ -633,8 +633,8 @@ void TemplateSelector::openTemplateLocation()
 	QString proto = url;
 	proto.truncate(8);
 	if (proto=="https://") {
-		url.replace(0, QString( "https://raw.githubusercontent.com/texstudio-org/texstudio-template/main").size(),
-								"https://github.com/texstudio-org/texstudio-template/tree/main");
+		url.replace(0, QString( "https://raw.githubusercontent.com/iguana-org/iguana-template/main").size(),
+								"https://github.com/iguana-org/iguana-template/tree/main");
 		url.truncate(url.lastIndexOf("/"));
 	}
 	else {

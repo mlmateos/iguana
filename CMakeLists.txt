@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10.0)
 
-project(TeXstudio VERSION 4.9.8 LANGUAGES C CXX)
+project(Iguana VERSION 4.9.8 LANGUAGES C CXX)
 SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 set(CMAKE_DEBUG_POSTFIX "d")
 set(CMAKE_AUTOMOC ON)
@@ -78,7 +78,7 @@ add_subdirectory(src/qtsingleapplication)
 
 # main
 set(RESOURCE_FILES
-	texstudio.qrc
+	iguana.qrc
 	symbols.qrc
 	completion.qrc
 	images.qrc
@@ -114,7 +114,7 @@ if(APPLE)
     )
 
     set(OSX_FILES
-        texstudio.icns
+        iguana.icns
         utilities/latex2e.html
         utilities/latex2e.css
 		utilities/list.png
@@ -133,11 +133,11 @@ set(TRANSLATION_FILES
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
 	if(${QT_VERSION_MINOR} LESS_EQUAL 6)
 		message(STATUS "Generate translation source option.")
-		qt6_add_lupdate(texstudio TS_FILES ${TRANSLATION_FILES})
+		qt6_add_lupdate(iguana TS_FILES ${TRANSLATION_FILES})
 	endif()
 	if(${QT_VERSION_MINOR} GREATER_EQUAL 7)
                 message(STATUS "Generate translation source option. (>= Qt6.7)")
-                qt6_add_translations(texstudio TS_FILES ${TRANSLATION_FILES})
+                qt6_add_translations(iguana TS_FILES ${TRANSLATION_FILES})
 	endif()
 endif()
 
@@ -380,10 +380,10 @@ if(UNIX)
     set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DCMAKE_INSTALL_DATADIR="${CMAKE_INSTALL_DATADIR}")
 endif()
 
-# Build texstudio application
-add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${OSX_FILES} ${manual} ${images} ${static} ${static_scripts} ${static_styles} ${design_static}
+# Build iguana application
+add_executable(iguana ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${OSX_FILES} ${manual} ${images} ${static} ${static_scripts} ${static_styles} ${design_static}
 )
-target_link_libraries(texstudio PRIVATE
+target_link_libraries(iguana PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -396,15 +396,15 @@ target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::UiTools
 )
 if(NOT MSVC AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
-    target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
+    target_precompile_headers(iguana PUBLIC src/mostQtHeaders.h)
 endif()
 
 if(TEXSTUDIO_BUILD_ADWAITA)
-    target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::DBus)
+    target_link_libraries(iguana PRIVATE Qt${QT_VERSION_MAJOR}::DBus)
 endif()
 
 if(${TEXSTUDIO_ENABLE_CPP23_CRASH_HANDLER})
-    target_link_libraries(texstudio PRIVATE stdc++exp)
+    target_link_libraries(iguana PRIVATE stdc++exp)
 endif()
 
 set_source_files_properties(${OSX_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
@@ -415,11 +415,11 @@ set_source_files_properties(${static_scripts} PROPERTIES MACOSX_PACKAGE_LOCATION
 set_source_files_properties(${static_styles} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_static/styles")
 set_source_files_properties(${design_static} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_sphinx_design_static")
 
-set_target_properties(texstudio PROPERTIES
-    #MACOSX_BUNDLE_GUI_IDENTIFIER texstudio.org
+set_target_properties(iguana PROPERTIES
+    #MACOSX_BUNDLE_GUI_IDENTIFIER iguana.org
     #MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     #MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    #MACOSX_BUNDLE_ICON_FILE texstudio.icns
+    #MACOSX_BUNDLE_ICON_FILE iguana.icns
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
@@ -429,116 +429,116 @@ if(${TEXSTUDIO_ENABLE_CRASH_HANDLER})
 	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 	set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 	find_package(Threads REQUIRED)
-	target_link_libraries(texstudio PUBLIC Threads::Threads)
+	target_link_libraries(iguana PUBLIC Threads::Threads)
 endif()
 
-target_include_directories(texstudio PUBLIC ${INC_DIRECTORIES})
-target_compile_definitions(texstudio PUBLIC ${ADDITIONAL_DEFINITIONS})
+target_include_directories(iguana PUBLIC ${INC_DIRECTORIES})
+target_compile_definitions(iguana PUBLIC ${ADDITIONAL_DEFINITIONS})
 if(Hunspell_FOUND)
-	target_include_directories(texstudio PUBLIC ${HUNSPELL_INCLUDE_DIR})
-	target_link_libraries(texstudio PUBLIC ${HUNSPELL_LIBRARIES})
+	target_include_directories(iguana PUBLIC ${HUNSPELL_INCLUDE_DIR})
+	target_link_libraries(iguana PUBLIC ${HUNSPELL_LIBRARIES})
 else()
-	target_include_directories(texstudio PUBLIC src/hunspell)
-	target_link_libraries(texstudio PUBLIC hunspell)
+	target_include_directories(iguana PUBLIC src/hunspell)
+	target_link_libraries(iguana PUBLIC hunspell)
 endif()
 if(QuaZip-Qt${QT_VERSION_MAJOR}_FOUND)
-	target_link_libraries(texstudio PUBLIC QuaZip::QuaZip)
+	target_link_libraries(iguana PUBLIC QuaZip::QuaZip)
 else()
 	if(QUAZIP_FOUND)
-		target_include_directories(texstudio PUBLIC ${QUAZIP_INCLUDE_DIR})
-		target_link_libraries(texstudio PUBLIC ${QUAZIP_LIBRARIES})
+		target_include_directories(iguana PUBLIC ${QUAZIP_INCLUDE_DIR})
+		target_link_libraries(iguana PUBLIC ${QUAZIP_LIBRARIES})
 	else()
-		target_link_libraries(texstudio PUBLIC QuaZip::QuaZip)
+		target_link_libraries(iguana PUBLIC QuaZip::QuaZip)
 	endif()
 endif()
 
 find_package(ZLIB REQUIRED)
 if(ZLIB_FOUND)
-    target_include_directories(texstudio PUBLIC ${ZLIB_INCLUDE_DIR})
-    target_link_libraries(texstudio PUBLIC ${ZLIB_LIBRARIES})
+    target_include_directories(iguana PUBLIC ${ZLIB_INCLUDE_DIR})
+    target_link_libraries(iguana PUBLIC ${ZLIB_LIBRARIES})
 endif()
 
 if(UNIX AND NOT APPLE AND NOT HAIKU)
 	find_package(X11 REQUIRED)
-	target_include_directories(texstudio PUBLIC ${X11_INCLUDE_DIRS})
-	target_link_libraries(texstudio PUBLIC ${X11_LIBRARIES})
+	target_include_directories(iguana PUBLIC ${X11_INCLUDE_DIRS})
+	target_link_libraries(iguana PUBLIC ${X11_LIBRARIES})
 endif()
 
 #qtermwidget
 if(QTERMWIDGET_FOUND)
-   target_link_libraries(texstudio PUBLIC qtermwidget${QT_VERSION_MAJOR})
+   target_link_libraries(iguana PUBLIC qtermwidget${QT_VERSION_MAJOR})
 endif()
 
 #mediaplayer
 if(Qt${QT_VERSION_MAJOR}Multimedia_FOUND)
 	message(STATUS "${Qt${QT_VERSION_MAJOR}Multimedia_FOUND}")
-	target_include_directories(texstudio PUBLIC ${Qt${QT_VERSION_MAJOR}Multimedia_INCLUDE_DIRS})
-	target_include_directories(texstudio PUBLIC ${Qt${QT_VERSION_MAJOR}MultimediaWidgets_INCLUDE_DIRS})
-	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::Multimedia)
-	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::MultimediaWidgets)
+	target_include_directories(iguana PUBLIC ${Qt${QT_VERSION_MAJOR}Multimedia_INCLUDE_DIRS})
+	target_include_directories(iguana PUBLIC ${Qt${QT_VERSION_MAJOR}MultimediaWidgets_INCLUDE_DIRS})
+	target_link_libraries(iguana PUBLIC Qt${QT_VERSION_MAJOR}::Multimedia)
+	target_link_libraries(iguana PUBLIC Qt${QT_VERSION_MAJOR}::MultimediaWidgets)
 endif()
 
 if(POPPLER_FOUND)
-        target_link_libraries(texstudio PUBLIC PkgConfig::POPPLER)
+        target_link_libraries(iguana PUBLIC PkgConfig::POPPLER)
 endif()
 if(${TEXSTUDIO_ENABLE_TESTS})
-    target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::Test)
-    target_include_directories(texstudio PUBLIC src/tests)
+    target_link_libraries(iguana PUBLIC Qt${QT_VERSION_MAJOR}::Test)
+    target_include_directories(iguana PUBLIC src/tests)
 endif()
 if(WIN32)
-    target_link_libraries(texstudio PUBLIC Shlwapi)
+    target_link_libraries(iguana PUBLIC Shlwapi)
 endif()
 
 ## installation
 
-install(TARGETS texstudio DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS iguana DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(UNIX AND NOT APPLE AND NOT HAIKU)
         option(APPDATA "Install appdata" ON)
-	install(FILES utilities/texstudio.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
-	install(FILES utilities/texstudio.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
+	install(FILES utilities/iguana.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+	install(FILES utilities/iguana.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
         if(${APPDATA})
-		install(FILES utilities/texstudio.metainfo.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
+		install(FILES utilities/iguana.metainfo.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
 	endif()
 endif()
 
 if(UNIX)
 	install(DIRECTORY translation/
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/iguana
 		FILES_MATCHING
 		PATTERN *.qm
 	)
 	install(DIRECTORY templates/
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/iguana
 		FILES_MATCHING
 		PATTERN *
 	)
 	install(DIRECTORY utilities/dictionaries/
-		DESTINATION ${CMAKE_INSTALL_DATADIR}/texstudio
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/iguana
 		FILES_MATCHING
 		PATTERN *
 	)
 	install(DIRECTORY utilities/manual/build/html/
-                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana
 		FILES_MATCHING
 		PATTERN *.html
 	)
 	install(DIRECTORY utilities/manual/build/html/_images
-                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana
 		FILES_MATCHING
 		PATTERN *.webp
 	)
 	install(DIRECTORY utilities/manual/build/html/_sphinx_design_static
-                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana
 	)
 	install(DIRECTORY utilities/manual/build/html/_static
-                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio
+                DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana
 	)
-        install(FILES utilities/manual/build/html/searchindex.js DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
-        install(FILES utilities/latex2e.html DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
-        install(FILES utilities/latex2e.css DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
-        install(FILES utilities/list.png DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
-        install(FILES utilities/AUTHORS DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
-        install(FILES utilities/COPYING DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
-        install(FILES utilities/manual/source/CHANGELOG.md DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/texstudio)
+        install(FILES utilities/manual/build/html/searchindex.js DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
+        install(FILES utilities/latex2e.html DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
+        install(FILES utilities/latex2e.css DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
+        install(FILES utilities/list.png DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
+        install(FILES utilities/AUTHORS DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
+        install(FILES utilities/COPYING DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
+        install(FILES utilities/manual/source/CHANGELOG.md DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/iguana)
 endif()

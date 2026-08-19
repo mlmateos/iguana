@@ -5,7 +5,7 @@
 
 class QDocumentCursor;
 class QEditor;
-class Texstudio;
+class Iguana;
 
 enum CompletionType {CT_COMMANDS, CT_NORMALTEXT, CT_CITATIONS, CT_LABELS};
 

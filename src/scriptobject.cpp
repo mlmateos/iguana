@@ -9,7 +9,7 @@
 QStringList privilegedReadScripts, privilegedWriteScripts;
 int readSecurityMode, writeSecurityMode;
 
-ScriptObject::ScriptObject(const QString &script, BuildManager *buildManager, Texstudio *app): backgroundScript(false), buildManager(buildManager), script(script), app(app)
+ScriptObject::ScriptObject(const QString &script, BuildManager *buildManager, Iguana *app): backgroundScript(false), buildManager(buildManager), script(script), app(app)
 {
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Read Scripts", &privilegedReadScripts);
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Read Security Mode", &readSecurityMode, 1);
@@ -309,7 +309,7 @@ bool ScriptObject::needWritePrivileges(const QString &fn, const QString &param)
 {
 	if (writeSecurityMode == 0) return false;
 	if (hasWritePrivileges()) return true;
-    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
+    int t = QMessageBox::question(nullptr, "Iguana script watcher",
 	                              tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this call"),
 	                              tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
 	if (t == 0) return true; //only now
@@ -322,7 +322,7 @@ bool ScriptObject::needReadPrivileges(const QString &fn, const QString &param)
 {
 	if (readSecurityMode == 0) return false;
 	if (hasReadPrivileges()) return true;
-    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
+    int t = QMessageBox::question(nullptr, "Iguana script watcher",
 	                              tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this reading"),
 	                              tr("Yes, grant permanent read access to everything"), tr("No, abort the call"), 0, 2);
 	if (t == 0) return true; //only now
@@ -335,7 +335,7 @@ SubScriptObject *ScriptObject::getScript()
 {
 	return &subScriptObject;
 }
-Texstudio *ScriptObject::getApp()
+Iguana *ScriptObject::getApp()
 {
 	return app;
 }

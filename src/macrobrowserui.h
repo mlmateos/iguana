@@ -8,7 +8,7 @@
 #include "usermacro.h"
 
 /*!
- * \brief provide simple UI to browse macros from github.com/texstudio-org/texstudio-macro
+ * \brief provide simple UI to browse macros from github.com/iguana-org/iguana-macro
  */
 class MacroBrowserUI : public QDialog
 {

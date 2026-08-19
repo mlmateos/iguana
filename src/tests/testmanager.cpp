@@ -45,7 +45,7 @@ bool globalExecuteAllTests;
 
 QString TestManager::performTest(QObject* obj){
 	char* argv[3];
-	argv[0]=(char*)"texstudio";
+	argv[0]=(char*)"iguana";
 	argv[1]=(char*)"-o";
 	argv[2]=tempResult;
 	QElapsedTimer timing;

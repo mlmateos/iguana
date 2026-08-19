@@ -5,9 +5,9 @@
 #include <QJsonArray>
 #include "aiquerystoragemodel.h"
 #include <QShortcut>
-#include "texstudio.h"
+#include "iguana.h"
 
-extern Texstudio *txsInstance;
+extern Iguana *txsInstance;
 
 AIChatAssistant::AIChatAssistant(QWidget *parent)
     : QDialog{parent}
@@ -289,7 +289,7 @@ void AIChatAssistant::slotSend(bool fromToolCall)
         dd["max_tokens"]=config->ai_maxTokens;
 
         QNetworkRequest request = QNetworkRequest(QUrl(url));
-        request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
+        request.setRawHeader("User-Agent", "Iguana Chat Assistant");
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
         request.setRawHeader("Accept", "application/json");
         request.setRawHeader("anthropic-version", "2023-06-01");
@@ -298,7 +298,7 @@ void AIChatAssistant::slotSend(bool fromToolCall)
     }else{
         // openAI compatible API
         QNetworkRequest request = QNetworkRequest(QUrl(url));
-        request.setRawHeader("User-Agent", "TeXstudio Chat Assistant");
+        request.setRawHeader("User-Agent", "Iguana Chat Assistant");
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
         request.setRawHeader("Accept", "application/json");
         request.setRawHeader("Authorization", QString("Bearer %1").arg(config->ai_apikey).toUtf8());

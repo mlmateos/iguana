@@ -281,7 +281,7 @@ QString WebPublishDialog::header()
 	QString result = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'> \n";
 	result += "<html>\n";
 	result += "<head>\n";
-	result += "<META NAME='Generator' CONTENT='TeXstudio (http://texstudio.sourceforge.net/)'>\n";
+	result += "<META NAME='Generator' CONTENT='Iguana (http://iguana.sourceforge.net/)'>\n";
 	result += "<title>" + config->title + "</title>\n";
 	result += "<link rel=StyleSheet href='style.css' type='text/css'>\n";
 	result += "</head>\n";
@@ -923,11 +923,11 @@ void WebPublishDialogConfig::readSettings(QSettings &settings)
 	QString kdesession = ::getenv("KDE_FULL_SESSION");
 	if (!kdesession.isEmpty()) browser = settings.value("/browser", "konqueror").toString();
 	else browser = settings.value("/browser", "firefox").toString();
-	//programdir=PREFIX"/share/texstudio";
+	//programdir=PREFIX"/share/iguana";
 #endif
 #ifdef Q_OS_MAC
 	browser = settings.value("/browser", "open").toString();
-	//programdir="/Applications/texstudio.app/Contents/Resources";
+	//programdir="/Applications/iguana.app/Contents/Resources";
 #endif
 #ifdef Q_OS_WIN32
 	browser = settings.value("/browser", "\"C:/Program Files/Internet Explorer/IEXPLORE.EXE\"").toString();

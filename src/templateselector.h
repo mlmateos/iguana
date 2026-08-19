@@ -1,6 +1,6 @@
 /***************************************************************************
  *   copyright       : (C) 2009 by Jan Sundermeyer                         *
- *   http://texstudio.sourceforge.net/                                     *
+ *   http://iguana.sourceforge.net/                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

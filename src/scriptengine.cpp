@@ -5,7 +5,7 @@
 #include "scriptobject.h"
 #include "buildmanager.h"
 #include "latexdocument.h"
-#include "texstudio.h"
+#include "iguana.h"
 #include "usermacro.h"
 #include <QCryptographicHash>
 #include "PDFDocument.h"
@@ -29,7 +29,7 @@ Q_DECLARE_METATYPE(PDFWidget *)
 //Q_DECLARE_METATYPE(QString *)
 
 BuildManager *scriptengine::buildManager = nullptr;
-Texstudio *scriptengine::app = nullptr;
+Iguana *scriptengine::app = nullptr;
 
 QList<Macro> *scriptengine::macros = nullptr;
 
@@ -147,7 +147,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), m_
 	//qmlRegisterType<QFileInfo>();
     qmlRegisterType<ProcessX>("com.txs.qmlcomponents", 1, 0, "ProcessX");
     //qmlRegisterType<SubScriptObject>();
-    qmlRegisterType<Texstudio>("com.txs.qmlcomponents", 1, 0, "Texstudio");
+    qmlRegisterType<Iguana>("com.txs.qmlcomponents", 1, 0, "Iguana");
     qmlRegisterType<QAction>("com.txs.qmlcomponents", 1, 0, "QAction");
     qmlRegisterType<QMenu>("com.txs.qmlcomponents", 1, 0, "QMenu");
     //qmlRegisterType<LatexEditorView>("com.txs.qmlcomponents", 1, 0, "LatexEditorView");
@@ -746,7 +746,7 @@ bool scriptengine::needWritePrivileges(const QString &fn, const QString &param)
     if (writeSecurityMode == 0) return false;
     if (hasWritePrivileges()) return true;
     QMessageBox messageBox;
-    messageBox.setWindowTitle("TeXstudio script watcher");
+    messageBox.setWindowTitle("Iguana script watcher");
     messageBox.setIcon(QMessageBox::Question);
     messageBox.setText(tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"));
     QAbstractButton *acceptButton =  messageBox.addButton(tr("Yes, allow this call"), QMessageBox::AcceptRole);
@@ -768,7 +768,7 @@ bool scriptengine::needReadPrivileges(const QString &fn, const QString &param)
     if (readSecurityMode == 0) return false;
     if (hasReadPrivileges()) return true;
     QMessageBox messageBox;
-    messageBox.setWindowTitle("TeXstudio script watcher");
+    messageBox.setWindowTitle("Iguana script watcher");
     messageBox.setIcon(QMessageBox::Question);
     messageBox.setText(tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"));
     QAbstractButton *acceptButton =  messageBox.addButton(tr("Yes, allow this reading"), QMessageBox::AcceptRole);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package>
     <DisplayName>TexStudio</DisplayName>
-    <Description>TeXstudio LaTeX editor</Description>
+    <Description>Iguana LaTeX editor</Description>
     <Version>3.1.2</Version>
     <ReleaseDate>2020-03-13</ReleaseDate>
     <Licenses>

@@ -6,7 +6,7 @@ QStringList levelList = {"alpha", "beta", "rc", "stable"};
 /* parse string from git into data items. It has the following form:
  * [{...},{...},...,{...}]
  * where each {...} represents one data item of one txs version. Ex. for ...:
- * "ref":"refs/tags/1.8.1","node_id":"MDM6UmVmMTEyMzcwNzY1OnJlZnMvdGFncy8xLjguMQ==","url":"https://api.github.com/repos/texstudio-org/texstudio/git/refs/tags/1.8.1","object":{"sha":"ef685c7e85c6045c35e6c25580030ad6f548f5f0","type":"commit","url":"https://api.github.com/repos/texstudio-org/texstudio/git/commits/ef685c7e85c6045c35e6c25580030ad6f548f5f0"}
+ * "ref":"refs/tags/1.8.1","node_id":"MDM6UmVmMTEyMzcwNzY1OnJlZnMvdGFncy8xLjguMQ==","url":"https://api.github.com/repos/iguana-org/iguana/git/refs/tags/1.8.1","object":{"sha":"ef685c7e85c6045c35e6c25580030ad6f548f5f0","type":"commit","url":"https://api.github.com/repos/iguana-org/iguana/git/commits/ef685c7e85c6045c35e6c25580030ad6f548f5f0"}
  * we assume that none of the literal strings contains braces (i.e. "{" and "}")
  */  
 QStringList Version::parseGitData(const QString &data) {

@@ -14,11 +14,11 @@
 #include "mostQtHeaders.h"
 /*! \mainpage TexStudio
  *
- * \see Texstudio
+ * \see Iguana
  * \see PDFDocument
  */
 
-#include "texstudio.h"
+#include "iguana.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
 #include "debuglogger.h"
@@ -40,7 +40,7 @@ class TexstudioApp : public QtSingleApplication
 public:
 	bool initialized;
 	QString delayedFileLoad;
-	Texstudio *mw;  // Moved from private:
+	Iguana *mw;  // Moved from private:
 	TexstudioApp(int &argc, char **argv);
 	TexstudioApp(QString &id, int &argc, char **argv);
 	~TexstudioApp();
@@ -80,7 +80,7 @@ void TexstudioApp::init(QStringList &cmdLine)
 	splash->show();
 	processEvents();
 
-    mw = new Texstudio(nullptr, Qt::WindowFlags(), splash);
+    mw = new Iguana(nullptr, Qt::WindowFlags(), splash);
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);
 	delete splash;
@@ -166,7 +166,7 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 bool handleCommandLineOnly(const QStringList &cmdLine) {
 	// note: stdout is not supported for Win GUI applications. Will simply not output anything there.
 	if (cmdLine.contains("--help")) {
-		QTextStream(stdout) << "Usage: texstudio [options] [file]\n"
+		QTextStream(stdout) << "Usage: iguana [options] [file]\n"
 							<< "\n"
 							<< "Options:\n"
 							<< "  --config DIR              use the specified settings directory\n"
@@ -187,7 +187,7 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 	}
 
 	if (cmdLine.contains("--version")) {
-        QTextStream(stdout) << "TeXstudio " << TXSVERSION << " (" << TEXSTUDIO_GIT_REVISION << ")\n";
+        QTextStream(stdout) << "Iguana " << TXSVERSION << " (" << TEXSTUDIO_GIT_REVISION << ")\n";
 		return true;
 	}
 
@@ -226,7 +226,7 @@ int main(int argc, char **argv)
 
 	a.setApplicationName( TEXSTUDIO );
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && defined(Q_OS_LINUX)
-	a.setDesktopFileName("texstudio");
+	a.setDesktopFileName("iguana");
 #endif
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 

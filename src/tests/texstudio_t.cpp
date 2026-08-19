@@ -1,10 +1,10 @@
 #include "texstudio_t.h"
 
 #include "testutil.h"
-#include "texstudio.h"
+#include "iguana.h"
 #include <QtTest/QtTest>
 
-extern Texstudio *txsInstance;
+extern Iguana *txsInstance;
 
 void TexStudioTest::checkIncludes_data(){
     if (!allTests){
@@ -49,7 +49,7 @@ void TexStudioTest::checkIncludes(){
     QFETCH(QStringList, files);
     QFETCH(bool, refPresent);
 
-    Texstudio *txs=txsInstance;
+    Iguana *txs=txsInstance;
 
     // deactivate caching
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
@@ -136,7 +136,7 @@ void TexStudioTest::checkIncludesCached(){
     QFETCH(QStringList, files);
     QFETCH(bool, refPresent);
 
-    Texstudio *txs=txsInstance;
+    Iguana *txs=txsInstance;
     // used cached docs
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
     bool cacheDocs=conf->cacheDocuments;
@@ -198,8 +198,8 @@ void TexStudioTest::normalCompletion(){
     QFETCH(int, column);
     QFETCH(LatexCompleter::CompletionFlags, flags);
 
-    Texstudio *txs = txsInstance;
-    QVERIFY2(txs, "The Texstudio instance must exist for completion tests");
+    Iguana *txs = txsInstance;
+    QVERIFY2(txs, "The Iguana instance must exist for completion tests");
 
     LatexEditorView *edView = txs->currentEditorView();
     if (!edView) {

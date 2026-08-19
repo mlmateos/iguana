@@ -1,5 +1,5 @@
 /*
- * This file is part of the TeXstudio (http://texstudio.org).
+ * This file is part of the Iguana (http://iguana.org).
  * Copyright (c) 2017 Tim Hoffmann.
  *
  * This program is free software: you can redistribute it and/or modify

@@ -49,7 +49,7 @@ public:
 protected:
 	AbstractTemplateResource() {}
 };
-Q_DECLARE_INTERFACE( AbstractTemplateResource , "TeXstudio/AbstractTemplateResource")
+Q_DECLARE_INTERFACE( AbstractTemplateResource , "Iguana/AbstractTemplateResource")
 Q_DECLARE_METATYPE( AbstractTemplateResource * )
 
 

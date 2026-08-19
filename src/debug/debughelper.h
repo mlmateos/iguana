@@ -8,7 +8,7 @@ void handler(int sig);
 
 QString print_backtrace(const QString &message);
 
-void recover(); //defined in texstudio.cpp
+void recover(); //defined in iguana.cpp
 
 void initCrashHandler(int mode);
 QString getLastCrashInformation(bool &wasLoop);

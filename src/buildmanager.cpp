@@ -86,7 +86,7 @@ CMD_DEFINE(TERMINAL_EXTERNAL,terminal-external);
 // *INDENT-ON* (astyle-config)
 
 //! These commands should not consist of a command list, but rather a single command.
-//! Otherwise surprising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
+//! Otherwise surprising side effects can happen, see https://sourceforge.net/p/iguana/bugs/2119/
 const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex"<< "txs:///lualatex" << "txs:///latexmk";
 
 QString searchBaseCommand(const QString &cmd, QString options, QString texPath="");
@@ -1084,8 +1084,8 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
                                                    "defined as a command-chain containing %2 commands. This is beyond "
                                                    "the specification and may lead to surprising side-effects.\n\n"
                                                    "Please change your configuration and define command lists only at "
-                                                   "'Options -> Configure TeXstudio -> Build' not at "
-                                                   "'Options -> Configure TeXstudio -> Commands'.")).arg(cmd).arg(ecNew.commands.length()));
+                                                   "'Options -> Configure Iguana -> Build' not at "
+                                                   "'Options -> Configure Iguana -> Commands'.")).arg(cmd).arg(ecNew.commands.length()));
                 }
                 QList<CommandToRun> &newPart = ecNew.commands;
 
@@ -1364,7 +1364,7 @@ void BuildManager::registerOptions(ConfigManagerInterface &cmi)
 
 void removeDuplicateUserTools(QStringList &userToolOrder, QStringList &userToolDisplayNames)
 {
-	// workaround to cleanup duplicates in usertools https://sourceforge.net/p/texstudio/discussion/907839/
+	// workaround to cleanup duplicates in usertools https://sourceforge.net/p/iguana/discussion/907839/
 	// needed for some time even after that fix will be in place to catch the duplicates already created by previous versions
 	int i = 0;
 	QSet<QString> visitedTools;
@@ -1650,7 +1650,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 		emit processNotification(tr("Error: No command expanded"));
 		if (!BuildManager_hadSuccessfulProcessStart) {
 			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-			                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+			                                     "A (La)TeX editor like Iguana cannot work without the (La)TeX commands provided by such a distribution."));
 		}
 		return false;
 	}
@@ -1663,7 +1663,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 			                         QString("\n    %1: %2").arg(tr("Primary Command"), expansion.primaryCommand));
 			if (!BuildManager_hadSuccessfulProcessStart) {
 				emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-				                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+				                                     "A (La)TeX editor like Iguana cannot work without the (La)TeX commands provided by such a distribution."));
 			}
 			return false;
 		}
@@ -2595,7 +2595,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 			DdeFreeDataHandle(req);
 			if (recData) DdeFreeDataHandle(recData);
 		}
-		//else QMessageBox::information(0,"TeXstudio",QObject::tr("DDE command %1 failed").arg("["+s),0); //break; send all commands
+		//else QMessageBox::information(0,"Iguana",QObject::tr("DDE command %1 failed").arg("["+s),0); //break; send all commands
 	}
 
 	QCoreApplication::processEvents();
@@ -2836,7 +2836,7 @@ void ProcessX::onError(ProcessError error)
 
 		if (!BuildManager_hadSuccessfulProcessStart)
 			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-			                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+			                                     "A (La)TeX editor like Iguana cannot work without the (La)TeX commands provided by such a distribution."));
 
 	} else if (error == Crashed)
 		emit processNotification(tr("Error: Command crashed: %1").arg(cmd));

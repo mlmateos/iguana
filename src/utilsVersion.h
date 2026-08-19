@@ -1,7 +1,7 @@
 #ifndef Header_UtilsVersion
 #define Header_UtilsVersion
 
-#define TEXSTUDIO "TeXstudio"
+#define TEXSTUDIO "Iguana"
 
 #define TXSVERSION "4.9.8"
 

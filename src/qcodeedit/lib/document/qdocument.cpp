@@ -3367,7 +3367,7 @@ void QDocumentLineHandle::layout(int lineNr) const
 		if (!m_text.isRightToLeft()) {
 			// We would like to include trailing spaces in the layout, however, QTextLayout does
 			// not process them correctly (QTBUG-48587) which results in false behavior for RTL
-			// text: https://sourceforge.net/p/texstudio/bugs/1503/
+			// text: https://sourceforge.net/p/iguana/bugs/1503/
 			// therefore we do not include the trailing spaces for RTL text.
 			opt.setFlags(QTextOption::IncludeTrailingSpaces);
 		}
@@ -3469,7 +3469,7 @@ void QDocumentLineHandle::layout(int lineNr) const
 
 		m_layout = nullptr;
 
-		// fix https://sourceforge.net/p/texstudio/bugs/2255/
+		// fix https://sourceforge.net/p/iguana/bugs/2255/
 		if (hasFlag(QDocumentLine::LayoutedByQTextLayout)) {
 			setFlag(QDocumentLine::LayoutedByQTextLayout, false);
 			updateWrap(lineNr);
@@ -5290,7 +5290,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			/* eats up delimiters */
 			bool delimiter_used=false;
-            if ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){ // don't jump over more than one delimiter (see https://github.com/texstudio-org/texstudio/issues/2311)
+            if ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){ // don't jump over more than one delimiter (see https://github.com/iguana-org/iguana/issues/2311)
 				--offset;
 				delimiter_used=true;
 			}
@@ -5344,7 +5344,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			/* next char */
 			bool delimiter_used=false;
-            if ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){ // don't jump over more than one delimiter (see https://github.com/texstudio-org/texstudio/issues/2311)
+            if ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){ // don't jump over more than one delimiter (see https://github.com/iguana-org/iguana/issues/2311)
 				++offset;
 				delimiter_used=true;
 			}

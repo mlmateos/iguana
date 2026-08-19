@@ -1082,7 +1082,7 @@ bool QEditor::writeToFile(const QString &filename, const QByteArray &data) {
 				   "Free space: %3 kB\n\n"
 				   "You should clean up some space and retry. Alternatively you can\n"
 				   "cancel the save operation and save to another location instead.\n"
-				   "When ignoring this warning TeXstudio will try save to the specified\n"
+				   "When ignoring this warning Iguana will try save to the specified\n"
 				   "location. However if there is really not enough space, this will\n"
 				   "result in data loss.\n"
 				   ).arg(filename).arg(data.size()/1024).arg(freeBytes/1024L),QMessageBox::Retry|QMessageBox::Ignore|QMessageBox::Cancel, QMessageBox::Retry);
@@ -1299,7 +1299,7 @@ void QEditor::fileChanged(const QString& file)
 			int ret = QMessageBox::warning(
 			              this, tr("File changed"),
 			              tr("%1\n"
-			                 "was changed outside of TeXstudio. Reload from disk?\n\n"
+			                 "was changed outside of Iguana. Reload from disk?\n\n"
 			                 "Notes:\n"
 			                 "- Reloading overwrites the editor content with the file from disk. This cannot be undone.\n"
 			                 "- You can permanently enable silent reloading in the options."

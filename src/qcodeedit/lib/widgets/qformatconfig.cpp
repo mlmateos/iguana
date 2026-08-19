@@ -91,8 +91,8 @@ QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
 	// https://bugreports.qt-project.org/browse/QTBUG-26674
 	// https://bugreports.qt-project.org/browse/QTBUG-25180
 	// https://bugreports.qt-project.org/browse/QTBUG-25148
-	// https://sourceforge.net/p/texstudio/bugs/615/
-	// https://sourceforge.net/p/texstudio/bugs/630/
+	// https://sourceforge.net/p/iguana/bugs/615/
+	// https://sourceforge.net/p/iguana/bugs/630/
     if (adaptStyle) {
 		m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
     }

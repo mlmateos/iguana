@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014 Tim Hoffmann -->
 <component type="desktop-application">
-  <id>org.texstudio.TeXstudio</id>
+  <id>org.iguana.Iguana</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
-  <name>TeXstudio</name>
+  <name>Iguana</name>
   <summary>Craft beautiful LaTeX documents</summary>
   <description>
     <p>
-      TeXstudio is an integrated writing environment for creating LaTeX documents. It integrates editing, building and viewing into a single, user-friendly interface.
+      Iguana is an integrated writing environment for creating LaTeX documents. It integrates editing, building and viewing into a single, user-friendly interface.
     </p>
     <p>
       Our goal is to make writing LaTeX as easy and comfortable as possible.
@@ -26,11 +26,11 @@
       <li>Scripting support</li>
     </ul>
   </description>
-  <launchable type="desktop-id">texstudio.desktop</launchable>
+  <launchable type="desktop-id">iguana.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <caption>The TexStudio main window showing a TeX document and the rendered file</caption>
-      <image>https://raw.githubusercontent.com/texstudio-org/texstudio/master/utilities/screenshot1.png</image>
+      <image>https://raw.githubusercontent.com/iguana-org/iguana/master/utilities/screenshot1.png</image>
     </screenshot>
   </screenshots>
   <kudos>
@@ -47,19 +47,19 @@
     <keyword>ide</keyword>
     <keyword>latex-editor</keyword>
   </keywords>
-  <url type="homepage">https://texstudio.org/</url>
-  <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
-  <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
-  <url type="help">https://texstudio-org.github.io/getting_started.html</url>
-  <url type="translate">https://explore.transifex.com/texstudio/texstudio/</url>
-  <url type="contact">https://texstudio.org/#about</url>
-  <url type="vcs-browser">https://github.com/texstudio-org/texstudio</url>
-  <url type="contribute">https://texstudio.org/#participate</url>
-  <developer id="org.texstudio">
+  <url type="homepage">https://iguana.org/</url>
+  <url type="bugtracker">https://github.com/iguana-org/iguana/issues</url>
+  <url type="faq">https://github.com/iguana-org/iguana/wiki/Frequently-Asked-Questions</url>
+  <url type="help">https://iguana-org.github.io/getting_started.html</url>
+  <url type="translate">https://explore.transifex.com/iguana/iguana/</url>
+  <url type="contact">https://iguana.org/#about</url>
+  <url type="vcs-browser">https://github.com/iguana-org/iguana</url>
+  <url type="contribute">https://iguana.org/#participate</url>
+  <developer id="org.iguana">
     <name>J. Sundermeyer</name>
   </developer>
   <content_rating type="oars-1.1"/>
-  <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
+  <update_contact>iguana-list_at_lists.sourceforge.net</update_contact>
   <releases>
     <release date="2022-04-03T09:26:48+0000" version="4.2.3">
       <description>
@@ -79,6 +79,6 @@
     </release>
   </releases>
   <provides>
-    <binary>texstudio</binary>
+    <binary>iguana</binary>
   </provides>
 </component>

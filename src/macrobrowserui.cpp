@@ -96,16 +96,16 @@ void MacroBrowserUI::requestMacroList(QTreeWidgetItem *currentItem,const bool &i
     QString path=(currentItem ? currentItem->data(0,PathRole).toString() : "");  // s. (1)
     QString url;
     if(isFile) {
-        // like https://raw.githubusercontent.com/texstudio-org/texstudio-macro/master/automatedTextmanipulation/autoLabel.txsMacro
+        // like https://raw.githubusercontent.com/iguana-org/iguana-macro/master/automatedTextmanipulation/autoLabel.txsMacro
         url=(currentItem ? currentItem->data(0,UrlRole).toString() : "");  // s. (1)
     }else{
         path=(currentItem ? currentItem->data(0,PathRole).toString() : "");  // s. (1)
-        // like https://api.github.com/repos/texstudio/texstudio-macro/contents/automatedTextmanipulation
+        // like https://api.github.com/repos/iguana/iguana-macro/contents/automatedTextmanipulation
         url=config->URLmacroRepository+path;
     }
 
     QNetworkRequest request = QNetworkRequest(QUrl(url));
-    request.setRawHeader("User-Agent", "TeXstudio Macro Browser");
+    request.setRawHeader("User-Agent", "Iguana Macro Browser");
     request.setAttribute(mbAttributeIsFile,isFile);
     request.setAttribute(mbAttributeItem,QVariant::fromValue(currentItem));
     QNetworkReply *reply = networkManager->get(request);

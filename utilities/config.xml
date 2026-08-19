@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
-    <Name>texstudio</Name>
+    <Name>iguana</Name>
     <Version>3.1.2</Version>
     <Title>LaTeX Editor</Title>
-    <Publisher>texstudio-org</Publisher>
-    <TargetDir>@ApplicationsDir@/texstudio</TargetDir>
+    <Publisher>iguana-org</Publisher>
+    <TargetDir>@ApplicationsDir@/iguana</TargetDir>
     <RemoveTargetDir>false</RemoveTargetDir>
 </Installer>

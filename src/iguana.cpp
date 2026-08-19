@@ -12,7 +12,7 @@
 //#include <stdlib.h>
 //#include "/usr/include/valgrind/callgrind.h"
 
-#include "texstudio.h"
+#include "iguana.h"
 #include "latexeditorview.h"
 
 #include "smallUsefulFunctions.h"
@@ -92,7 +92,7 @@
 #include <windows.h>
 #endif
 
-/*! \file texstudio.cpp
+/*! \file iguana.cpp
  * contains the GUI definition as well as some helper functions
  */
 
@@ -102,7 +102,7 @@
 	@{
 */
 
-/*! \class Texstudio
+/*! \class Iguana
  * This class sets up the GUI and handles the GUI interaction (menus and toolbar).
  * It uses QEditor with LatexDocument as actual text editor and PDFDocument for viewing pdf.
  *
@@ -115,7 +115,7 @@
 const QString APPICON(":appicon");
 
 bool programStopped = false;
-Texstudio *txsInstance = nullptr;
+Iguana *txsInstance = nullptr;
 QCache<QString, QIcon> iconCache;
 
 /*!
@@ -127,7 +127,7 @@ QCache<QString, QIcon> iconCache;
  * \param flags
  * \param splash
  */
-Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
+Iguana::Iguana(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
         : QMainWindow(parent, flags), textAnalysisDlg(nullptr), spellDlg(nullptr), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false)
 {
 
@@ -292,7 +292,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
     connect(&documents, SIGNAL(docToHide(LatexEditorView*)), editors, SLOT(removeEditor(LatexEditorView*)));
 	connect(editors, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
-    connect(editors, &Editors::visibleEditorsChanged, this, &Texstudio::visibleEditorsChanged);
+    connect(editors, &Editors::visibleEditorsChanged, this, &Iguana::visibleEditorsChanged);
 	connect(editors, SIGNAL(listOfEditorsChanged()), SLOT(updateOpenDocumentMenu()));
 	connect(editors, SIGNAL(editorsReordered()), SLOT(onEditorsReordered()));
 	connect(editors, SIGNAL(closeCurrentEditorRequested()), this, SLOT(fileClose()));
@@ -352,7 +352,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 #ifdef Q_OS_MAC
     bool disable_OSX_workaround=config->value("texmaker/Editor/Disable_OSX_DockFallback",false).toBool();
     if(qApp->primaryScreen()->size().height()<=900 && !disable_OSX_workaround){
-        // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
+        // on OSX only, force style to FUSION if style is MACOS (https://github.com/iguana-org/iguana/issues/3637)
         if(configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS"){
             configManager.interfaceStyle = "Fusion";
             configManager.setInterfaceStyle();
@@ -362,7 +362,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     // check if dock widgets are all spread and force a reset
     if(checkDockSpread()){
 #ifdef Q_OS_MAC
-        // on OSX only, force style to FUSION if style is MACOS (https://github.com/texstudio-org/texstudio/issues/3637)
+        // on OSX only, force style to FUSION if style is MACOS (https://github.com/iguana-org/iguana/issues/3637)
         if( (configManager.interfaceStyle.isEmpty() || configManager.interfaceStyle == "macOS")&& !disable_OSX_workaround){
             configManager.interfaceStyle = "Fusion";
             configManager.setInterfaceStyle();
@@ -395,9 +395,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     completer = new LatexCompleter(latexParser, this);
     completer->setConfig(configManager.completerConfig);
     completer->setPackageList(&latexPackageList);
-    connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+    connect(completer, &LatexCompleter::showImagePreview, this, &Iguana::showImgPreview);
     connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-    connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
+    connect(this, &Iguana::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
     //updateCompleter();
     LatexEditorView::setCompleter(completer);
     completer->setLatexReference(latexReference);
@@ -427,27 +427,27 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	*/
     // init collaboration manager
     collabManager=new CollaborationManager(this,&configManager,&documents);
-    connect(collabManager,&CollaborationManager::cursorMoved,this,&Texstudio::updateCollabCursors);
-    connect(collabManager,&CollaborationManager::cursorRemoved,this,&Texstudio::removeCollabCursor);
-    connect(collabManager,&CollaborationManager::changesReceived,this,&Texstudio::updateCollabChanges);
-    connect(collabManager,&CollaborationManager::collabClientFinished,this,&Texstudio::collabClientFinished);
-    connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Texstudio::guestServerSuccessfullyStarted);
-    connect(collabManager,&CollaborationManager::clientSuccessfullyStarted,this,&Texstudio::updateCollabStatus);
-    connect(collabManager,&CollaborationManager::hostServerSuccessfullyStarted,this,&Texstudio::hostServerSuccessfullyStarted);
+    connect(collabManager,&CollaborationManager::cursorMoved,this,&Iguana::updateCollabCursors);
+    connect(collabManager,&CollaborationManager::cursorRemoved,this,&Iguana::removeCollabCursor);
+    connect(collabManager,&CollaborationManager::changesReceived,this,&Iguana::updateCollabChanges);
+    connect(collabManager,&CollaborationManager::collabClientFinished,this,&Iguana::collabClientFinished);
+    connect(collabManager,&CollaborationManager::guestServerSuccessfullyStarted,this,&Iguana::guestServerSuccessfullyStarted);
+    connect(collabManager,&CollaborationManager::clientSuccessfullyStarted,this,&Iguana::updateCollabStatus);
+    connect(collabManager,&CollaborationManager::hostServerSuccessfullyStarted,this,&Iguana::hostServerSuccessfullyStarted);
 
-    connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&svn, &SVN::statusMessage, this, &Iguana::setStatusMessageProcess);
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
-    connect(&git, &GIT::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&git, &GIT::statusMessage, this, &Iguana::setStatusMessageProcess);
     connect(&git, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
     connect(&git, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
-    connect(&help, &Help::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&help, &Help::statusMessage, this, &Iguana::setStatusMessageProcess);
     connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
     connect(&help, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
-    connect(qGuiApp,&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
+    connect(qGuiApp,&QGuiApplication::paletteChanged,this,&Iguana::paletteChanged);
 #if (QT_VERSION >= 0x060500) && (defined( Q_OS_WIN )||defined( Q_OS_LINUX ))
-    connect(qGuiApp->styleHints(),&QStyleHints::colorSchemeChanged,this,&Texstudio::colorSchemeChanged);
+    connect(qGuiApp->styleHints(),&QStyleHints::colorSchemeChanged,this,&Iguana::colorSchemeChanged);
 #endif
 
 
@@ -477,7 +477,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	previewFullCompileDelayTimer.setSingleShot(true);
 
     connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
-    connect(this, &Texstudio::infoFileSaved, this, &Texstudio::refreshGitWidget);
+    connect(this, &Iguana::infoFileSaved, this, &Iguana::refreshGitWidget);
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -508,7 +508,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 /*!
  * \brief destructor
  */
-Texstudio::~Texstudio()
+Iguana::~Iguana()
 {
     //structureTreeView->setModel(nullptr);
 	iconCache.clear();
@@ -534,7 +534,7 @@ Texstudio::~Texstudio()
  * Check for Latex installation.
  * Read in all package names for usepackage completion.
  */
-void Texstudio::startupCompleted()
+void Iguana::startupCompleted()
 {
 	if (configManager.checkLatexConfiguration) {
 		bool noWarnAgain = false;
@@ -548,7 +548,7 @@ void Texstudio::startupCompleted()
 	readinAllPackageNames(); // asynchrnous read in of all available sty/cls
 }
 
-QAction *Texstudio::newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QKeySequence &shortCut, const QString &iconFile, const QList<QVariant> &args)
+QAction *Iguana::newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QKeySequence &shortCut, const QString &iconFile, const QList<QVariant> &args)
 {
 	QAction *tmp = configManager.newManagedAction(menu, id, text, args.isEmpty() ? slotName : SLOT(relayToOwnSlot()), QList<QKeySequence>() << shortCut, iconFile);
 	if (!args.isEmpty()) {
@@ -560,7 +560,7 @@ QAction *Texstudio::newManagedAction(QWidget *menu, const QString &id, const QSt
 	return tmp;
 }
 
-QAction *Texstudio::newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile, const QList<QVariant> &args)
+QAction *Iguana::newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile, const QList<QVariant> &args)
 {
 	QAction *tmp = configManager.newManagedAction(menu, id, text, args.isEmpty() ? slotName : SLOT(relayToOwnSlot()), shortCuts, iconFile);
 	if (!args.isEmpty()) {
@@ -572,21 +572,21 @@ QAction *Texstudio::newManagedAction(QWidget *menu, const QString &id, const QSt
 	return tmp;
 }
 
-QAction *Texstudio::newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QKeySequence &shortCut, const QString &iconFile, const QList<QVariant> &args)
+QAction *Iguana::newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QKeySequence &shortCut, const QString &iconFile, const QList<QVariant> &args)
 {
         QAction *tmp = configManager.newManagedAction(menu, id, text, nullptr, QList<QKeySequence>() << shortCut, iconFile);
 	linkToEditorSlot(tmp, slotName, args);
 	return tmp;
 }
 
-QAction *Texstudio::newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile, const QList<QVariant> &args)
+QAction *Iguana::newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile, const QList<QVariant> &args)
 {
         QAction *tmp = configManager.newManagedAction(menu, id, text, nullptr, shortCuts, iconFile);
 	linkToEditorSlot(tmp, slotName, args);
 	return tmp;
 }
 
-QAction *Texstudio::insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName, const QKeySequence &shortCut, const QString &iconFile)
+QAction *Iguana::insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName, const QKeySequence &shortCut, const QString &iconFile)
 {
 	QMenu *menu = before->menu();
 	REQUIRE_RET(menu, nullptr);
@@ -599,7 +599,7 @@ QAction *Texstudio::insertManagedAction(QAction *before, const QString &id, cons
  * \brief loadManagedMenu for script use
  * \param fn
  */
-void Texstudio::loadManagedMenu(const QString &fn)
+void Iguana::loadManagedMenu(const QString &fn)
 {
     configManager.loadManagedMenus(fn);
 }
@@ -614,7 +614,7 @@ void Texstudio::loadManagedMenu(const QString &fn)
  * \param text name of taglist
  * \param tagFile file to be read as tag list
  */
-void Texstudio::addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile)
+void Iguana::addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile)
 {
     QDockWidget *oldDock=findChild<QDockWidget *>(id,Qt::FindDirectChildrenOnly);
     XmlTagsListWidget *list = nullptr;
@@ -645,7 +645,7 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
  * This may be helpful if the number of macros becomes large and overcrowd the menu or are too many for generic keyboard shortcuts
  *
  */
-void Texstudio::addMacrosAsTagList()
+void Iguana::addMacrosAsTagList()
 {
     bool addToPanel=true;
     QDockWidget *oldDock=findChild<QDockWidget *>("txs-macro",Qt::FindDirectChildrenOnly);
@@ -677,7 +677,7 @@ void Texstudio::addMacrosAsTagList()
 
 /*! set-up side- and bottom-panel
  */
-void Texstudio::setupDockWidgets()
+void Iguana::setupDockWidgets()
 {
     //to allow retranslate this function must be able to be called multiple times
 
@@ -692,7 +692,7 @@ void Texstudio::setupDockWidgets()
         m_toggleDocksAction->setIcon(getRealIcon("sidebar"));
         m_toggleDocksAction->setText(tr("Side Panel"));
         m_toggleDocksAction->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
-        connect(m_toggleDocksAction, &QAction::toggled,this, &Texstudio::toggleDocks);
+        connect(m_toggleDocksAction, &QAction::toggled,this, &Iguana::toggleDocks);
     }else{
         m_toggleDocksAction->setIcon(getRealIcon("sidebar"));
     }
@@ -703,9 +703,9 @@ void Texstudio::setupDockWidgets()
     if(!structureTreeWidget){
         structureTreeWidget = new QTreeWidget();
         connect(structureTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
-        connect(structureTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
-        connect(structureTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
-        connect(structureTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
+        connect(structureTreeWidget, &QTreeWidget::itemExpanded, this, &Iguana::syncExpanded);
+        connect(structureTreeWidget, &QTreeWidget::itemCollapsed, this, &Iguana::syncCollapsed);
+        connect(structureTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Iguana::customMenuStructure);
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         structureTreeWidget->installEventFilter(this);
@@ -714,9 +714,9 @@ void Texstudio::setupDockWidgets()
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
-        connect(topTOCTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
-        connect(topTOCTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
-        connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
+        connect(topTOCTreeWidget, &QTreeWidget::itemExpanded, this, &Iguana::syncExpanded);
+        connect(topTOCTreeWidget, &QTreeWidget::itemCollapsed, this, &Iguana::syncCollapsed);
+        connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Iguana::customMenuStructure);
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         topTOCTreeWidget->installEventFilter(this);
@@ -759,17 +759,17 @@ void Texstudio::setupDockWidgets()
         fileView->setRootIndex(fileExplorerModel->index(rootDir));
         QAction *act=new QAction();
         act->setText(tr("Insert filename"));
-        connect(act,&QAction::triggered,this,&Texstudio::insertFromExplorer);
+        connect(act,&QAction::triggered,this,&Iguana::insertFromExplorer);
         fileView->addAction(act);
         fileView->setContextMenuPolicy(Qt::ActionsContextMenu);
-        connect(fileView,&QAbstractItemView::doubleClicked,this,&Texstudio::openFromExplorer);
+        connect(fileView,&QAbstractItemView::doubleClicked,this,&Iguana::openFromExplorer);
         addDock("explorer", "folder_R90",tr("Files"), fileView);
     }
     // setup a dock widget with a git source control panel
     dock=findChild<QDockWidget *>("git",Qt::FindDirectChildrenOnly);
     if(!dock){
         gitWidget = new GitWidget(&git, this);
-        connect(gitWidget, &GitWidget::fileActivated, this, &Texstudio::openFromGit);
+        connect(gitWidget, &GitWidget::fileActivated, this, &Iguana::openFromGit);
         gitDockWidget=addDock("git", "git_R90", tr("Git"), gitWidget);
     }
 
@@ -805,10 +805,10 @@ void Texstudio::setupDockWidgets()
         connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
         connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
         connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
-        connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToSearchResult, this, &Texstudio::jumpToSearchResult);
-        connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToFileSearchResult, this, &Texstudio::jumpToFileSearchResult);
+        connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToSearchResult, this, &Iguana::jumpToSearchResult);
+        connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToFileSearchResult, this, &Iguana::jumpToFileSearchResult);
         connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery*)), this, SLOT(runSearch(SearchQuery*)));
-        connect(outputView->getSearchResultWidget(), &SearchResultWidget::signalUpdateSearch, this, &Texstudio::showExtendedSearch);
+        connect(outputView->getSearchResultWidget(), &SearchResultWidget::signalUpdateSearch, this, &Iguana::showExtendedSearch);
 
         connect(&buildManager, SIGNAL(previewAvailable(const QString&,const PreviewSource&)), this, SLOT(previewAvailable(const QString&,const PreviewSource&)));
         connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
@@ -827,7 +827,7 @@ void Texstudio::setupDockWidgets()
     }
 }
 
-void Texstudio::updateToolBarMenu(const QString &menuName)
+void Iguana::updateToolBarMenu(const QString &menuName)
 {
 	QMenu *menu = configManager.getManagedMenu(menuName);
 	if (!menu) return;
@@ -896,7 +896,7 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
  * creates new action groups and new context menu, although all invisible, they are a memory leak
  * But not a bad one, because no one is expected to change the language multiple times
  */
-void Texstudio::setupMenus()
+void Iguana::setupMenus()
 {
 	//This function is called whenever the menu changes (= start and retranslation)
 	//This means if you call it repeatedly with the same language setting it should not change anything
@@ -1496,7 +1496,7 @@ void Texstudio::setupMenus()
 
 	//---options---
 	menu = newManagedMenu("main/options", tr("&Options"));
-	newManagedAction(menu, "config", tr("&Configure TeXstudio..."), SLOT(generalOptions()), 0, "configure")->setMenuRole(QAction::PreferencesRole);
+	newManagedAction(menu, "config", tr("&Configure Iguana..."), SLOT(generalOptions()), 0, "configure")->setMenuRole(QAction::PreferencesRole);
 
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile", tr("Load &Profile..."), SLOT(loadProfile()));
@@ -1530,7 +1530,7 @@ void Texstudio::setupMenus()
     newManagedAction(menu, "checklt", tr("Check LanguageTool"), SLOT(checkLanguageTool()));
     newManagedAction(menu, "showsettings", tr("Show settings"), SLOT(showSettings()));
 	newManagedAction(menu, "bugreport", tr("Bugs Report/Feature Request"), SLOT(openBugsAndFeatures()));
-	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
+	newManagedAction(menu, "appinfo", tr("About Iguana..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
 	//additional elements for development
 
@@ -1554,7 +1554,7 @@ void Texstudio::setupMenus()
 }
 /*! \brief slot for actions from Menu Preview Display Mode
  */
-void Texstudio::setPreviewMode()
+void Iguana::setPreviewMode()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act) {
@@ -1563,7 +1563,7 @@ void Texstudio::setPreviewMode()
 }
 /*! \brief set action for Menu Preview Display Mode
  */
-void Texstudio::setCheckedPreviewModeAction()
+void Iguana::setCheckedPreviewModeAction()
 {
 	ConfigManager::PreviewMode pm = configManager.previewMode;
 	switch (pm) {
@@ -1590,7 +1590,7 @@ void Texstudio::setCheckedPreviewModeAction()
 }
 /*! \brief set-up all tool-bars
  */
-void Texstudio::setupToolBars()
+void Iguana::setupToolBars()
 {
 	//This method will be called multiple times and must not create something if this something already exists
 
@@ -1673,7 +1673,7 @@ void Texstudio::setupToolBars()
 	}
 }
 
-void Texstudio::updateAvailableLanguages()
+void Iguana::updateAvailableLanguages()
 {
 	delete spellLanguageActions;
 
@@ -1728,7 +1728,7 @@ void Texstudio::updateAvailableLanguages()
 	}
 }
 
-void Texstudio::updateLanguageToolStatus()
+void Iguana::updateLanguageToolStatus()
 {
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
@@ -1759,7 +1759,7 @@ void Texstudio::updateLanguageToolStatus()
 
 /*! \brief set-up status bar
  */
-void Texstudio::createStatusBar()
+void Iguana::createStatusBar()
 {
 	QStatusBar *status = statusBar();
 	status->setContextMenuPolicy(Qt::PreventContextMenu);
@@ -1885,7 +1885,7 @@ void Texstudio::createStatusBar()
 	}
 }
 
-void Texstudio::updateCaption()
+void Iguana::updateCaption()
 {
 	if (!currentEditorView()) documents.currentDocument = nullptr;
 	else {
@@ -1915,7 +1915,7 @@ void Texstudio::updateCaption()
     setWindowFilePath(finame);
 }
 
-void Texstudio::updateMasterDocumentCaption()
+void Iguana::updateMasterDocumentCaption()
 {
 	if (documents.singleMode()) {
 		actRootDocAutomatic->setChecked(true);
@@ -1932,7 +1932,7 @@ void Texstudio::updateMasterDocumentCaption()
 	}
 }
 
-void Texstudio::currentEditorChanged()
+void Iguana::currentEditorChanged()
 {
     if(mDisableTOCupdates) return; // skip during restore file session
 	updateCaption();
@@ -1980,7 +1980,7 @@ void Texstudio::currentEditorChanged()
  * \brief Called when visible editors are changed in Editors (tabs, sideBySide)
  * Makes sure that highlighting is started, see also restoreSession
  */
-void Texstudio::visibleEditorsChanged()
+void Iguana::visibleEditorsChanged()
 {
 
     QList<LatexEditorView *>lst=editors->topEditors();
@@ -1998,20 +1998,20 @@ void Texstudio::visibleEditorsChanged()
  * \param from starting position
  * \param to ending position
  */
-void Texstudio::editorTabMoved(int from, int to)
+void Iguana::editorTabMoved(int from, int to)
 {
 	documents.move(from, to);
     // update structure
     updateStructureLocally();
 }
 
-void Texstudio::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo)
+void Iguana::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo)
 {
 	Q_UNUSED(edTo)
 	saveEditorCursorToHistory(edFrom);
 }
 
-void Texstudio::showMarkTooltipForLogMessage(QList<int> errors)
+void Iguana::showMarkTooltipForLogMessage(QList<int> errors)
 {
 	if (!currentEditorView()) return;
 	REQUIRE(outputView->getLogWidget());
@@ -2020,7 +2020,7 @@ void Texstudio::showMarkTooltipForLogMessage(QList<int> errors)
 	currentEditorView()->setLineMarkToolTip(msg);
 }
 
-void Texstudio::newDocumentLineEnding()
+void Iguana::newDocumentLineEnding()
 {
 	if (!currentEditorView()) return;
 	QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
@@ -2040,7 +2040,7 @@ void Texstudio::newDocumentLineEnding()
 	}
 }
 
-void Texstudio::updateUndoRedoStatus()
+void Iguana::updateUndoRedoStatus()
 {
     if (currentEditor()) {
 		actSave->setEnabled(!currentEditor()->document()->isClean() || currentEditor()->fileName().isEmpty());
@@ -2065,7 +2065,7 @@ void Texstudio::updateUndoRedoStatus()
  * return current editorview
  * \return current editor (LatexEditorView)
  */
-LatexEditorView *Texstudio::currentEditorView() const
+LatexEditorView *Iguana::currentEditorView() const
 {
 	return editors->currentEditor();
 }
@@ -2076,14 +2076,14 @@ LatexEditorView *Texstudio::currentEditorView() const
  * return current editor
  * \return current editor (QEditor)
  */
-QEditor *Texstudio::currentEditor() const
+QEditor *Iguana::currentEditor() const
 {
     LatexEditorView *edView = currentEditorView();
     if (!edView) return nullptr;
     return edView->editor;
 }
 
-void Texstudio::configureNewEditorView(LatexEditorView *edit)
+void Iguana::configureNewEditorView(LatexEditorView *edit)
 {
     REQUIRE(m_languages);
     REQUIRE(edit->codeeditor);
@@ -2144,7 +2144,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
  * \param reloadFromDoc
  * \param hidden if editor is not shown
  */
-void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFromDoc, bool hidden)
+void Iguana::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFromDoc, bool hidden)
 {
     REQUIRE(edit->document);
     // set speller here as document is needed
@@ -2154,8 +2154,8 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit->editor->document(), SIGNAL(contentsChange(int,int)), edit->document, SLOT(patchStructure(int,int)));
     connect(edit->editor->document(), SIGNAL(changedText(int,int,int,int,const QString&)), this, SLOT(updateCollaborationEditors(int,int,int,int,const QString&)));
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
-    connect(edit->document, &LatexDocument::updateCompleter, this, &Texstudio::completerNeedsUpdate);
-    connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Texstudio::completerCommandsNeedsUpdate);
+    connect(edit->document, &LatexDocument::updateCompleter, this, &Iguana::completerNeedsUpdate);
+    connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Iguana::completerCommandsNeedsUpdate);
     connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
     connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
@@ -2163,7 +2163,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit, SIGNAL(thesaurus(int,int)), this, SLOT(editThesaurus(int,int)));
     connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
     connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
-    connect(edit->document,&LatexDocument::structureUpdated,this,&Texstudio::updateTOCs);
+    connect(edit->document,&LatexDocument::structureUpdated,this,&Iguana::updateTOCs);
     edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
     if (!hidden) {
@@ -2182,7 +2182,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
  * \param checkTemporaryNames
  * \return editorview, 0 if no editor matches
  */
-LatexEditorView *Texstudio::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames)
+LatexEditorView *Iguana::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames)
 {
 	LatexDocument *document = documents.findDocument(fileName, checkTemporaryNames);
 	if (!document) return nullptr;
@@ -2194,7 +2194,7 @@ LatexEditorView *Texstudio::getEditorViewFromFileName(const QString &fileName, b
  * \param dlh the line handle
  * \return the editor view, null if the handle is null
  */
-LatexEditorView *Texstudio::getEditorViewFromHandle(const QDocumentLineHandle *dlh)
+LatexEditorView *Iguana::getEditorViewFromHandle(const QDocumentLineHandle *dlh)
 {
 	if (!dlh) return nullptr;
 	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(dlh->document());
@@ -2208,25 +2208,25 @@ LatexEditorView *Texstudio::getEditorViewFromHandle(const QDocumentLineHandle *d
  * get filename of current editor
  * \return filename
  */
-QString Texstudio::getCurrentFileName()
+QString Iguana::getCurrentFileName()
 {
 	return documents.getCurrentFileName();
 }
 
-QString Texstudio::getAbsoluteFilePath(const QString &relName, const QString &extension)
+QString Iguana::getAbsoluteFilePath(const QString &relName, const QString &extension)
 {
 	return documents.getAbsoluteFilePath(relName, extension);
 }
 
-QString Texstudio::getRelativeFileName(const QString &file, QString basepath, bool keepSuffix)
+QString Iguana::getRelativeFileName(const QString &file, QString basepath, bool keepSuffix)
 {
 	return getRelativeBaseNameToPath(file, basepath, true, keepSuffix);
 }
-bool Texstudio::fileExists(const QString &file){
+bool Iguana::fileExists(const QString &file){
     return QFileInfo::exists(file);
 }
 
-bool Texstudio::activateEditorForFile(QString f, bool checkTemporaryNames, bool setFocus)
+bool Iguana::activateEditorForFile(QString f, bool checkTemporaryNames, bool setFocus)
 {
 	LatexEditorView *edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
@@ -2257,7 +2257,7 @@ void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
  * \param dontAsk
  * \return
  */
-LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck, bool dontAsk)
+LatexEditorView *Iguana::load(const QString &f , bool asProject, bool recheck, bool dontAsk)
 {
     QString f_real = f;
 #ifdef Q_OS_WIN32
@@ -2524,26 +2524,26 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 	return edit;
 }
 
-void Texstudio::completerNeedsUpdate()
+void Iguana::completerNeedsUpdate()
 {
     mCompleterNeedsUpdate = true;
 }
 /*!
  * \brief used packages has changed, completer commands need update
  */
-void Texstudio::completerCommandsNeedsUpdate()
+void Iguana::completerCommandsNeedsUpdate()
 {
     mCompleterCommandsNeedsUpdate = true;
     mCompleterNeedsUpdate = true;
 }
 
-void Texstudio::needUpdatedCompleter()
+void Iguana::needUpdatedCompleter()
 {
 	if (mCompleterNeedsUpdate)
 		updateCompleter();
 }
 
-void Texstudio::updateUserToolMenu()
+void Iguana::updateUserToolMenu()
 {
 	CommandMapping cmds = buildManager.getAllCommands();
 	QStringList order = buildManager.getCommandsOrder();
@@ -2564,7 +2564,7 @@ void Texstudio::updateUserToolMenu()
 }
 
 #include "QMetaMethod"
-void Texstudio::linkToEditorSlot(QAction *act, const char *methodName, const QList<QVariant> &args)
+void Iguana::linkToEditorSlot(QAction *act, const char *methodName, const QList<QVariant> &args)
 {
 	REQUIRE(act);
 	connectUnique(act, SIGNAL(triggered()), this, SLOT(relayToEditorSlot()));
@@ -2587,7 +2587,7 @@ void Texstudio::linkToEditorSlot(QAction *act, const char *methodName, const QLi
 	Q_ASSERT(false);
 }
 
-void Texstudio::relayToEditorSlot()
+void Iguana::relayToEditorSlot()
 {
 	if (!currentEditorView()) return;
 	QAction *act = qobject_cast<QAction *>(sender());
@@ -2596,14 +2596,14 @@ void Texstudio::relayToEditorSlot()
 	else if (act->property("editorSlot").isValid()) QMetaObjectInvokeMethod(currentEditor(), qPrintable(act->property("editorSlot").toString()), act->property("args").value<QList<QVariant> >());
 }
 
-void Texstudio::relayToOwnSlot()
+void Iguana::relayToOwnSlot()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	REQUIRE(act && act->property("slot").isValid());
 	QMetaObjectInvokeMethod(this, qPrintable(act->property("slot").toString()), act->property("args").value<QList<QVariant> >());
 }
 
-void Texstudio::autoRunScripts()
+void Iguana::autoRunScripts()
 {
 	QStringList vers = QString(QT_VERSION_STR).split('.');
 	Q_ASSERT(vers.length() >= 2);
@@ -2615,12 +2615,12 @@ void Texstudio::autoRunScripts()
 	runScripts(Macro::ST_TXS_START);
 }
 
-void Texstudio::runScripts(int trigger)
+void Iguana::runScripts(int trigger)
 {
 	runScriptsInList(trigger, configManager.completerConfig->userMacros);
 }
 
-void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
+void Iguana::runScriptsInList(int trigger, const QList<Macro> &scripts)
 {
 	foreach (const Macro &macro, scripts) {
 		if (macro.checkState() == Qt::Checked && macro.type == Macro::Script && macro.isActiveForTrigger(static_cast<Macro::SpecialTrigger>(trigger) ))
@@ -2628,7 +2628,7 @@ void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
 	}
 }
 
-void Texstudio::fileNewInternal(QString fileName)
+void Iguana::fileNewInternal(QString fileName)
 {
 	LatexDocument *doc = new LatexDocument(this);
     doc->startSyntaxChecker();
@@ -2655,13 +2655,13 @@ void Texstudio::fileNewInternal(QString fileName)
 		fileSave(true);
 }
 
-void Texstudio::fileNew(QString fileName)
+void Iguana::fileNew(QString fileName)
 {
 	fileNewInternal(fileName);
 	emit infoNewFile();
 }
 
-void Texstudio::fileAutoReloading(QString fname)
+void Iguana::fileAutoReloading(QString fname)
 {
 	LatexDocument *document = documents.findDocument(fname);
 	if (!document) return;
@@ -2669,7 +2669,7 @@ void Texstudio::fileAutoReloading(QString fname)
 }
 /* \brief called when file has been reloaded from disc
  */
-void Texstudio::fileReloaded()
+void Iguana::fileReloaded()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
 	if (mEditor == currentEditor()) {
@@ -2685,7 +2685,7 @@ void Texstudio::fileReloaded()
 /*!
  * \brief make a template from current editor
  */
-void Texstudio::fileMakeTemplate()
+void Iguana::fileMakeTemplate()
 {
 	if (!currentEditorView())
 		return;
@@ -2746,14 +2746,14 @@ void Texstudio::fileMakeTemplate()
  * \brief load template file for editing
  * \param fname filename
  */
-void Texstudio::templateEdit(const QString &fname)
+void Iguana::templateEdit(const QString &fname)
 {
 	load(fname, false);
 }
 /*!
  * \brief generate new file from template
  */
-void Texstudio::fileNewFromTemplate()
+void Iguana::fileNewFromTemplate()
 {
 	TemplateManager tmplMgr;
 	connectUnique(&tmplMgr, SIGNAL(editRequested(QString)), this, SLOT(templateEdit(QString)));
@@ -2830,7 +2830,7 @@ void Texstudio::fileNewFromTemplate()
 /*!
  * \brief insert table template
  */
-void Texstudio::insertTableTemplate()
+void Iguana::insertTableTemplate()
 {
 	QEditor *m_edit = currentEditor();
 	if (!m_edit)
@@ -2937,7 +2937,7 @@ void Texstudio::insertTableTemplate()
 }
 /*! \brief align columns of latex table in editor
  */
-void Texstudio::alignTableCols()
+void Iguana::alignTableCols()
 {
 	if (!currentEditor()) return;
 	QDocumentCursor cur(currentEditor()->cursor());
@@ -2958,7 +2958,7 @@ void Texstudio::alignTableCols()
  * If the file is open as hidden, an editor is created and brought to front.
  * pdf files are handled as well and they are forwarded to the pdf viewer.
  */
-void Texstudio::fileOpen(QString currentDir)
+void Iguana::fileOpen(QString currentDir)
 {
     if(currentDir.isEmpty()){
         currentDir = QDir::homePath();
@@ -2980,7 +2980,7 @@ void Texstudio::fileOpen(QString currentDir)
 		updateCompleter(currentEditorView());
 }
 
-void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
+void Iguana::fileRestoreSession(bool showProgress, bool warnMissing)
 {
 
     QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss2");
@@ -3007,7 +3007,7 @@ void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
  *
  * \param saveSilently
  */
-void Texstudio::fileSave(const bool saveSilently, QEditor *editor)
+void Iguana::fileSave(const bool saveSilently, QEditor *editor)
 {
     if(!editor){
         // fallback to current editor
@@ -3036,7 +3036,7 @@ void Texstudio::fileSave(const bool saveSilently, QEditor *editor)
  * \param fileName
  * \param saveSilently don't ask for new filename if fileName is empty
  */
-void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
+void Iguana::fileSaveAs(const QString &fileName, const bool saveSilently)
 {
 	if (!currentEditorView())
 		return;
@@ -3081,7 +3081,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 				UtilsUi::txsWarning(tr("Saving under the name\n"
 				              "%1\n"
 				              "is currently not possible because a modified version of a file\n"
-				              "with this name is open in TeXstudio. You have to save or close\n"
+				              "with this name is open in Iguana. You have to save or close\n"
 				              "this other file before you can overwrite it.").arg(fn));
 				return;
 			}
@@ -3124,7 +3124,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
  *
  * This functions is called from menu-action.
  */
-void Texstudio::fileSaveAll()
+void Iguana::fileSaveAll()
 {
 	fileSaveAll(true, true);
 }
@@ -3134,7 +3134,7 @@ void Texstudio::fileSaveAll()
  * This functions is called from timer (auto save).
  * It does *not* save unnamed files.
  */
-void Texstudio::fileSaveAllFromTimer()
+void Iguana::fileSaveAllFromTimer()
 {
     fileSaveAll(false, false);
 }
@@ -3144,7 +3144,7 @@ void Texstudio::fileSaveAllFromTimer()
  * \param alsoUnnamedFiles
  * \param alwaysCurrentFile
  */
-void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
+void Iguana::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 {
 	//LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 	//temp=currentEditorView();
@@ -3199,7 +3199,7 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 
 //TODO: handle svn in all these methods
 
-void Texstudio::fileUtilCopyMove(bool move)
+void Iguana::fileUtilCopyMove(bool move)
 {
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
@@ -3214,7 +3214,7 @@ void Texstudio::fileUtilCopyMove(bool move)
 	QFile(newfn).setPermissions(permissions); //keep permissions. (better: actually move the file, keeping the inode. but then all that stuff (e.g. master/slave) has to be updated here
 }
 
-void Texstudio::fileUtilDelete()
+void Iguana::fileUtilDelete()
 {
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
@@ -3222,7 +3222,7 @@ void Texstudio::fileUtilDelete()
 		QFile(fn).remove();
 }
 
-void Texstudio::fileUtilRevert()
+void Iguana::fileUtilRevert()
 {
 	if (!currentEditor()) return;
 	QString fn = documents.getCurrentFileName();
@@ -3231,7 +3231,7 @@ void Texstudio::fileUtilRevert()
 		currentEditor()->reload();
 }
 
-void Texstudio::fileUtilPermissions()
+void Iguana::fileUtilPermissions()
 {
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
@@ -3283,17 +3283,17 @@ void Texstudio::fileUtilPermissions()
 	}
 }
 
-void Texstudio::fileUtilCopyFileName()
+void Iguana::fileUtilCopyFileName()
 {
 	QApplication::clipboard()->setText(documents.getCurrentFileName());
 }
 
-void Texstudio::fileUtilCopyMasterFileName()
+void Iguana::fileUtilCopyMasterFileName()
 {
 	QApplication::clipboard()->setText(documents.getCompileFileName());
 }
 
-void Texstudio::fileClose()
+void Iguana::fileClose()
 {
 	if (!currentEditorView())	return;
 	bookmarks->updateBookmarks(currentEditorView());
@@ -3344,7 +3344,7 @@ void Texstudio::fileClose()
 #endif
 }
 
-void Texstudio::fileCloseAll()
+void Iguana::fileCloseAll()
 {
 	bool accept = saveAllFilesForClosing();
 	if (accept) {
@@ -3352,7 +3352,7 @@ void Texstudio::fileCloseAll()
 	}
 }
 
-void Texstudio::fileExit()
+void Iguana::fileExit()
 {
     if (canCloseNow()){
 #ifndef NO_POPPLER_PREVIEW
@@ -3367,14 +3367,14 @@ void Texstudio::fileExit()
 /*!
  * \brief special exit function which is only used with auto-tests and auto-tests result in errors
  */
-void Texstudio::fileExitWithError()
+void Iguana::fileExitWithError()
 {
     if (canCloseNow()){
         qApp->exit(1);
     }
 }
 
-bool Texstudio::saveAllFilesForClosing()
+bool Iguana::saveAllFilesForClosing()
 {
     QList<LatexDocument *> lst=documents.getDocuments();
     return saveFilesForClosing(lst);
@@ -3385,7 +3385,7 @@ bool Texstudio::saveAllFilesForClosing()
  * \param documentList List of documents
  * \return closing can go ahed (false: canceled)
  */
-bool Texstudio::saveFilesForClosing(QList<LatexDocument *> &documentList)
+bool Iguana::saveFilesForClosing(QList<LatexDocument *> &documentList)
 {
     QList<LatexDocument *>inputDocs=documentList;
     documentList.clear();
@@ -3429,7 +3429,7 @@ repeatAfterFileSavingFailed:
 }
 /*! \brief close all files
  */
-void Texstudio::closeAllFiles()
+void Iguana::closeAllFiles()
 {
     mDisableTOCupdates=true;
     documents.deleteAllDocuments();
@@ -3444,7 +3444,7 @@ void Texstudio::closeAllFiles()
     updateTOCs();
 }
 
-bool Texstudio::canCloseNow(bool saveSettings)
+bool Iguana::canCloseNow(bool saveSettings)
 {
     if(programStopped) return true; // avoid running through here twice. (Qt6/OSX)
 	if (!saveAllFilesForClosing()) return false;
@@ -3465,7 +3465,7 @@ bool Texstudio::canCloseNow(bool saveSettings)
  * \brief closeEvent
  * \param e event
  */
-void Texstudio::closeEvent(QCloseEvent *e)
+void Iguana::closeEvent(QCloseEvent *e)
 {
     if (canCloseNow()) {
         e->accept();
@@ -3484,7 +3484,7 @@ void Texstudio::closeEvent(QCloseEvent *e)
  * \brief set icons for structure/TOC pane
  * Needs to be rerun on style change (light/dark mode change)
  */
-void Texstudio::setStructureSectionIcons()
+void Iguana::setStructureSectionIcons()
 {
     // load icons for structure view
     QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph" << "subparagraph";
@@ -3497,7 +3497,7 @@ void Texstudio::setStructureSectionIcons()
  * \brief update icons in statusbar
  * Necessary on pallete/color scheme change
  */
-void Texstudio::updateStatusBarIcons()
+void Iguana::updateStatusBarIcons()
 {
     QStatusBar *status = statusBar();
     QToolButton *tb = status->findChild<QToolButton *>("structureViewToggle");
@@ -3511,7 +3511,7 @@ void Texstudio::updateStatusBarIcons()
  * \brief update toolbar/statusbar icon in pdf viewer
  * Called on colorSchemeChanged
  */
-void Texstudio::updatePDFIcons()
+void Iguana::updatePDFIcons()
 {
 #ifndef NO_POPPLER_PREVIEW
     if (PDFDocument::documentList().isEmpty())
@@ -3520,7 +3520,7 @@ void Texstudio::updatePDFIcons()
 #endif
 }
 
-void Texstudio::updateUserMacros(bool updateMenu)
+void Iguana::updateUserMacros(bool updateMenu)
 {
 	if (updateMenu) configManager.updateUserMacroMenu();
 	for (int i = 0; i < configManager.completerConfig->userMacros.size(); i++) {
@@ -3533,7 +3533,7 @@ void Texstudio::updateUserMacros(bool updateMenu)
  *
  * The filename is determind from the sender-action, where it is encoded in data.
  */
-void Texstudio::fileOpenRecent()
+void Iguana::fileOpenRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
@@ -3548,7 +3548,7 @@ void Texstudio::fileOpenRecent()
 	load(fn);
 }
 
-void Texstudio::fileOpenAllRecent()
+void Iguana::fileOpenAllRecent()
 {
 	foreach (const QString &s, configManager.recentFilesList)
 		load(s);
@@ -3560,7 +3560,7 @@ QRect appendToBottom(QRect r, const QRect &s)
 	return r;
 }
 
-void Texstudio::fileRecentList()
+void Iguana::fileRecentList()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(editors, true, true);
@@ -3575,7 +3575,7 @@ void Texstudio::fileRecentList()
 /*!
  * \brief clear recent file list
  */
-void Texstudio::fileClearRecentList()
+void Iguana::fileClearRecentList()
 {
     configManager.recentFilesList.clear();
     configManager.recentProjectList.clear();
@@ -3585,13 +3585,13 @@ void Texstudio::fileClearRecentList()
 /*!
  * \brief remove file from recent file list
  */
-void Texstudio::fileRemoveFromRecentList(const QString &fn)
+void Iguana::fileRemoveFromRecentList(const QString &fn)
 {
     configManager.recentFilesList.removeAll(fn);
     configManager.updateRecentFiles();
 }
 
-void Texstudio::viewDocumentListHidden()
+void Iguana::viewDocumentListHidden()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(editors, true);
@@ -3605,7 +3605,7 @@ void Texstudio::viewDocumentListHidden()
 	fileSelector.data()->setVisible(true);
 }
 
-void Texstudio::fileDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
+void Iguana::fileDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
 {
 	Q_UNUSED(duplicate)
 	if (!QFile::exists(doc)) {
@@ -3627,7 +3627,7 @@ bool mruEditorViewLessThan(const LatexEditorView *e1, const LatexEditorView *e2)
 	return e1->lastUsageTime > e2->lastUsageTime;
 }
 
-void Texstudio::viewDocumentList()
+void Iguana::viewDocumentList()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(editors, false);
@@ -3656,7 +3656,7 @@ void Texstudio::viewDocumentList()
 	fileSelector.data()->setVisible(true);
 }
 
-void Texstudio::viewDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
+void Iguana::viewDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
 {
 	if (duplicate < 0) return;
 	foreach (LatexEditorView *edView, editors->editors()) {
@@ -3674,7 +3674,7 @@ void Texstudio::viewDocumentOpenFromChoosen(const QString &doc, int duplicate, i
 	}
 }
 
-void Texstudio::fileOpenFirstNonOpen()
+void Iguana::fileOpenFirstNonOpen()
 {
 	foreach (const QString &f, configManager.recentFilesList)
 		if (!getEditorViewFromFileName(f)) {
@@ -3683,7 +3683,7 @@ void Texstudio::fileOpenFirstNonOpen()
 		}
 }
 
-void Texstudio::fileOpenRecentProject()
+void Iguana::fileOpenRecentProject()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
@@ -3698,7 +3698,7 @@ void Texstudio::fileOpenRecentProject()
 	load(fn, true);
 }
 
-void Texstudio::loadSession(const QString &fileName)
+void Iguana::loadSession(const QString &fileName)
 {
 	Session s;
 	if (!s.load(fileName)) {
@@ -3708,7 +3708,7 @@ void Texstudio::loadSession(const QString &fileName)
 	restoreSession(s);
 }
 
-void Texstudio::fileLoadSession()
+void Iguana::fileLoadSession()
 {
 	QString openDir = QDir::homePath();
 	if (currentEditorView()) {
@@ -3719,13 +3719,13 @@ void Texstudio::fileLoadSession()
 			openDir = doc->getFileInfo().path();
 		}
 	}
-    QString fn = FileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*.txss2 *.txss)");
+    QString fn = FileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("Iguana Session") + " (*.txss2 *.txss)");
 	if (fn.isNull()) return;
 	loadSession(fn);
 	recentSessionList->addFilenameToList(fn);
 }
 
-void Texstudio::fileSaveSession()
+void Iguana::fileSaveSession()
 {
 	QString openDir = QDir::homePath();
 	if (currentEditorView()) {
@@ -3737,7 +3737,7 @@ void Texstudio::fileSaveSession()
 		}
 	}
 
-	QString fn = FileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
+	QString fn = FileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("Iguana Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
     if(!fn.endsWith(Session::fileExtension())){
         fn=replaceFileExtension(fn, Session::fileExtension(),true);
@@ -3756,7 +3756,7 @@ void Texstudio::fileSaveSession()
  * \param showProgress
  * \param warnMissing give warning if files are missing
  */
-void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMissing)
+void Iguana::restoreSession(const Session &s, bool showProgress, bool warnMissing)
 {
     fileCloseAll();
 
@@ -3885,7 +3885,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     qDebug()<<"total time for restoring session and completer:"<<time.elapsed()<<"ms";
 }
 
-Session Texstudio::getCurrentSession()
+Session Iguana::getCurrentSession()
 {
 	Session s;
 
@@ -3917,14 +3917,14 @@ Session Texstudio::getCurrentSession()
 	return s;
 }
 
-void Texstudio::MarkCurrentFileAsRecent()
+void Iguana::MarkCurrentFileAsRecent()
 {
     if(!currentEditorView()) return;
 	configManager.addRecentFile(getCurrentFileName(), documents.masterDocument == currentEditorView()->document);
 }
 
 //////////////////////////// EDIT ///////////////////////
-void Texstudio::editUndo()
+void Iguana::editUndo()
 {
 	if (!currentEditorView()) return;
 
@@ -3944,7 +3944,7 @@ void Texstudio::editUndo()
 	}
 }
 
-void Texstudio::editRedo()
+void Iguana::editRedo()
 {
 	if (!currentEditorView()) return;
 
@@ -3960,7 +3960,7 @@ void Texstudio::editRedo()
 	}
 }
 
-void Texstudio::editDebugUndoStack()
+void Iguana::editDebugUndoStack()
 {
 	if (!currentEditor()) return;
 	QString history = currentEditor()->document()->debugUndoStack();
@@ -3968,7 +3968,7 @@ void Texstudio::editDebugUndoStack()
 	currentEditor()->document()->setText(history, false);
 }
 
-void Texstudio::editCopy()
+void Iguana::editCopy()
 {
 	if ((!currentEditor() || !currentEditor()->hasFocus()) &&
 	        outputView->childHasFocus() ) {
@@ -3990,7 +3990,7 @@ void Texstudio::editCopy()
 	currentEditorView()->editor->copy();
 }
 
-void Texstudio::editPaste()
+void Iguana::editPaste()
 {
 	if (!currentEditorView()) return;
 
@@ -4051,7 +4051,7 @@ void Texstudio::editPaste()
 	currentEditorView()->paste();  // fallback
 }
 
-void Texstudio::editPasteImage(QImage image)
+void Iguana::editPasteImage(QImage image)
 {
 	if (!currentEditorView()) return;
 	static QString filenameSuggestion;  // keep for future calls
@@ -4074,7 +4074,7 @@ void Texstudio::editPasteImage(QImage image)
 	quickGraphics(filename);
 }
 
-void Texstudio::editPasteLatex()
+void Iguana::editPasteLatex()
 {
 	if (!currentEditorView()) return;
 	// manipulate clipboard text
@@ -4089,7 +4089,7 @@ void Texstudio::editPasteLatex()
 	currentEditorView()->editor->insertFromMimeData(&md);
 }
 
-void Texstudio::convertToLatex()
+void Iguana::convertToLatex()
 {
 	if (!currentEditorView()) return;
 	// get selection and change it
@@ -4099,43 +4099,43 @@ void Texstudio::convertToLatex()
 	currentEditor()->write(newText);
 }
 
-void Texstudio::editDeleteLine()
+void Iguana::editDeleteLine()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->deleteLines(true, true);
 }
 
-void Texstudio::editCutLine()
+void Iguana::editCutLine()
 {
     if (!currentEditorView()) return;
     currentEditorView()->cutLines();
 }
 
-void Texstudio::editDeleteToEndOfLine()
+void Iguana::editDeleteToEndOfLine()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->deleteLines(false, true);
 }
 
-void Texstudio::editDeleteFromStartOfLine()
+void Iguana::editDeleteFromStartOfLine()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->deleteLines(true, false);
 }
 
-void Texstudio::editMoveLineUp()
+void Iguana::editMoveLineUp()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->moveLines(-1);
 }
 
-void Texstudio::editMoveLineDown()
+void Iguana::editMoveLineDown()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->moveLines(1);
 }
 
-void Texstudio::editDuplicateLine()
+void Iguana::editDuplicateLine()
 {
 	if (!currentEditor()) return;
 	QEditor *ed = currentEditor();
@@ -4153,7 +4153,7 @@ void Texstudio::editDuplicateLine()
         ed->setCursor(cursors[0]);
 }
 
-void Texstudio::editSortLines()
+void Iguana::editSortLines()
 {
 	if (!currentEditorView()) return;
 	QStringList sortingOptions = QStringList() << tr("Ascending") << tr("Descending") << tr("No Sorting") << tr("Random (Shuffle)");
@@ -4170,13 +4170,13 @@ void Texstudio::editSortLines()
 		currentEditorView()->sortSelectedLines(static_cast<LatexEditorView::LineSorting>(sorting), casesensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, completelines, removeduplicates);
 }
 
-void Texstudio::editAlignMirrors()
+void Iguana::editAlignMirrors()
 {
 	if (!currentEditor()) return;
 	currentEditorView()->alignMirrors();
 }
 
-void Texstudio::editEraseWordCmdEnv()
+void Iguana::editEraseWordCmdEnv()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
@@ -4350,7 +4350,7 @@ void Texstudio::editEraseWordCmdEnv()
 	currentEditorView()->editor->setCursor(cursor);
 }
 
-void Texstudio::editGotoDefinition(QDocumentCursor c)
+void Iguana::editGotoDefinition(QDocumentCursor c)
 {
 	if (!currentEditorView()) return;
 	if (!c.isValid()) c = currentEditor()->cursor();
@@ -4470,7 +4470,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
     }
 }
 
-void Texstudio::editHardLineBreak()
+void Iguana::editHardLineBreak()
 {
 	if (!currentEditorView()) return;
 	UniversalInputDialog dialog;
@@ -4481,13 +4481,13 @@ void Texstudio::editHardLineBreak()
 		currentEditorView()->insertHardLineBreaks(configManager.lastHardWrapColumn, configManager.lastHardWrapSmartScopeSelection, configManager.lastHardWrapJoinLines);
 }
 
-void Texstudio::editHardLineBreakRepeat()
+void Iguana::editHardLineBreakRepeat()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->insertHardLineBreaks(configManager.lastHardWrapColumn, configManager.lastHardWrapSmartScopeSelection, configManager.lastHardWrapJoinLines);
 }
 
-void Texstudio::editSpell()
+void Iguana::editSpell()
 {
 	if (!currentEditorView()) {
 		UtilsUi::txsWarning(tr("No document open"));
@@ -4504,7 +4504,7 @@ void Texstudio::editSpell()
 	spellDlg->startSpelling();
 }
 
-void Texstudio::editThesaurus(int line, int col)
+void Iguana::editThesaurus(int line, int col)
 {
     if(!mThesaurusWasStarted){
         ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
@@ -4537,7 +4537,7 @@ void Texstudio::editThesaurus(int line, int col)
 	delete thesaurusDialog;
 }
 
-void Texstudio::editChangeLineEnding()
+void Iguana::editChangeLineEnding()
 {
 	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -4546,7 +4546,7 @@ void Texstudio::editChangeLineEnding()
 	updateCaption();
 }
 
-void Texstudio::editSetupEncoding()
+void Iguana::editSetupEncoding()
 {
 	if (!currentEditorView()) return;
 	EncodingDialog enc(this, currentEditorView()->editor);
@@ -4554,7 +4554,7 @@ void Texstudio::editSetupEncoding()
 	updateCaption();
 }
 
-void Texstudio::editInsertUnicode()
+void Iguana::editInsertUnicode()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditor()->cursor();
@@ -4616,7 +4616,7 @@ QString txsToLower(QString in)
 /*!
  * Converts the selected text to lower case.
  */
-void Texstudio::editTextToLowercase()
+void Iguana::editTextToLowercase()
 {
 	changeCase(currentEditor(), &txsToLower);
 }
@@ -4634,7 +4634,7 @@ QString txsToUpper(QString in)
 /*!
  * Converts the selected text to upper case.
  */
-void Texstudio::editTextToUppercase()
+void Iguana::editTextToUppercase()
 {
 	changeCase(currentEditor(), &txsToUpper);
 }
@@ -4643,7 +4643,7 @@ void Texstudio::editTextToUppercase()
  * Converts the selected text to title case. Small words like a,an etc. are not converted.
  * \param smart: Words containing capital letters are not converted because the are assumed to be acronymes.
  */
-void Texstudio::editTextToTitlecase(bool smart)
+void Iguana::editTextToTitlecase(bool smart)
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor m_cursor = currentEditorView()->editor->cursor();
@@ -4688,12 +4688,12 @@ void Texstudio::editTextToTitlecase(bool smart)
 
 }
 
-void Texstudio::editTextToTitlecaseSmart()
+void Iguana::editTextToTitlecaseSmart()
 {
 	editTextToTitlecase(true);
 }
 
-void Texstudio::editFind()
+void Iguana::editFind()
 {
 #ifndef NO_POPPLER_PREVIEW
     QWidget *w = QApplication::focusWidget();
@@ -4713,7 +4713,7 @@ void Texstudio::editFind()
 }
 
 /////////////// CONFIG ////////////////////
-void Texstudio::readSettings(bool reread)
+void Iguana::readSettings(bool reread)
 {
     QuickDocumentDialog::registerOptions(configManager);
     QuickBeamerDialog::registerOptions(configManager);
@@ -4880,7 +4880,7 @@ void Texstudio::readSettings(bool reread)
     configManager.editorConfig->settingsChanged();
 }
 
-void Texstudio::saveSettings(const QString &configName)
+void Iguana::saveSettings(const QString &configName)
 {
 	bool asProfile = !configName.isEmpty();
 	configManager.centralVisible = centralToolBar->isVisible();
@@ -5021,9 +5021,9 @@ void Texstudio::saveSettings(const QString &configName)
 		delete config;
 }
 
-void Texstudio::restoreDefaultSettings()
+void Iguana::restoreDefaultSettings()
 {
-	if (!UtilsUi::txsConfirmWarning(tr("This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.\n\nDo you want to continue?"))) {
+	if (!UtilsUi::txsConfirmWarning(tr("This will reset all settings to their defaults. At the end, Iguana will be closed. Please start Iguana manually anew afterwards.\n\nDo you want to continue?"))) {
 		return;
 	}
 	if (canCloseNow(false)) {
@@ -5040,7 +5040,7 @@ void Texstudio::restoreDefaultSettings()
 	}
 }
 
-void Texstudio::showSettings()
+void Iguana::showSettings()
 {
     QFile f(configManager.configFileName);
     if (f.exists()) {
@@ -5091,7 +5091,7 @@ void Texstudio::showSettings()
 }
 
 ////////////////// STRUCTURE ///////////////////
-void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
+void Iguana::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 {
 	// collect user define tex commands for completer
 	// initialize List
@@ -5120,14 +5120,14 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	//structureTreeView->reset();
 }
 
-void Texstudio::structureContextMenuToggleMasterDocument(LatexDocument *document)
+void Iguana::structureContextMenuToggleMasterDocument(LatexDocument *document)
 {
 	if (!document) return;
 	if (document == documents.masterDocument) setAutomaticRootDetection();
 	else setExplicitRootDocument(document);
 }
 
-void Texstudio::editRemovePlaceHolders()
+void Iguana::editRemovePlaceHolders()
 {
 	if (!currentEditor()) return;
 	for (int i = currentEditor()->placeHolderCount(); i >= 0; i--)
@@ -5135,14 +5135,14 @@ void Texstudio::editRemovePlaceHolders()
 	currentEditor()->viewport()->update();
 }
 
-void Texstudio::editRemoveCurrentPlaceHolder()
+void Iguana::editRemoveCurrentPlaceHolder()
 {
 	if (!currentEditor()) return;
 	currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder());
 }
 
 //////////TAGS////////////////
-void Texstudio::normalCompletion()
+void Iguana::normalCompletion()
 {
 	if (!currentEditorView())	return;
 
@@ -5389,7 +5389,7 @@ void Texstudio::normalCompletion()
 	}
 }
 
-void Texstudio::insertEnvironmentCompletion()
+void Iguana::insertEnvironmentCompletion()
 {
 	if (!currentEditorView())	return;
 	if (mCompleterNeedsUpdate) updateCompleter();
@@ -5413,7 +5413,7 @@ void Texstudio::insertEnvironmentCompletion()
 
 // tries to complete normal text
 // only starts up if already 2 characters have been typed in
-void Texstudio::insertTextCompletion()
+void Iguana::insertTextCompletion()
 {
 	if (!currentEditorView())    return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
@@ -5460,14 +5460,14 @@ void Texstudio::insertTextCompletion()
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }
 
-void Texstudio::insertText(const QString &text)
+void Iguana::insertText(const QString &text)
 {
 	currentEditor()->write(text);
 	currentEditorView()->setFocus();
 }
 
 /*! TODO: this API and its defaults are a bit weird. Needs refactoring. */
-void Texstudio::insertTag(const QString &Entity, int dx, int dy)
+void Iguana::insertTag(const QString &Entity, int dx, int dy)
 {
 	if (!currentEditorView()) return;
 	int curline, curindex;
@@ -5487,7 +5487,7 @@ void Texstudio::insertTag(const QString &Entity, int dx, int dy)
   The cursor context is evaluated: If it is within a citation command only the key is inserted at the correct
   position within the existing citation. If not, the whole command is inserted.
 */
-void Texstudio::insertCitation(const QString &text)
+void Iguana::insertCitation(const QString &text)
 {
 	QString citeCmd, citeKey;
 
@@ -5552,7 +5552,7 @@ void Texstudio::insertCitation(const QString &text)
     insertTag(tag, tag.length());
 }
 
-void Texstudio::insertFormula(const QString &formula)
+void Iguana::insertFormula(const QString &formula)
 {
 	if (!currentEditorView()) return;
 
@@ -5594,12 +5594,12 @@ void Texstudio::insertFormula(const QString &formula)
 	insertTag(fm, fm.length());
 }
 
-void Texstudio::insertSymbol(const QString &text)
+void Iguana::insertSymbol(const QString &text)
 {
 	insertTag(text, text.length());
 }
 
-void Texstudio::insertXmlTag(QListWidgetItem *item)
+void Iguana::insertXmlTag(QListWidgetItem *item)
 {
 	if (!currentEditorView())	return;
 	if (item  && !item->font().bold()) {
@@ -5610,7 +5610,7 @@ void Texstudio::insertXmlTag(QListWidgetItem *item)
 	}
 }
 
-void Texstudio::insertXmlTagFromToolButtonAction()
+void Iguana::insertXmlTagFromToolButtonAction()
 {
 	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -5628,7 +5628,7 @@ void Texstudio::insertXmlTagFromToolButtonAction()
 	currentEditorView()->editor->setFocus();
 }
 
-void Texstudio::callToolButtonAction()
+void Iguana::callToolButtonAction()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	QToolButton *button = UtilsUi::comboToolButtonFromAction(action);
@@ -5646,7 +5646,7 @@ void Texstudio::callToolButtonAction()
     actions[index]->trigger();
 }
 
-void Texstudio::insertFromAction()
+void Iguana::insertFromAction()
 {
 	LatexEditorView *edView = currentEditorView();
 	if (!edView)	return;
@@ -5660,14 +5660,14 @@ void Texstudio::insertFromAction()
     }
 }
 
-void Texstudio::insertTextFromAction()
+void Iguana::insertTextFromAction()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
     insertText(action->data().toString());
 }
 
-void Texstudio::insertFromTagList(QListWidgetItem *item)
+void Iguana::insertFromTagList(QListWidgetItem *item)
 {
     LatexEditorView *edView = currentEditorView();
     if (!edView)	return;
@@ -5679,7 +5679,7 @@ void Texstudio::insertFromTagList(QListWidgetItem *item)
     }
 }
 
-void Texstudio::insertBib()
+void Iguana::insertBib()
 {
 	if (!currentEditorView())	return;
 	//currentEditorView()->editor->viewport()->setFocus();
@@ -5690,13 +5690,13 @@ void Texstudio::insertBib()
 	insertTag(tag, 0, 1);
 	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n") +
 	                       "which should contain your database in BibTeX format.\n" +
-                           "TeXstudio inserts automatically the base name of the TeX file");
+                           "Iguana inserts automatically the base name of the TeX file");
 }
 /*!
  * \brief open file which was double clicked in the file explorer (dock)
  * \param index
  */
-void Texstudio::openFromExplorer(const QModelIndex &index)
+void Iguana::openFromExplorer(const QModelIndex &index)
 {
     QFileInfo fi = fileExplorerModel->fileInfo(index);
     if (fi.isFile() && fi.isReadable()) {
@@ -5707,7 +5707,7 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
  * \brief file was doubleclicked in gitwidget
  * \param fn
  */
-void Texstudio::openFromGit(const QString &fn,const QString rev)
+void Iguana::openFromGit(const QString &fn,const QString rev)
 {
     if (fn.isEmpty()|| rev.isEmpty()) return;
     if(!currentEditorView()){
@@ -5768,7 +5768,7 @@ void Texstudio::openFromGit(const QString &fn,const QString rev)
  * \brief insert file from context menu in the file explorer (dock)
  * \param index
  */
-void Texstudio::insertFromExplorer(bool )
+void Iguana::insertFromExplorer(bool )
 {
     if ( !currentEditorView() )	return;
     auto index=fileView->currentIndex();
@@ -5782,7 +5782,7 @@ void Texstudio::insertFromExplorer(bool )
  * \brief refresh git widget if widget is visible
  * \param fn
  */
-void Texstudio::refreshGitWidget(const QString &filename, const int checkin)
+void Iguana::refreshGitWidget(const QString &filename, const int checkin)
 {
     if ( !currentEditorView() )	return;
     if (gitWidget) {
@@ -5793,7 +5793,7 @@ void Texstudio::refreshGitWidget(const QString &filename, const int checkin)
     }
 }
 
-void Texstudio::quickTabular(const QMimeData *d)
+void Iguana::quickTabular(const QMimeData *d)
 {
 	if ( !currentEditorView() )	return;
 	TabDialog *tabDialog = new TabDialog(this, "Tabular");
@@ -5812,7 +5812,7 @@ void Texstudio::quickTabular(const QMimeData *d)
 	}
 }
 
-void Texstudio::quickArray()
+void Iguana::quickArray()
 {
 	if (!currentEditorView())	return;
 	ArrayDialog *arrayDlg = new ArrayDialog(this, "Array");
@@ -5855,7 +5855,7 @@ bool findEnvironmentLines(const QDocument *doc, const QString &env, int line, in
 	return true;
 }
 
-void Texstudio::quickGraphics(const QString &graphicsFile)
+void Iguana::quickGraphics(const QString &graphicsFile)
 {
 	if (!currentEditorView()) return;
 
@@ -5913,7 +5913,7 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 
 	delete graphicsDlg;
 }
-void Texstudio::quickMath()
+void Iguana::quickMath()
 {
 #ifdef Q_OS_WIN
 	connectUnique(MathAssistant::instance(), SIGNAL(formulaReceived(QString)), this, SLOT(insertFormula(QString)));
@@ -5921,7 +5921,7 @@ void Texstudio::quickMath()
 #endif
 }
 
-void Texstudio::aiChat(const QString queryText)
+void Iguana::aiChat(const QString queryText)
 {
     if(configManager.ai_provider==0){
         // message box
@@ -5937,7 +5937,7 @@ void Texstudio::aiChat(const QString queryText)
         aiChatDlg = new AIChatAssistant(this);
         aiChatDlg->setModal(false);
         aiChatDlg->resize(1000,400);
-        connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
+        connect(aiChatDlg,&AIChatAssistant::insertText,this,&Iguana::insertText);
         connect(aiChatDlg,&AIChatAssistant::executeMacro,this,[this](QString script){this->runScript(script);});
     }
 
@@ -5952,7 +5952,7 @@ void Texstudio::aiChat(const QString queryText)
     }
 }
 
-void Texstudio::quickTabbing()
+void Iguana::quickTabbing()
 {
 	if (!currentEditorView()) return;
 	TabbingDialog *tabDlg = new TabbingDialog(this, "Tabbing");
@@ -5979,7 +5979,7 @@ void Texstudio::quickTabbing()
 	}
 }
 
-void Texstudio::quickLetter()
+void Iguana::quickLetter()
 {
 	QString tag = QString("\\documentclass[");
 	LetterDialog *ltDlg = new LetterDialog(this, "Letter");
@@ -6017,7 +6017,7 @@ void Texstudio::quickLetter()
 	}
 }
 
-void Texstudio::quickDocument()
+void Iguana::quickDocument()
 {
 	QuickDocumentDialog *startDlg = new QuickDocumentDialog(this, tr("Quick Start"));
 	startDlg->Init();
@@ -6039,7 +6039,7 @@ void Texstudio::quickDocument()
 	delete startDlg;
 }
 
-void Texstudio::quickBeamer()
+void Iguana::quickBeamer()
 {
 	QuickBeamerDialog *startDlg = new QuickBeamerDialog(this, tr("Quick Beamer Presentation"));
 	startDlg->Init();
@@ -6061,7 +6061,7 @@ void Texstudio::quickBeamer()
 	delete startDlg;
 }
 
-void Texstudio::insertBibEntryFromAction()
+void Iguana::insertBibEntryFromAction()
 {
 	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -6072,7 +6072,7 @@ void Texstudio::insertBibEntryFromAction()
 		CodeSnippet(insertText, false).insert(currentEditor());
 }
 
-void Texstudio::insertBibEntry(const QString &id)
+void Iguana::insertBibEntry(const QString &id)
 {
 	QStringList possibleBibFiles;
 	int usedFile = 0;
@@ -6104,7 +6104,7 @@ void Texstudio::insertBibEntry(const QString &id)
 	delete bd;
 }
 
-void Texstudio::setBibTypeFromAction()
+void Iguana::setBibTypeFromAction()
 {
 	QMenu *menu = getManagedMenu("main/bibliography/type");
 	QAction *act = qobject_cast<QAction *>(sender());
@@ -6119,7 +6119,7 @@ void Texstudio::setBibTypeFromAction()
 	BibTeXDialog::setBibType(isBibtex ? BibTeXDialog::BIBTEX : BibTeXDialog::BIBLATEX);
 }
 
-void Texstudio::insertUserTag()
+void Iguana::insertUserTag()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
@@ -6127,7 +6127,7 @@ void Texstudio::insertUserTag()
 	execMacro(configManager.completerConfig->userMacros.value(id, Macro()));
 }
 
-void Texstudio::execMacro(const Macro &m, const MacroExecContext &context, bool allowWrite)
+void Iguana::execMacro(const Macro &m, const MacroExecContext &context, bool allowWrite)
 {
 	if (m.type == Macro::Script) {
 		runScript(m.script(), context, allowWrite);
@@ -6141,7 +6141,7 @@ void Texstudio::execMacro(const Macro &m, const MacroExecContext &context, bool 
 	}
 }
 
-void Texstudio::runScript(const QString &script, const MacroExecContext &context, bool allowWrite)
+void Iguana::runScript(const QString &script, const MacroExecContext &context, bool allowWrite)
 {
 	scriptengine *eng = new scriptengine();
 	eng->triggerMatches = context.triggerMatches;
@@ -6152,7 +6152,7 @@ void Texstudio::runScript(const QString &script, const MacroExecContext &context
 	eng->run();
 }
 
-void Texstudio::editMacros()
+void Iguana::editMacros()
 {
     if (!userMacroDialog)  {
         userMacroDialog = new UserMenuDialog(nullptr, tr("Edit User &Tags"), m_languages);
@@ -6180,7 +6180,7 @@ void Texstudio::editMacros()
     userMacroDialog->setFocus();
 }
 
-void Texstudio::macroDialogAccepted()
+void Iguana::macroDialogAccepted()
 {
 	configManager.completerConfig->userMacros.clear();
 
@@ -6199,13 +6199,13 @@ void Texstudio::macroDialogAccepted()
 	userMacroDialog = nullptr;
 }
 
-void Texstudio::macroDialogRejected()
+void Iguana::macroDialogRejected()
 {
 	userMacroDialog->deleteLater();
 	userMacroDialog = nullptr;
 }
 
-void Texstudio::insertRef(const QString &refCmd)
+void Iguana::insertRef(const QString &refCmd)
 {
 	//updateStructure();
 
@@ -6231,22 +6231,22 @@ void Texstudio::insertRef(const QString &refCmd)
 	} // Cancel button inserts nothing
 }
 
-void Texstudio::insertRef()
+void Iguana::insertRef()
 {
 	insertRef("\\ref");
 }
 
-void Texstudio::insertEqRef()
+void Iguana::insertEqRef()
 {
 	insertRef("\\eqref");
 }
 
-void Texstudio::insertPageRef()
+void Iguana::insertPageRef()
 {
 	insertRef("\\pageref");
 }
 
-void Texstudio::changeTextCodec()
+void Iguana::changeTextCodec()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
@@ -6259,7 +6259,7 @@ void Texstudio::changeTextCodec()
 	updateCaption();
 }
 
-void Texstudio::editorSpellerChanged(const QString &name)
+void Iguana::editorSpellerChanged(const QString &name)
 {
 	foreach (QAction *act, statusTbLanguage->actions()) {
 		if (act->data().toString() == name) {
@@ -6280,7 +6280,7 @@ void Texstudio::editorSpellerChanged(const QString &name)
 	}
 }
 
-void Texstudio::changeEditorSpeller()
+void Iguana::changeEditorSpeller()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
@@ -6297,7 +6297,7 @@ void Texstudio::changeEditorSpeller()
     }
 }
 
-void Texstudio::showMoreDictionaries()
+void Iguana::showMoreDictionaries()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if(!action)
@@ -6329,7 +6329,7 @@ void Texstudio::showMoreDictionaries()
     statusTbLanguage->showMenu();
 }
 
-void Texstudio::insertSpellcheckMagicComment()
+void Iguana::insertSpellcheckMagicComment()
 {
 	if (currentEditorView()) {
 		QString name = currentEditorView()->getSpeller();
@@ -6340,7 +6340,7 @@ void Texstudio::insertSpellcheckMagicComment()
 	}
 }
 
-void Texstudio::updateStatusBarEncoding()
+void Iguana::updateStatusBarEncoding()
 {
 	if (currentEditorView() && currentEditorView()->editor->getFileCodec()) {
 		QTextCodec *codec = currentEditorView()->editor->getFileCodec();
@@ -6360,7 +6360,7 @@ void Texstudio::updateStatusBarEncoding()
 	}
 }
 
-void Texstudio::addMagicRoot()
+void Iguana::addMagicRoot()
 {
 	if (currentEditorView()) {
 		LatexDocument *doc = currentEditorView()->getDocument();
@@ -6371,7 +6371,7 @@ void Texstudio::addMagicRoot()
 	}
 }
 
-void Texstudio::addMagicCoding()
+void Iguana::addMagicCoding()
 {
 	if (currentEditorView()) {
 		QString name = currentEditor()->getFileCodec()->name();
@@ -6379,14 +6379,14 @@ void Texstudio::addMagicCoding()
 	}
 }
 
-void Texstudio::addMagicBibliography()
+void Iguana::addMagicBibliography()
 {
     if (currentEditorView()) {
         currentEditorView()->document->updateMagicComment("TXS-program:bibliography", "", true);
     }
 }
 
-void Texstudio::addMagicProgram()
+void Iguana::addMagicProgram()
 {
     if (currentEditorView()) {
         currentEditorView()->document->updateMagicComment("TS-program", "", true);
@@ -6394,7 +6394,7 @@ void Texstudio::addMagicProgram()
 }
 
 ///////////////TOOLS////////////////////
-bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll,bool blocking)
+bool Iguana::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll,bool blocking)
 {
     if(buildManager.busyRunningCommands()){
         setStatusMessageProcess(QString(" %1 ").arg(tr("A command is already running. Please wait until the current command stops.")));
@@ -6440,7 +6440,7 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
  * TODO: Maybe these kind of calls should be decoupled from the buildmanager altogether, or
  * this should become a separate method of the buildmanager.
  */
-bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, QTextCodec *codecForBuffer) {
+bool Iguana::runCommandNoSpecialChars(QString commandline, QString *buffer, QTextCodec *codecForBuffer) {
 	commandline.replace('@', "@@");
 	commandline.replace('%', "%%");
 	commandline.replace('?', "??");
@@ -6454,7 +6454,7 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
  * \brief set StatusMessage for a process
  * \param message
  */
-void Texstudio::setStatusMessageProcess(const QString &message)
+void Iguana::setStatusMessageProcess(const QString &message)
 {
 	statusLabelProcess->setText(message);
 }
@@ -6465,7 +6465,7 @@ void Texstudio::setStatusMessageProcess(const QString &message)
  * \param returnCMD provide a SLOT which is called when finishing the process
  * \return true when start works
  */
-bool Texstudio::runCommandAsync(const QString &commandline, const char * returnCMD){
+bool Iguana::runCommandAsync(const QString &commandline, const char * returnCMD){
     QObject *obj=sender();
     QString finame = documents.getTemporaryCompileFileName();
     ProcessX *proc = buildManager.firstProcessOfDirectExpansion(commandline, QFileInfo(finame));
@@ -6482,7 +6482,7 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
     return true;
 }
 
-void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
+void Iguana::runInternalPdfViewer(const QFileInfo &master, const QString &options)
 {
 #ifndef NO_POPPLER_PREVIEW
 	QStringList ol = BuildManager::splitOptions(options);
@@ -6599,12 +6599,12 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 #else
 	Q_UNUSED(master)
 	Q_UNUSED(options)
-	UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
+	UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of Iguana that was compiled without the internal pdf viewer."));
 #endif
 
 }
 
-bool Texstudio::checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master)
+bool Iguana::checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master)
 {
     static const QRegularExpression txsCmd("^"+QRegularExpression::escape(BuildManager::TXS_CMD_PREFIX) + "([^/ [{]+))$");
     if (txsCmd.match(program).hasMatch()) return true;
@@ -6642,7 +6642,7 @@ bool Texstudio::checkProgramPermission(const QString &program, const QString &cm
 	return true;
 }
 
-void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
+void Iguana::runBibliographyIfNecessary(const QFileInfo &mainFile)
 {
     if(!checkRunBibliographyIfNecessary(mainFile)) return;
 
@@ -6655,7 +6655,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
  * \param cmd
  * \return recompilation is necessary
  */
-bool Texstudio::checkRunBibliographyIfNecessary(const QFileInfo &cmd)
+bool Iguana::checkRunBibliographyIfNecessary(const QFileInfo &cmd)
 {
     if (!configManager.runLaTeXBibTeXLaTeX) return false;
     if (runBibliographyIfNecessaryEntered) return false;
@@ -6690,7 +6690,7 @@ bool Texstudio::checkRunBibliographyIfNecessary(const QFileInfo &cmd)
     return true;
 }
 
-QDateTime Texstudio::GetBblLastModified(void)
+QDateTime Iguana::GetBblLastModified(void)
 {
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
 	QString compileDir(compileFile.absolutePath());
@@ -6704,7 +6704,7 @@ QDateTime Texstudio::GetBblLastModified(void)
 	return QFileInfo(bblPathname).lastModified();
 }
 
-void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile, const QString &options)
+void Iguana::runInternalCommand(const QString &cmd, const QFileInfo &mainfile, const QString &options)
 {
 	if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL || (cmd.startsWith(BuildManager::CMD_VIEW_PDF_INTERNAL) && cmd[BuildManager::CMD_VIEW_PDF_INTERNAL.length()] == ' '))
 		runInternalPdfViewer(mainfile, options);
@@ -6722,7 +6722,7 @@ void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile
  * \param mainFile
  * \param options
  */
-void Texstudio::runInternalCommandAsync(const QString &cmd, const QFileInfo &mainfile, const QString &options)
+void Iguana::runInternalCommandAsync(const QString &cmd, const QFileInfo &mainfile, const QString &options)
 {
     if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL || (cmd.startsWith(BuildManager::CMD_VIEW_PDF_INTERNAL) && cmd[BuildManager::CMD_VIEW_PDF_INTERNAL.length()] == ' '))
         runInternalPdfViewer(mainfile, options);
@@ -6736,11 +6736,11 @@ void Texstudio::runInternalCommandAsync(const QString &cmd, const QFileInfo &mai
     } else UtilsUi::txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
-void Texstudio::runInternalCommand(const QString &cmd, const QString &mainfile, const QString &options){
+void Iguana::runInternalCommand(const QString &cmd, const QString &mainfile, const QString &options){
     runInternalCommand(cmd,QFileInfo(mainfile),options);
 }
 
-void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool *)
+void Iguana::commandLineRequested(const QString &cmdId, QString *result, bool *)
 {
 	if (!buildManager.m_interpetCommandDefinitionInMagicComment) return;
     LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr,true);
@@ -6785,7 +6785,7 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 	}
 }
 
-void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
+void Iguana::beginRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
 {
 	if (pdf) {
 		runningPDFCommands++;
@@ -6813,7 +6813,7 @@ void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool
 	setStatusMessageProcess(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
 
-void Texstudio::connectSubCommand(ProcessX *p, bool showStdoutLocally)
+void Iguana::connectSubCommand(ProcessX *p, bool showStdoutLocally)
 {
 	connect(p, SIGNAL(standardErrorRead(QString)), outputView, SLOT(insertMessageLine(QString)));
 	if (p->showStdout()) {
@@ -6822,7 +6822,7 @@ void Texstudio::connectSubCommand(ProcessX *p, bool showStdoutLocally)
 	}
 }
 
-void Texstudio::beginRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
+void Iguana::beginRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
 {
 	if (commandMain != subCommand)
         setStatusMessageProcess(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName,buildManager.getCommandInfo(subCommand).displayName));
@@ -6832,7 +6832,7 @@ void Texstudio::beginRunningSubCommand(ProcessX *p, const QString &commandMain, 
 	connectSubCommand(p, (RCF_SHOW_STDOUT & flags));
 }
 
-void Texstudio::endRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
+void Iguana::endRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
 {
 #ifndef Q_OS_OSX //deactivate this code as pop-up messes with the extra started eventloop (#4070)
 	if (p->exitCode() && (flags & RCF_COMPILES_TEX) && !logExists()) {
@@ -6851,7 +6851,7 @@ void Texstudio::endRunningSubCommand(ProcessX *p, const QString &commandMain, co
 
 }
 
-void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
+void Iguana::endRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
 {
 	Q_UNUSED(commandMain)
 	Q_UNUSED(async)
@@ -6870,7 +6870,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
     setBuildButtonsDisabled(false);
 }
 
-void Texstudio::processNotification(const QString &message)
+void Iguana::processNotification(const QString &message)
 {
 	if (message.startsWith(tr("Error:")))
 		outputView->showPage(outputView->MESSAGES_PAGE);
@@ -6879,14 +6879,14 @@ void Texstudio::processNotification(const QString &message)
 /*!
  * \brief clear log view in panel
  */
-void Texstudio::clearLogs(){
+void Iguana::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
 /*!
  * \brief Opens a new external terminal
  */
-void Texstudio::openExternalTerminal(void)
+void Iguana::openExternalTerminal(void)
 {
 	QString fileMain, fileCurrent;
 
@@ -6932,7 +6932,7 @@ void Texstudio::openExternalTerminal(void)
  * The actual command is stored as data in the action.
  * runCommand is used
  */
-void Texstudio::commandFromAction()
+void Iguana::commandFromAction()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
@@ -6950,7 +6950,7 @@ void Texstudio::commandFromAction()
  * \brief clean auxilliary files
  * Uses CleanDialog for actual functionality
  */
-void Texstudio::cleanAll()
+void Iguana::cleanAll()
 {
 	CleanDialog cleanDlg(this);
 	if (cleanDlg.checkClean(documents)) {
@@ -6963,7 +6963,7 @@ void Texstudio::cleanAll()
  * \brief export document as html
  * Use WebPublishDialog for actual functionality
  */
-void Texstudio::webPublish()
+void Iguana::webPublish()
 {
 	if (!currentEditorView()) {
 		UtilsUi::txsWarning(tr("No document open"));
@@ -6983,7 +6983,7 @@ void Texstudio::webPublish()
  * \brief export current document as html
  * Use document->exportAsHtml
  */
-void Texstudio::webPublishSource()
+void Iguana::webPublishSource()
 {
 	if (!currentEditor()) return;
 	QDocumentCursor cur = currentEditor()->cursor();
@@ -6997,7 +6997,7 @@ void Texstudio::webPublishSource()
 /*!
  * Remove latex commands
  */
-void Texstudio::convertToPlainText(){
+void Iguana::convertToPlainText(){
 	if (!currentEditorView()) return;
 	QList<LineInfo> inlines;
 	QString plaintext;
@@ -7020,7 +7020,7 @@ void Texstudio::convertToPlainText(){
  * \brief open analyse text dialog
  * Makes use of TextAnalysisDialog
  */
-void Texstudio::analyseText()
+void Iguana::analyseText()
 {
 	if (!currentEditorView()) {
 		UtilsUi::txsWarning(tr("No document open"));
@@ -7040,7 +7040,7 @@ void Texstudio::analyseText()
 	textAnalysisDlg->activateWindow();
 }
 
-void Texstudio::analyseTextFormDestroyed()
+void Iguana::analyseTextFormDestroyed()
 {
         textAnalysisDlg = nullptr;
 }
@@ -7048,7 +7048,7 @@ void Texstudio::analyseTextFormDestroyed()
  * \brief generate random text
  * convienience function
  */
-void Texstudio::generateRandomText()
+void Iguana::generateRandomText()
 {
 	if (!currentEditorView()) {
 		UtilsUi::txsWarning(tr("The random text generator constructs new texts from existing words, so you have to open some text files"));
@@ -7061,7 +7061,7 @@ void Texstudio::generateRandomText()
  * \brief start collaboration server
  * Shares root folder and all its documents with the collaboration server.
  */
-void Texstudio::startCollabServer()
+void Iguana::startCollabServer()
 {
     if(collabManager->isServerRunning()){
         qDebug()<< "Collaboration already in use!";
@@ -7083,7 +7083,7 @@ void Texstudio::startCollabServer()
 /*!
  * \brief connect to collaboration server
  */
-void Texstudio::connectCollabServer()
+void Iguana::connectCollabServer()
 {
     if(collabManager->isServerRunning()){
         qDebug()<< "Collaboration already in use!";
@@ -7110,7 +7110,7 @@ void Texstudio::connectCollabServer()
 
 }
 
-void Texstudio::disconnectCollabServer()
+void Iguana::disconnectCollabServer()
 {
     if(!collabManager->isClientRunning()){
         qDebug()<< "Collaboration not in use!";
@@ -7136,7 +7136,7 @@ void Texstudio::disconnectCollabServer()
  * \param cur
  * \param userName
  */
-void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userId)
+void Iguana::updateCollabCursors(QDocumentCursor cur, QString userId)
 {
     LatexDocument* doc=dynamic_cast<LatexDocument*>(cur.document());
     if(doc==nullptr) return;
@@ -7152,7 +7152,7 @@ void Texstudio::updateCollabCursors(QDocumentCursor cur, QString userId)
  * \param doc
  * \param userId
  */
-void Texstudio::removeCollabCursor(LatexDocument *doc,QString userId)
+void Iguana::removeCollabCursor(LatexDocument *doc,QString userId)
 {
     if(!doc){
         // remove from all editors
@@ -7169,7 +7169,7 @@ void Texstudio::removeCollabCursor(LatexDocument *doc,QString userId)
  * empty -> all users
  * \param userId
  */
-void Texstudio::removeAllCollabCursor(QString userId)
+void Iguana::removeAllCollabCursor(QString userId)
 {
     // remove all external cursors
     foreach(LatexDocument *doc,documents.documents){
@@ -7185,7 +7185,7 @@ void Texstudio::removeAllCollabCursor(QString userId)
  * \param changes
  * \param userName
  */
-void Texstudio::updateCollabChanges(QDocumentCursor cur, QString changes, QString userName)
+void Iguana::updateCollabChanges(QDocumentCursor cur, QString changes, QString userName)
 {
     cur.handle()->setFlag(QDocumentCursorHandle::ExternalCursor); // avoid loops
     if(changes.isEmpty()){
@@ -7195,7 +7195,7 @@ void Texstudio::updateCollabChanges(QDocumentCursor cur, QString changes, QStrin
     }
 }
 
-void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endLine, int endCol, const QString &changes)
+void Iguana::updateCollaborationEditors(int startLine, int startCol, int endLine, int endCol, const QString &changes)
 {
     if(!collabManager) return;
     if(!collabManager->isClientRunning()) return;
@@ -7213,7 +7213,7 @@ void Texstudio::updateCollaborationEditors(int startLine, int startCol, int endL
  * \param filename
  * \return operation successful
  */
-bool Texstudio::registerFileForCollab(const QString filename)
+bool Iguana::registerFileForCollab(const QString filename)
 {
     if(collabManager->isFileLocatedInCollabFolder(filename)){
         if(!collabManager->isClientRunning()){
@@ -7234,7 +7234,7 @@ bool Texstudio::registerFileForCollab(const QString filename)
  * \param exitCode
  * \param m_errorMessage
  */
-void Texstudio::collabClientFinished(int exitCode, QString m_errorMessage)
+void Iguana::collabClientFinished(int exitCode, QString m_errorMessage)
 {
     if(exitCode==1){
         if(m_errorMessage.startsWith("Error: JSON-RPC forwarder failed")){
@@ -7247,7 +7247,7 @@ void Texstudio::collabClientFinished(int exitCode, QString m_errorMessage)
 /*!
  * \brief guest server started, now connect client
  */
-void Texstudio::guestServerSuccessfullyStarted()
+void Iguana::guestServerSuccessfullyStarted()
 {
     const QString binPath=configManager.ce_toolPath;
     if(binPath.isEmpty()) return;
@@ -7275,7 +7275,7 @@ void Texstudio::guestServerSuccessfullyStarted()
 /*!
  * \brief host server was started and gives connect code
  */
-void Texstudio::hostServerSuccessfullyStarted()
+void Iguana::hostServerSuccessfullyStarted()
 {
     // now connect client
     const QString binPath=configManager.ce_toolPath;
@@ -7310,7 +7310,7 @@ void Texstudio::hostServerSuccessfullyStarted()
         statusLabelCollab->setToolTip(tr("Collaboration: Connected in folder %1\nto join: teamtype join %2").arg(collabManager->collabClientFolder(), joinCode));
         if(statusLabelCollab->actions().isEmpty()){
             QAction *act=new QAction(tr("Copy access code"),this);
-            connect(act,&QAction::triggered,this,&Texstudio::copyCollabLinkToClipboard);
+            connect(act,&QAction::triggered,this,&Iguana::copyCollabLinkToClipboard);
             statusLabelCollab->addAction(act);
         }
         statusLabelCollab->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -7320,7 +7320,7 @@ void Texstudio::hostServerSuccessfullyStarted()
  * \brief update status in panel
  * show running server per icon
  */
-void Texstudio::updateCollabStatus(const QString errorMessage)
+void Iguana::updateCollabStatus(const QString errorMessage)
 {
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
@@ -7355,7 +7355,7 @@ void Texstudio::updateCollabStatus(const QString errorMessage)
 /*!
  * \brief copy collaboration link to clipboard
  */
-void Texstudio::copyCollabLinkToClipboard()
+void Iguana::copyCollabLinkToClipboard()
 {
     if(!collabManager || !collabManager->isServerRunning()) return;
     const QString joinCode=collabManager->codeForConnectingGuest();
@@ -7369,7 +7369,7 @@ void Texstudio::copyCollabLinkToClipboard()
 /// \brief check if log exists
 /// \return true if log is found
 ///
-bool Texstudio::logExists()
+bool Iguana::logExists()
 {
 	QString finame = documents.getTemporaryCompileFileName();
 	if (finame == "")
@@ -7389,7 +7389,7 @@ bool Texstudio::logExists()
  * Assume latin1 as text codec for log.
  * \return operation successful
  */
-bool Texstudio::loadLog()
+bool Iguana::loadLog()
 {
 	outputView->getLogWidget()->resetLog();
 	if (!documents.getCurrentDocument()) return false;
@@ -7417,13 +7417,13 @@ bool Texstudio::loadLog()
 	);
 }
 /// open log page on panel
-void Texstudio::showLog()
+void Iguana::showLog()
 {
 	outputView->showPage(outputView->LOG_PAGE);
 }
 
 ///shows the log (even if it is empty)
-void Texstudio::viewLog()
+void Iguana::viewLog()
 {
 	showLog();
 	setLogMarksVisible(true);
@@ -7435,7 +7435,7 @@ void Texstudio::viewLog()
 	}
 }
 
-void Texstudio::viewLogOrReRun(LatexCompileResult *result)
+void Iguana::viewLogOrReRun(LatexCompileResult *result)
 {
 	loadLog();
 	REQUIRE(result);
@@ -7471,7 +7471,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 /*!
  * \brief post processing after latex compilation errors are detected
  */
-void Texstudio::onCompileError()
+void Iguana::onCompileError()
 {
 	if (!previewIsAutoCompiling && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
 		viewLog();
@@ -7481,7 +7481,7 @@ void Texstudio::onCompileError()
 }
 
 /// changes visibilita of log markers in all editors
-void Texstudio::setLogMarksVisible(bool visible)
+void Iguana::setLogMarksVisible(bool visible)
 {
 	foreach (LatexEditorView *edView, editors->editors()) {
 		edView->setLogMarksVisible(visible);
@@ -7491,7 +7491,7 @@ void Texstudio::setLogMarksVisible(bool visible)
 }
 
 /// removes the log entries from all editors
-void Texstudio::clearLogEntriesInEditors()
+void Iguana::clearLogEntriesInEditors()
 {
 	foreach (LatexEditorView *edView, editors->editors()) {
 		edView->clearLogMarks();
@@ -7499,7 +7499,7 @@ void Texstudio::clearLogEntriesInEditors()
 }
 
 /// adds the current log entries to all editors
-void Texstudio::updateLogEntriesInEditors()
+void Iguana::updateLogEntriesInEditors()
 {
 	clearLogEntriesInEditors();
 	LatexLogModel *logModel = outputView->getLogWidget()->getLogModel();
@@ -7540,12 +7540,12 @@ void Texstudio::updateLogEntriesInEditors()
  * \brief check if the log viewer contains latex errors
  * \return true if latex errors present
  */
-bool Texstudio::hasLatexErrors()
+bool Iguana::hasLatexErrors()
 {
 	return outputView->getLogWidget()->getLogModel()->found(LT_ERROR);
 }
 
-bool Texstudio::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage)
+bool Iguana::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage)
 {
 	if (!outputView->getLogWidget()->logPresent()) {
 		loadLog();
@@ -7562,7 +7562,7 @@ bool Texstudio::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage)
 	return false;
 }
 
-void Texstudio::clearMarkers()
+void Iguana::clearMarkers()
 {
 	setLogMarksVisible(false);
 }
@@ -7572,7 +7572,7 @@ void Texstudio::clearMarkers()
  * The latex2e help file is present as html. An external browser is called via QDesktopService to open that file.
  */
 
-void Texstudio::latexHelp()
+void Iguana::latexHelp()
 {
 	QString latexHelp = findResourceFile("latex2e.html");
 	if (latexHelp == "")
@@ -7584,7 +7584,7 @@ void Texstudio::latexHelp()
  * \brief open user manual in external browser
  * The usermanual is present as html. An external browser is called via QDesktopService to open that file.
  */
-void Texstudio::userManualHelp()
+void Iguana::userManualHelp()
 {
     QString latexHelp = findResourceFile("getting_started.html");
 	if (latexHelp == "")
@@ -7598,7 +7598,7 @@ void Texstudio::userManualHelp()
  * Present that list via a simple selection dialog which in term calls texdoc to present package help.
  * txs internal package names are filtered out.
  */
-void Texstudio::texdocHelp()
+void Iguana::texdocHelp()
 {
 	QString selection;
 	QStringList packages;
@@ -7622,7 +7622,7 @@ void Texstudio::texdocHelp()
  * \brief show about dialog
  * About dialog is produced in AboutDialog
  */
-void Texstudio::helpAbout()
+void Iguana::helpAbout()
 {
 	// The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
 	QWidget *parentWindow = UtilsUi::windowForObject(sender(), this);
@@ -7637,7 +7637,7 @@ void Texstudio::helpAbout()
  * The method tries to detect some changes in order to redo with changed settings only when necessary.
  * Among otheres these areas include style, dark mode and online sytax check.
  */
-void Texstudio::generalOptions()
+void Iguana::generalOptions()
 {
     bool oldDarkMode = darkMode;
     int oldModernStyle = modernStyle;
@@ -7672,9 +7672,9 @@ void Texstudio::generalOptions()
         configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegularExpression("^[^*]+$"));
     }
     // GUI scaling
-    connect(&configManager, &ConfigManager::iconSizeChanged, this, &Texstudio::changeIconSize);
-    connect(&configManager, &ConfigManager::secondaryIconSizeChanged, this, &Texstudio::changeSecondaryIconSize);
-    connect(&configManager, &ConfigManager::pdfIconSizeChanged , this, &Texstudio::changePDFIconSize);
+    connect(&configManager, &ConfigManager::iconSizeChanged, this, &Iguana::changeIconSize);
+    connect(&configManager, &ConfigManager::secondaryIconSizeChanged, this, &Iguana::changeSecondaryIconSize);
+    connect(&configManager, &ConfigManager::pdfIconSizeChanged , this, &Iguana::changePDFIconSize);
     connect(&configManager, &ConfigManager::symbolGridIconSizeChanged, this, [=,this](int size) { changeSymbolGridIconSize(size); });
 
     // The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
@@ -7855,7 +7855,7 @@ void Texstudio::generalOptions()
  * \param detected command line arguments as string list
  * \param realCmdLine
  */
-void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
+void Iguana::executeCommandLine(const QStringList &args, bool realCmdLine)
 {
 	// parse command line
 	QStringList filesToLoad;
@@ -7973,7 +7973,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
  * --auto-tests  : run a subset of tests which work on travis-ci
  * \return false if some tests failed
  */
-bool Texstudio::executeTests(const QStringList &args)
+bool Iguana::executeTests(const QStringList &args)
 {
     QFileInfo myself(QCoreApplication::applicationFilePath());
     if (args.contains("--disable-tests")) return true; // pass
@@ -8042,7 +8042,7 @@ bool Texstudio::executeTests(const QStringList &args)
 #endif
 }
 
-void Texstudio::showTestProgress(const QString &message)
+void Iguana::showTestProgress(const QString &message)
 {
 	outputView->insertMessageLine(message);
     QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
@@ -8052,7 +8052,7 @@ void Texstudio::showTestProgress(const QString &message)
  * Mainly used to notice when global TOC/structureWidget becomes visible
  * \param widget
  */
-void Texstudio::leftPanelChanged(QWidget *widget)
+void Iguana::leftPanelChanged(QWidget *widget)
 {
        if(widget==topTOCTreeWidget){
            // update TOC when the TOC first becomes visisble
@@ -8069,13 +8069,13 @@ void Texstudio::leftPanelChanged(QWidget *widget)
  * This method reads these commands and generates a pseudo source code (additionaltranslations.cpp) that can be used to generate translations
  * The translations for the pseudo code are used to do the translation of the commands in the definition files
  */
-void Texstudio::generateAdditionalTranslations()
+void Iguana::generateAdditionalTranslations()
 {
     qDebug()<<"writing translations for uiconfig.xml";
 	QStringList translations;
 	translations << "/******************************************************************************";
 	translations << " * Do not manually edit this file. It is automatically generated by a call to";
-	translations << " * texstudio --update-translations";
+	translations << " * iguana --update-translations";
 	translations << " * This generates some additional translations which lupdate doesn't find";
 	translations << " * (e.g. from uiconfig.xml, color names, qnfa format names and tags) ";
 	translations << " ******************************************************************************/";
@@ -8124,7 +8124,7 @@ void Texstudio::generateAdditionalTranslations()
 		translations << "QT_TRANSLATE_NOOP(\"QFormatConfig\", \"" + formats.at(i).attributes().namedItem("id").nodeValue() + "\"), ";
 	translations << "QT_TRANSLATE_NOOP(\"QFormatConfig\", \"normal\"),";
 	for (int i = 0; i < configManager.managedToolBars.size(); i++)
-		translations << "QT_TRANSLATE_NOOP(\"Texstudio\",\"" + configManager.managedToolBars[i].name + "\"),";
+		translations << "QT_TRANSLATE_NOOP(\"Iguana\",\"" + configManager.managedToolBars[i].name + "\"),";
 
         // Tags
         QDir dir("tags");
@@ -8164,7 +8164,7 @@ void Texstudio::generateAdditionalTranslations()
         CodeSnippet::debugDisableAutoTranslate = false;
         // format names
 	foreach (const QString &s, m_languages->languages())
-		translations << "QT_TRANSLATE_NOOP(\"Texstudio\", \"" + s + "\", \"Format name of language definition \"), ";
+		translations << "QT_TRANSLATE_NOOP(\"Iguana\", \"" + s + "\", \"Format name of language definition \"), ";
 
 	translations << "\"\"};";
 	translations << "#endif\n\n";
@@ -8178,19 +8178,19 @@ void Texstudio::generateAdditionalTranslations()
     qDebug()<<"path:"<<fi.absoluteFilePath();
 }
 
-void Texstudio::onOtherInstanceMessage(const QString &msg)   // Added slot for messages to the single instance
+void Iguana::onOtherInstanceMessage(const QString &msg)   // Added slot for messages to the single instance
 {
 	show();
 	activateWindow();
 	executeCommandLine(msg.split("#!#"), false);
 }
 
-void Texstudio::setAutomaticRootDetection()
+void Iguana::setAutomaticRootDetection()
 {
         documents.setMasterDocument(nullptr);
 }
 
-void Texstudio::setExplicitRootDocument(LatexDocument *doc)
+void Iguana::setExplicitRootDocument(LatexDocument *doc)
 {
 	if (!doc) {
 		setAutomaticRootDetection();
@@ -8207,7 +8207,7 @@ void Texstudio::setExplicitRootDocument(LatexDocument *doc)
 	documents.setMasterDocument(doc);
 }
 
-void Texstudio::setCurrentDocAsExplicitRoot()
+void Iguana::setCurrentDocAsExplicitRoot()
 {
 	if (currentEditorView()) {
 		setExplicitRootDocument(currentEditorView()->document);
@@ -8215,19 +8215,19 @@ void Texstudio::setCurrentDocAsExplicitRoot()
 }
 
 ////////////////// VIEW ////////////////
-void Texstudio::gotoNextDocument()
+void Iguana::gotoNextDocument()
 {
 	// TODO check: can we have managed action connecting to the Editors slot directly? Then we could remove this slot
 	editors->activateNextEditor();
 }
 
-void Texstudio::gotoPrevDocument()
+void Iguana::gotoPrevDocument()
 {
 	// TODO check: can we have managed action connecting to the Editors slot directly? Then we could remove this slot
 	editors->activatePreviousEditor();
 }
 
-void Texstudio::gotoOpenDocument()
+void Iguana::gotoOpenDocument()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	REQUIRE(act);
@@ -8241,7 +8241,7 @@ void Texstudio::gotoOpenDocument()
  * far too often even when it's not necessary. The calling logic (in particular updateCaption and its
  * uses should be refactored).
  */
-void Texstudio::updateOpenDocumentMenu(bool localChange)
+void Iguana::updateOpenDocumentMenu(bool localChange)
 {
 	if (localChange) {
 		LatexEditorView *edView = currentEditorView();
@@ -8267,7 +8267,7 @@ void Texstudio::updateOpenDocumentMenu(bool localChange)
 	configManager.updateListMenu("main/view/documents", names, "doc", false, SLOT(gotoOpenDocument()), 0, true, 0, data);
 }
 
-void Texstudio::onEditorsReordered()
+void Iguana::onEditorsReordered()
 {
 	// we currently reorder the documents so that their order matches the order of editors
 	// this is purely conventional now (structure view inherits the order of the documents.)
@@ -8280,7 +8280,7 @@ void Texstudio::onEditorsReordered()
 	documents.reorder(docs);
 }
 
-void Texstudio::focusEditor()
+void Iguana::focusEditor()
 {
 	raise();
 	activateWindow();
@@ -8288,7 +8288,7 @@ void Texstudio::focusEditor()
 		currentEditorView()->setFocus();
 }
 
-void Texstudio::focusViewer()
+void Iguana::focusViewer()
 {
 #ifndef NO_POPPLER_PREVIEW
 	QList<PDFDocument *> viewers = PDFDocument::documentList();
@@ -8320,7 +8320,7 @@ void Texstudio::focusViewer()
 #endif
 }
 
-void Texstudio::viewCloseElement()
+void Iguana::viewCloseElement()
 {
 	if (fileSelector) {
 		fileSelector.data()->deleteLater();
@@ -8399,7 +8399,7 @@ void Texstudio::viewCloseElement()
 	UtilsUi::txsInformation(QString("<html><head></head><body><img src=':/images/egg%1.png'></body></html>").arg(mode));
 }
 
-void Texstudio::setFullScreenMode()
+void Iguana::setFullScreenMode()
 {
 	if (!fullscreenModeAction->isChecked()) {
 		stateFullScreen = saveState(1);
@@ -8417,7 +8417,7 @@ void Texstudio::setFullScreenMode()
 	}
 }
 
-void Texstudio::viewSetHighlighting(QAction *act)
+void Iguana::viewSetHighlighting(QAction *act)
 {
 	if (!currentEditor()) return;
 	if (!m_languages->setLanguageFromName(currentEditor(), act->data().toString())) return;
@@ -8434,7 +8434,7 @@ void Texstudio::viewSetHighlighting(QAction *act)
 	currentEditorView()->document->reCheckSyntax();
 }
 
-void Texstudio::showHighlightingMenu()
+void Iguana::showHighlightingMenu()
 {
 	// check active item just before showing the menu. So we don't have to keep track of the languages, e.g. when switching editors
 	if (!currentEditor()) return;
@@ -8449,19 +8449,19 @@ void Texstudio::showHighlightingMenu()
 	}
 }
 
-void Texstudio::viewCollapseBlock()
+void Iguana::viewCollapseBlock()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldBlockAt(false, currentEditorView()->editor->cursor().lineNumber());
 }
 
-void Texstudio::viewExpandBlock()
+void Iguana::viewExpandBlock()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldBlockAt(true, currentEditorView()->editor->cursor().lineNumber());
 }
 
-void Texstudio::pdfClosed()
+void Iguana::pdfClosed()
 {
 #ifndef NO_POPPLER_PREVIEW
 	PDFDocument *from = qobject_cast<PDFDocument *>(sender());
@@ -8486,7 +8486,7 @@ void Texstudio::pdfClosed()
 
 
 #ifndef NO_POPPLER_PREVIEW
-QObject *Texstudio::newPdfPreviewer(bool embedded)
+QObject *Iguana::newPdfPreviewer(bool embedded)
 {
 	PDFDocument *pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, embedded);
     pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiPDFToolbarIconSize : configManager.guiToolbarIconSize);
@@ -8541,7 +8541,7 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 }
 #endif
 
-void Texstudio::masterDocumentChanged(LatexDocument *doc)
+void Iguana::masterDocumentChanged(LatexDocument *doc)
 {
 	Q_UNUSED(doc)
 	Q_ASSERT(documents.singleMode() == !documents.masterDocument);
@@ -8557,7 +8557,7 @@ void Texstudio::masterDocumentChanged(LatexDocument *doc)
 	completerNeedsUpdate();
 }
 
-void Texstudio::aboutToDeleteDocument(LatexDocument *doc)
+void Iguana::aboutToDeleteDocument(LatexDocument *doc)
 {
 	emit infoFileClosed();
 	editors->removeEditor(doc->getEditorView());
@@ -8567,12 +8567,12 @@ void Texstudio::aboutToDeleteDocument(LatexDocument *doc)
 }
 
 //*********************************
-void Texstudio::dragEnterEvent(QDragEnterEvent *event)
+void Iguana::dragEnterEvent(QDragEnterEvent *event)
 {
 	if (event->mimeData()->hasFormat("text/uri-list")) event->acceptProposedAction();
 }
 
-void Texstudio::dropEvent(QDropEvent *event)
+void Iguana::dropEvent(QDropEvent *event)
 {
 	QList<QUrl> uris = event->mimeData()->urls();
 
@@ -8607,7 +8607,7 @@ void Texstudio::dropEvent(QDropEvent *event)
 	raise();
 }
 
-void Texstudio::changeEvent(QEvent *e)
+void Iguana::changeEvent(QEvent *e)
 {
 	switch (e->type()) {
 	case QEvent::LanguageChange:
@@ -8625,7 +8625,7 @@ void Texstudio::changeEvent(QEvent *e)
 	}
 }
 
-bool Texstudio::eventFilter(QObject *obj, QEvent *event)
+bool Iguana::eventFilter(QObject *obj, QEvent *event)
 {
     static const QColor beyondEndColor(255, 170, 0);
     static const QColor inAppendixColor(200, 230, 200);
@@ -8742,7 +8742,7 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 
 typedef QPair<int, int> PairIntInt;
 
-void Texstudio::updateCompleter(LatexEditorView *edView)
+void Iguana::updateCompleter(LatexEditorView *edView)
 {
     CodeSnippetList words;
 
@@ -8881,7 +8881,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     mCompleterCommandsNeedsUpdate = false;
 }
 
-void Texstudio::outputPageChanged(const QString &id)
+void Iguana::outputPageChanged(const QString &id)
 {
 	if (id == outputView->LOG_PAGE && !outputView->getLogWidget()->logPresent()) {
 		if (!loadLog())
@@ -8891,7 +8891,7 @@ void Texstudio::outputPageChanged(const QString &id)
 	}
 }
 
-void Texstudio::jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query)
+void Iguana::jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query)
 {
     REQUIRE(doc);
 
@@ -8916,7 +8916,7 @@ void Texstudio::jumpToSearchResult(LatexDocument *doc, int lineNumber, const Sea
  * \param lineNumber
  * \param query
  */
-void Texstudio::jumpToFileSearchResult(QString fn, int lineNumber, const SearchQuery *query)
+void Iguana::jumpToFileSearchResult(QString fn, int lineNumber, const SearchQuery *query)
 {
     if (currentEditor() && currentEditor()->fileName() == fn && currentEditor()->cursor().lineNumber() == lineNumber) {
         QDocumentCursor c = currentEditor()->cursor();
@@ -8935,7 +8935,7 @@ void Texstudio::jumpToFileSearchResult(QString fn, int lineNumber, const SearchQ
     currentEditorView()->temporaryHighlight(highlight);
 }
 
-void Texstudio::gotoLine(int line, int col, LatexEditorView *edView, QEditor::MoveFlags mflags, bool setFocus)
+void Iguana::gotoLine(int line, int col, LatexEditorView *edView, QEditor::MoveFlags mflags, bool setFocus)
 {
     bool changeCurrentEditor = (edView != currentEditorView());
     if (!edView)
@@ -8960,7 +8960,7 @@ void Texstudio::gotoLine(int line, int col, LatexEditorView *edView, QEditor::Mo
     }
 }
 
-bool Texstudio::gotoLine(int line, const QString &fileName)
+bool Iguana::gotoLine(int line, const QString &fileName)
 {
     LatexEditorView *edView = getEditorViewFromFileName(fileName, true);
     QEditor::MoveFlags mflags = QEditor::Navigation;
@@ -8972,7 +8972,7 @@ bool Texstudio::gotoLine(int line, const QString &fileName)
     return true;
 }
 
-void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
+void Iguana::gotoLine(LatexDocument *doc, int line, int col)
 {
     if (!doc) return;
 
@@ -8987,7 +8987,7 @@ void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
  * \param item
  * \param col
  */
-void Texstudio::gotoLine(QTreeWidgetItem *item, int)
+void Iguana::gotoLine(QTreeWidgetItem *item, int)
 {
     shrinkEmbeddedPDFViewer();
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
@@ -9039,7 +9039,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
     }
 }
 
-void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
+void Iguana::gotoLogEntryEditorOnly(int logEntryNumber)
 {
 	if (logEntryNumber < 0 || logEntryNumber >= outputView->getLogWidget()->getLogModel()->count()) return;
 	LatexLogEntry entry = outputView->getLogWidget()->getLogModel()->at(logEntryNumber);
@@ -9067,7 +9067,7 @@ void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
  * Returns a cursor marking the part of the line which the log entry is referring to.
  * This assumes that the cursor was already set to the correct line before calling the function.
  */
-QDocumentCursor Texstudio::getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry)
+QDocumentCursor Iguana::getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry)
 {
     QRegularExpression rxUndefinedControlSequence("^Undefined\\ control\\ sequence.*(\\\\\\w+)$");
     QRegularExpression rxEnvironmentUndefined("^Environment (\\w+) undefined\\.");
@@ -9127,7 +9127,7 @@ QDocumentCursor Texstudio::getLogEntryContextCursor(const QDocumentLineHandle *d
 	return QDocumentCursor();
 }
 
-bool Texstudio::gotoLogEntryAt(int newLineNumber)
+bool Iguana::gotoLogEntryAt(int newLineNumber)
 {
 	//goto line
 	if (newLineNumber < 0) return false;
@@ -9151,7 +9151,7 @@ bool Texstudio::gotoLogEntryAt(int newLineNumber)
 	return true;
 }
 
-bool Texstudio::gotoMark(bool backward, int id)
+bool Iguana::gotoMark(bool backward, int id)
 {
 	if (!currentEditorView()) return false;
 	if (backward)
@@ -9160,7 +9160,7 @@ bool Texstudio::gotoMark(bool backward, int id)
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id, currentEditorView()->editor->cursor().lineNumber() + 1));
 }
 
-QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &guessedWord)
+QList<int> Iguana::findOccurencesApproximate(QString line, const QString &guessedWord)
 {
 	QList<int> columns;
 
@@ -9249,7 +9249,7 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 	return columns;
 }
 
-void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
+void Iguana::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
 {
     QWidget *w = focusWidget();
 	if (!activateEditorForFile(fileName, true, activate)) {
@@ -9306,21 +9306,21 @@ void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate,
     }
 }
 
-void Texstudio::goBack()
+void Iguana::goBack()
 {
 	QDocumentCursor currentCur;
 	if (currentEditorView()) currentCur = currentEditorView()->editor->cursor();
 	setGlobalCursor(cursorHistory->back(currentCur));
 }
 
-void Texstudio::goForward()
+void Iguana::goForward()
 {
 	QDocumentCursor currentCur;
 	if (currentEditorView()) currentCur = currentEditorView()->editor->cursor();
 	setGlobalCursor(cursorHistory->forward(currentCur));
 }
 
-void Texstudio::setGlobalCursor(const QDocumentCursor &c)
+void Iguana::setGlobalCursor(const QDocumentCursor &c)
 {
 	if (c.isValid()) {
 		LatexDocument *doc = qobject_cast<LatexDocument *>(c.document());
@@ -9336,7 +9336,7 @@ void Texstudio::setGlobalCursor(const QDocumentCursor &c)
 	}
 }
 
-void Texstudio::fuzzBackForward()
+void Iguana::fuzzBackForward()
 {
 #ifdef NOT_DEFINED__FUZZER_NEEDED_ONLY_FOR_DEBUGGING_RANDOM_CRASH_OF_CURSOR_HISTORY
 	int rep = random() % (1 + cursorHistory->count());
@@ -9346,7 +9346,7 @@ void Texstudio::fuzzBackForward()
 #endif
 }
 
-void Texstudio::setBuildButtonsDisabled(bool c)
+void Iguana::setBuildButtonsDisabled(bool c)
 {
 	getManagedAction("main/tools/stopcompile")->setEnabled(c);
 	getManagedAction("main/tools/quickbuild")->setEnabled(!c);
@@ -9357,7 +9357,7 @@ void Texstudio::setBuildButtonsDisabled(bool c)
 #endif
 }
 
-void Texstudio::fuzzCursorHistory()
+void Iguana::fuzzCursorHistory()
 {
 #ifdef NOT_DEFINED__FUZZER_NEEDED_ONLY_FOR_DEBUGGING_RANDOM_CRASH_OF_CURSOR_HISTORY
 	QString fillText;
@@ -9389,18 +9389,18 @@ void Texstudio::fuzzCursorHistory()
 #endif
 }
 
-void Texstudio::saveCurrentCursorToHistory()
+void Iguana::saveCurrentCursorToHistory()
 {
 	saveEditorCursorToHistory(currentEditorView());
 }
 
-void Texstudio::saveEditorCursorToHistory(LatexEditorView *edView)
+void Iguana::saveEditorCursorToHistory(LatexEditorView *edView)
 {
 	if (!edView) return;
 	cursorHistory->insertPos(edView->editor->cursor());
 }
 
-void Texstudio::previewLatex()
+void Iguana::previewLatex()
 {
 	if (!currentEditorView()) return;
     LatexEditorView *edView=currentEditorView();
@@ -9458,7 +9458,7 @@ void Texstudio::previewLatex()
 
 }
 
-void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &source)
+void Iguana::previewAvailable(const QString &imageFile, const PreviewSource &source)
 {
 	QPixmap pixmap;
     qreal devPixelRatio = 1.0;
@@ -9570,7 +9570,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	}
 }
 
-void Texstudio::clearPreview()
+void Iguana::clearPreview()
 {
     QEditor *edit = currentEditor();
     if (!edit) return;
@@ -9623,7 +9623,7 @@ void Texstudio::clearPreview()
     currentEditorView()->updatePanels();
 }
 
-void Texstudio::showImgPreview(const QString &fname)
+void Iguana::showImgPreview(const QString &fname)
 {
 	completerPreview = (sender() == completer); // completer needs signal as answer
 	QString imageName = fname;
@@ -9684,7 +9684,7 @@ void Texstudio::showImgPreview(const QString &fname)
 #endif
 }
 
-void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
+void Iguana::showImgPreviewFinished(const QPixmap &pm, int page)
 {
 	if (!currentEditorView()) return;
 	Q_UNUSED(page)
@@ -9711,7 +9711,7 @@ void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 #endif
 }
 
-void Texstudio::showPreview(const QString &text)
+void Iguana::showPreview(const QString &text)
 {
 	completerPreview = (sender() == completer); // completer needs signal as answer
 	LatexEditorView *edView = getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
@@ -9742,7 +9742,7 @@ void Texstudio::showPreview(const QString &text)
 	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec(), atBeginDocument, atEndDocument);
 }
 
-void Texstudio::showPreview(const QDocumentCursor &previewc)
+void Iguana::showPreview(const QDocumentCursor &previewc)
 {
 	if (previewQueueOwner != currentEditorView())
 		previewQueue.clear();
@@ -9758,7 +9758,7 @@ void Texstudio::showPreview(const QDocumentCursor &previewc)
     //QTimer::singleShot(qMax(40, configManager.autoPreviewDelay), this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
-void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
+void Iguana::showPreview(const QDocumentCursor &previewc, bool addToList)
 {
 	REQUIRE(currentEditor());
 	REQUIRE(previewc.document() == currentEditor()->document());
@@ -9809,7 +9809,7 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 	}
 }
 
-QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
+QStringList Iguana::makePreviewHeader(const LatexDocument *rootDoc)
 {
 	LatexEditorView *edView = rootDoc->getEditorView();
     if (!edView){
@@ -9852,7 +9852,7 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
  * \param c: a QDocumentCursor with a selection
  * \param sid: formatScheme id
  */
-void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
+void Iguana::updateEmphasizedRegion(QDocumentCursor c, int sid)
 {
 	QDocument *doc = c.document();
 	QDocumentCursor ss = c.selectionStart();
@@ -9870,10 +9870,10 @@ void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
     }
 }
 /*!
- * \brief Texstudio::completerIsVisible
+ * \brief Iguana::completerIsVisible
  * \return true if completer is visible
  */
-bool Texstudio::completerIsVisible()
+bool Iguana::completerIsVisible()
 {
     if(completer && completer->isVisible()){
         return true;
@@ -9881,7 +9881,7 @@ bool Texstudio::completerIsVisible()
     return false;
 }
 
-void Texstudio::showPreviewQueue()
+void Iguana::showPreviewQueue()
 {
 	if (previewQueueOwner != currentEditorView()) {
 		previewQueue.clear();
@@ -9908,7 +9908,7 @@ void Texstudio::showPreviewQueue()
 
 
 
-void Texstudio::recompileForPreview(){
+void Iguana::recompileForPreview(){
 	if (documents.getCompileFileName().isEmpty()) return;
 #ifndef NO_POPPLER_PREVIEW
 	if (PDFDocument::documentList().isEmpty()) return;
@@ -9918,7 +9918,7 @@ void Texstudio::recompileForPreview(){
 	if (!previewEditorPending || previewEditorPending->fileName().isEmpty()) return;
 	previewFullCompileDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
 }
-void Texstudio::recompileForPreviewNow(){
+void Iguana::recompileForPreviewNow(){
 	if (!previewEditorPending || previewEditorPending != currentEditor()) return;
 	if (buildManager.waitingForProcess()) {
 		if (previewEditorPending->isContentModified()) {
@@ -9931,7 +9931,7 @@ void Texstudio::recompileForPreviewNow(){
 	runCommand(BuildManager::CMD_COMPILE, nullptr, nullptr, false);
 }
 
-void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
+void Iguana::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditor()->cursor();
@@ -9949,18 +9949,18 @@ void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 	}
 }
 
-void Texstudio::editInsertRefToPrevLabel(const QString &refCmd)
+void Iguana::editInsertRefToPrevLabel(const QString &refCmd)
 {
 	editInsertRefToNextLabel(refCmd, true);
 }
 
-void Texstudio::runSearch(SearchQuery *query)
+void Iguana::runSearch(SearchQuery *query)
 {
 	if (!currentEditorView() || !query) return;
 	query->run(currentEditorView()->document);
 }
 
-void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelText,bool definitionOnly)
+void Iguana::findLabelUsages(LatexDocument *contextDoc, const QString &labelText,bool definitionOnly)
 {
 	if (!contextDoc) return;
     LabelSearchQuery *query = new LabelSearchQuery(labelText,definitionOnly);
@@ -9975,7 +9975,7 @@ void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelT
  * \param text
  * \param type
  */
-void Texstudio::findSpecialUsages(LatexDocument *doc, const QString &text, int type)
+void Iguana::findSpecialUsages(LatexDocument *doc, const QString &text, int type)
 {
     if (!doc) return;
     SpecialDefSearchQuery *query = new SpecialDefSearchQuery(text,type);
@@ -9984,7 +9984,7 @@ void Texstudio::findSpecialUsages(LatexDocument *doc, const QString &text, int t
     outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 }
 
-void Texstudio::findLabelUsagesFromAction()
+void Iguana::findLabelUsagesFromAction()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -9993,13 +9993,13 @@ void Texstudio::findLabelUsagesFromAction()
     findLabelUsages(doc, labelText);
 }
 
-SearchResultWidget *Texstudio::searchResultWidget()
+SearchResultWidget *Iguana::searchResultWidget()
 {
 	return outputView->getSearchResultWidget();
 }
 
 // show current cursor position in structure view
-void Texstudio::cursorPositionChanged()
+void Iguana::cursorPositionChanged()
 {
 	LatexEditorView *view = currentEditorView();
 	if (!view) return;
@@ -10027,7 +10027,7 @@ void Texstudio::cursorPositionChanged()
 	syncPDFViewer(currentEditor()->cursor(), false);
 }
 
-void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
+void Iguana::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 {
 #ifndef NO_POPPLER_PREVIEW
         if (inForeground) {
@@ -10061,7 +10061,7 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 #endif
 }
 
-void Texstudio::fileCheckin(QString filename)
+void Iguana::fileCheckin(QString filename)
 {
 	if (!currentEditorView()) return;
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
@@ -10100,7 +10100,7 @@ void Texstudio::fileCheckin(QString filename)
  * Determines pdf filename by using the current text file name and substitutes its extension to 'pdf'
  * \param filename
  */
-void Texstudio::fileLockPdf(QString filename)
+void Iguana::fileLockPdf(QString filename)
 {
     if(configManager.useVCS>0){ // GIT
         return;
@@ -10124,7 +10124,7 @@ void Texstudio::fileLockPdf(QString filename)
  * If the file is not under version management, it tries to add the file.
  * \param filename
  */
-void Texstudio::fileCheckinPdf(QString filename)
+void Iguana::fileCheckinPdf(QString filename)
 {
 	if (!currentEditorView()) return;
 	QString finame = filename;
@@ -10152,7 +10152,7 @@ void Texstudio::fileCheckinPdf(QString filename)
  * \brief svn update file
  * \param filename
  */
-void Texstudio::fileUpdate(QString filename)
+void Iguana::fileUpdate(QString filename)
 {
 	if (!currentEditorView()) return;
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
@@ -10166,7 +10166,7 @@ void Texstudio::fileUpdate(QString filename)
  * Uses the directory of the current file as cwd.
  * \param filename
  */
-void Texstudio::fileUpdateCWD(QString filename)
+void Iguana::fileUpdateCWD(QString filename)
 {
 	if (!currentEditorView()) return;
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
@@ -10181,7 +10181,7 @@ void Texstudio::fileUpdateCWD(QString filename)
 	outputView->insertMessageLine(output);
 }
 
-void Texstudio::checkinAfterSave(QString filename, int checkIn)
+void Iguana::checkinAfterSave(QString filename, int checkIn)
 {
 	if (checkIn > 1) { // special treatment for save
 		// 2: checkin
@@ -10211,7 +10211,7 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 	}
 }
 
-void Texstudio::checkin(QString fn, QString text, bool push)
+void Iguana::checkin(QString fn, QString text, bool push)
 {
     if(configManager.useVCS==0){
         svn.commit(fn, text);
@@ -10227,7 +10227,7 @@ void Texstudio::checkin(QString fn, QString text, bool push)
 		edView->editor->setProperty("undoRevision", 0);
 }
 
-bool Texstudio::svnadd(QString fn, int stage)
+bool Iguana::svnadd(QString fn, int stage)
 {
 	QString path = QFileInfo(fn).absolutePath();
     if(configManager.useVCS==0){
@@ -10264,7 +10264,7 @@ bool Texstudio::svnadd(QString fn, int stage)
     }
 }
 
-void Texstudio::svnUndo(bool redo)
+void Iguana::svnUndo(bool redo)
 {
 	QString fn = currentEditor()->fileName();
 	// get revisions of current file
@@ -10285,7 +10285,7 @@ void Texstudio::svnUndo(bool redo)
 	currentEditor()->setProperty("undoRevision", undoRevision);
 }
 
-void Texstudio::svnPatch(QEditor *ed, QString diff)
+void Iguana::svnPatch(QEditor *ed, QString diff)
 {
     if(diff.isEmpty()){
         return;
@@ -10393,7 +10393,7 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
  * The user can either select and copy content to bring to the most recent version or he can edit the old revision thereby making it the current one.
  * To enable changing to the most recent version again, text is automatically saved *and* checked in.
  */
-void Texstudio::showOldRevisions()
+void Iguana::showOldRevisions()
 {
 	// check if a dialog is already open
 	if (svndlg) return;
@@ -10440,7 +10440,7 @@ void Texstudio::showOldRevisions()
 	cmbLog = new QComboBox(svndlg);
 	cmbLog->insertItems(0, log);
 	lay->addWidget(cmbLog);
-    connect(svndlg, &QDialog::finished, this, &Texstudio::svnDialogClosed);
+    connect(svndlg, &QDialog::finished, this, &Iguana::svnDialogClosed);
     connect(cmbLog, SIGNAL(currentTextChanged(QString)), this, SLOT(changeToRevision(QString)));
     connect(currentEditor(), SIGNAL(textEdited(QKeyEvent*)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
@@ -10452,7 +10452,7 @@ void Texstudio::showOldRevisions()
  * the dialog itself is deleted
  * if the revision is the most recent, test is declared unmodified
  */
-void Texstudio::svnDialogClosed(int)
+void Iguana::svnDialogClosed(int)
 {
 	if (cmbLog->currentIndex() == 0) currentEditor()->document()->setClean();
 	svndlg = nullptr;
@@ -10464,7 +10464,7 @@ void Texstudio::svnDialogClosed(int)
  * \param rev
  * \param old_rev
  */
-void Texstudio::changeToRevision(QString rev, QString old_rev)
+void Iguana::changeToRevision(QString rev, QString old_rev)
 {
     QString buffer=getDiff(rev,old_rev);
     if(buffer.isEmpty()) return; //diff failed or did not give results
@@ -10478,7 +10478,7 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
  * \param rev
  * \param old_rev needs to be the shown text in the editor, rev is the revision to compare with
  */
-void Texstudio::showDiff(QString rev, QString old_rev)
+void Iguana::showDiff(QString rev, QString old_rev)
 {
     LatexDocument *doc = documents.currentDocument;
     if (!doc)
@@ -10495,7 +10495,7 @@ void Texstudio::showDiff(QString rev, QString old_rev)
     edView->documentContentChanged(0, edView->document->lines());
 }
 
-QString Texstudio::getDiff(QString rev, QString old_rev)
+QString Iguana::getDiff(QString rev, QString old_rev)
 {
     QString filename = currentEditor()->fileName();
     // get diff
@@ -10535,7 +10535,7 @@ QString Texstudio::getDiff(QString rev, QString old_rev)
     return buffer;
 }
 
-bool Texstudio::generateMirror(bool setCur)
+bool Iguana::generateMirror(bool setCur)
 {
 	if (!currentEditorView()) return false;
     if(currentEditor()->cursorMirrorCount()>0){
@@ -10654,7 +10654,7 @@ bool Texstudio::generateMirror(bool setCur)
 	return false;
 }
 
-void Texstudio::generateBracketInverterMirror()
+void Iguana::generateBracketInverterMirror()
 {
 	if (!currentEditor()) return;
 	REQUIRE(currentEditor()->document() && currentEditor()->document()->languageDefinition());
@@ -10671,7 +10671,7 @@ void Texstudio::generateBracketInverterMirror()
 	currentEditor()->setPlaceHolder(currentEditor()->placeHolderCount() - 1);
 }
 
-void Texstudio::jumpToBracket()
+void Iguana::jumpToBracket()
 {
 	if (!currentEditor()) return;
 	REQUIRE(sender() && currentEditor()->document() && currentEditor()->document()->languageDefinition());
@@ -10683,7 +10683,7 @@ void Texstudio::jumpToBracket()
 	else currentEditor()->setCursor(to.selectionEnd());
 }
 
-void Texstudio::selectBracket()
+void Iguana::selectBracket()
 {
 	if (!currentEditor()) return;
 	REQUIRE(sender() && currentEditor()->document());
@@ -10729,7 +10729,7 @@ void Texstudio::selectBracket()
 	currentEditor()->setCursor(cursor);
 }
 
-void Texstudio::findMissingBracket()
+void Iguana::findMissingBracket()
 {
 	if (!currentEditor()) return;
 	REQUIRE(currentEditor()->document() && currentEditor()->document()->languageDefinition());
@@ -10737,7 +10737,7 @@ void Texstudio::findMissingBracket()
 	if (c.isValid()) currentEditor()->setCursor(c);
 }
 /*!
- * \brief Texstudio::openExternalFile
+ * \brief Iguana::openExternalFile
  * Opens an external file (e.g. included .tex, .bib) in the editor.
  * \param name filename
  * \param defaultExt default extension if none is present in the filename
@@ -10746,7 +10746,7 @@ void Texstudio::findMissingBracket()
  * \param lineNr which is updated if new file needs to be created
  * \return
  */
-LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc, int lineNr)
+LatexEditorView* Iguana::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc, int lineNr)
 {
 	if (!doc) {
         if (!currentEditor()) return nullptr;
@@ -10754,7 +10754,7 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
 	}
     if (!doc) return nullptr;
     if(doc->getFileName().isEmpty()) return nullptr; // unsaved file, no relative filename meaningful
-	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
+	name.remove('"');  // ignore quotes (http://sourceforge.net/p/iguana/bugs/1366/)
     if(name.endsWith('#')){
         relativeToCurrentDoc=true;
         name.chop(1);
@@ -10799,7 +10799,7 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
 }
 
 
-void Texstudio::openExternalFileFromAction()
+void Iguana::openExternalFileFromAction()
 {
     QAction *act = qobject_cast<QAction *>(sender());
     QString name = act->data().toString();
@@ -10809,27 +10809,27 @@ void Texstudio::openExternalFileFromAction()
         openExternalFile(name);
 }
 
-void Texstudio::openExternalFileAtLine(QString name, int lineNr)
+void Iguana::openExternalFileAtLine(QString name, int lineNr)
 {
     LatexEditorView *edView=qobject_cast<LatexEditorView *>(sender());
     LatexDocument *doc=edView ? edView->document : nullptr;
     openExternalFile(name, "tex", doc, false, lineNr);
 }
 
-void Texstudio::cursorHovered()
+void Iguana::cursorHovered()
 {
 	if (completer->isVisible()) return;
 	generateMirror(true);
 }
 
-void Texstudio::saveProfile()
+void Iguana::saveProfile()
 {
 	QString currentDir = configManager.configBaseDir;
 	QString fname = FileDialog::getSaveFileName(this, tr("Save Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
 	saveSettings(fname);
 }
 
-void Texstudio::loadProfile()
+void Iguana::loadProfile()
 {
 	QString currentDir = configManager.configBaseDir;
 	QString fname = FileDialog::getOpenFileName(this, tr("Load Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
@@ -10888,7 +10888,7 @@ void Texstudio::loadProfile()
 	} else UtilsUi::txsWarning(tr("Failed to read profile file %1.").arg(fname));
 }
 
-void Texstudio::addRowCB()
+void Iguana::addRowCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -10902,7 +10902,7 @@ void Texstudio::addRowCB()
     LatexTables::addRow(cur, env);
 }
 
-void Texstudio::addColumnCB()
+void Iguana::addColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -10920,7 +10920,7 @@ void Texstudio::addColumnCB()
     LatexTables::addColumn(env, currentEditorView()->editor->cursor().lineNumber(), col);
 }
 
-void Texstudio::removeColumnCB()
+void Iguana::removeColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -10952,7 +10952,7 @@ void Texstudio::removeColumnCB()
 	}
 }
 
-void Texstudio::removeRowCB()
+void Iguana::removeRowCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -10966,7 +10966,7 @@ void Texstudio::removeRowCB()
     LatexTables::removeRow(cur,env);
 }
 
-void Texstudio::cutColumnCB()
+void Iguana::cutColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -11011,7 +11011,7 @@ void Texstudio::cutColumnCB()
 
 }
 
-void Texstudio::pasteColumnCB()
+void Iguana::pasteColumnCB()
 {
 	if (!currentEditorView()) return;
 	QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -11028,7 +11028,7 @@ void Texstudio::pasteColumnCB()
     LatexTables::addColumn(env, currentEditorView()->editor->cursor().lineNumber(), col, &m_columnCutBuffer);
 }
 
-void Texstudio::addHLineCB()
+void Iguana::addHLineCB()
 {
 	if (!currentEditorView()) return;
     QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -11041,7 +11041,7 @@ void Texstudio::addHLineCB()
     LatexTables::addHLine(cur,env);
 }
 
-void Texstudio::remHLineCB()
+void Iguana::remHLineCB()
 {
 	if (!currentEditorView()) return;
     QDocumentCursor cur = currentEditorView()->editor->cursor();
@@ -11054,7 +11054,7 @@ void Texstudio::remHLineCB()
     LatexTables::addHLine(cur,env, true);
 }
 
-void Texstudio::findWordRepetitions()
+void Iguana::findWordRepetitions()
 {
 	if (!currentEditorView()) return;
 	if (configManager.editorConfig && !configManager.editorConfig->inlineSpellChecking) {
@@ -11107,7 +11107,7 @@ void Texstudio::findWordRepetitions()
 
 }
 
-void Texstudio::findNextWordRepetition()
+void Iguana::findNextWordRepetition()
 {
 	QPushButton *mButton = qobject_cast<QPushButton *>(sender());
 	bool backward = mButton->objectName() == "prev";
@@ -11143,7 +11143,7 @@ void Texstudio::findNextWordRepetition()
 	UtilsUi::txsInformation(backward ? tr("Reached beginning of text.") : tr("Reached end of text."));
 }
 
-void Texstudio::importPackage(QString name)
+void Iguana::importPackage(QString name)
 {
 	if (!latexStyleParser) {
 		QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
@@ -11176,7 +11176,7 @@ void Texstudio::importPackage(QString name)
 	latexStyleParser->addFile(name + dirName);
 }
 
-void Texstudio::packageScanCompleted(QString name)
+void Iguana::packageScanCompleted(QString name)
 {
 	QStringList lst = name.split('#');
 	QString baseName = name;
@@ -11197,19 +11197,19 @@ void Texstudio::packageScanCompleted(QString name)
 	}
 }
 
-void Texstudio::stopPackageParser()
+void Iguana::stopPackageParser()
 {
 	if (latexStyleParser)
 		latexStyleParser->stop();
 }
 
-void Texstudio::packageParserFinished()
+void Iguana::packageParserFinished()
 {
 	delete latexStyleParser;
         latexStyleParser = nullptr;
 }
 
-void Texstudio::readinAllPackageNames()
+void Iguana::readinAllPackageNames()
 {
 	if (!packageListReader) {
 		// preliminarily use cached packages
@@ -11249,7 +11249,7 @@ void Texstudio::readinAllPackageNames()
 	}
 }
 
-void Texstudio::packageListReadCompleted(std::set<QString> packages)
+void Iguana::packageListReadCompleted(std::set<QString> packages)
 {
 	latexPackageList = packages;
 	if (qobject_cast<PackageScanner *>(sender())) {
@@ -11265,17 +11265,17 @@ void Texstudio::packageListReadCompleted(std::set<QString> packages)
 	}
 }
 
-QString Texstudio::clipboardText(const QClipboard::Mode &mode) const
+QString Iguana::clipboardText(const QClipboard::Mode &mode) const
 {
 	return QApplication::clipboard()->text(mode);
 }
 
-void Texstudio::setClipboardText(const QString &text, const QClipboard::Mode &mode)
+void Iguana::setClipboardText(const QString &text, const QClipboard::Mode &mode)
 {
 	QApplication::clipboard()->setText(text, mode);
 }
 
-int Texstudio::getVersion() const
+int Iguana::getVersion() const
 {
     return Version::parseVersionNumberToInt(TXSVERSION);
 }
@@ -11284,7 +11284,7 @@ int Texstudio::getVersion() const
  * This function is mainly intended for use in scripting
  * \a shortcut: textual representation of the keysequence, e.g. simulateKeyPress("Shift+Up")
  */
-void Texstudio::simulateKeyPress(const QString &shortcut)
+void Iguana::simulateKeyPress(const QString &shortcut)
 {
 	QKeySequence seq = QKeySequence::fromString(shortcut, QKeySequence::PortableText);
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
@@ -11312,7 +11312,7 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 #endif
 }
 
-void Texstudio::updateTexQNFA()
+void Iguana::updateTexQNFA()
 {
     updateTexLikeQNFA("(La)TeX", "tex.qnfa");
     updateTexLikeQNFA("Sweave", "sweave.qnfa");
@@ -11326,7 +11326,7 @@ void Texstudio::updateTexQNFA()
  * \param filename - the filename for the language. This is just the filename without a path.
  * the file is searched for in the user language directory and as a fallback in the builtin language files.
  */
-void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
+void Iguana::updateTexLikeQNFA(QString languageName, QString filename)
 {
 	QLanguageFactory::LangData m_lang = m_languages->languageData(languageName);
 
@@ -11372,7 +11372,7 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 	}
 }
 
-void Texstudio::toggleGrammar(int type)
+void Iguana::toggleGrammar(int type)
 {
 	QAction *a = qobject_cast<QAction *>(sender());
 	REQUIRE(a);
@@ -11383,7 +11383,7 @@ void Texstudio::toggleGrammar(int type)
 			documents.documents[i]->getEditorView()->updateGrammarOverlays();
 }
 
-void Texstudio::fileDiff()
+void Iguana::fileDiff()
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11414,7 +11414,7 @@ void Texstudio::fileDiff()
 	edView->documentContentChanged(0, edView->document->lines());
 }
 
-void Texstudio::jumpNextDiff()
+void Iguana::jumpNextDiff()
 {
 	QEditor *m_edit = currentEditor();
 	if (!m_edit)
@@ -11460,7 +11460,7 @@ void Texstudio::jumpNextDiff()
 	}
 }
 
-void Texstudio::jumpPrevDiff()
+void Iguana::jumpPrevDiff()
 {
 	QEditor *m_edit = currentEditor();
 	if (!m_edit)
@@ -11506,7 +11506,7 @@ void Texstudio::jumpPrevDiff()
 	}
 }
 
-void Texstudio::removeDiffMarkers(bool theirs)
+void Iguana::removeDiffMarkers(bool theirs)
 {
 	LatexDocument *doc = documents.currentDocument;
     if (!doc || !doc->mayHaveDiffMarkers)
@@ -11522,7 +11522,7 @@ void Texstudio::removeDiffMarkers(bool theirs)
 
 }
 
-void Texstudio::editChangeDiff(QPoint pt)
+void Iguana::editChangeDiff(QPoint pt)
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11539,7 +11539,7 @@ void Texstudio::editChangeDiff(QPoint pt)
 	edView->documentContentChanged(0, edView->document->lines());
 }
 
-void Texstudio::fileDiffMerge()
+void Iguana::fileDiffMerge()
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11551,7 +11551,7 @@ void Texstudio::fileDiffMerge()
 	edView->documentContentChanged(0, edView->document->lines());
 }
 
-LatexDocument *Texstudio::diffLoadDocHidden(QString f)
+LatexDocument *Iguana::diffLoadDocHidden(QString f)
 {
 	QString f_real = f;
 #ifdef Q_OS_WIN32
@@ -11594,7 +11594,7 @@ LatexDocument *Texstudio::diffLoadDocHidden(QString f)
 	return doc;
 }
 
-void Texstudio::fileDiff3()
+void Iguana::fileDiff3()
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11619,7 +11619,7 @@ void Texstudio::fileDiff3()
 	showDiff3(files.first(), basefiles.first());
 }
 
-void Texstudio::showDiff3(const QString file1, const QString file2)
+void Iguana::showDiff3(const QString file1, const QString file2)
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11646,7 +11646,7 @@ void Texstudio::showDiff3(const QString file1, const QString file2)
  * \param word
  * \return List of potential completion words, unsorted
  */
-QSet<QString> Texstudio::collectPotentialCompletionWords(const QDocument *doc,const QString &word) const
+QSet<QString> Iguana::collectPotentialCompletionWords(const QDocument *doc,const QString &word) const
 {
     QSet<QString> words;
 
@@ -11726,7 +11726,7 @@ QSet<QString> Texstudio::collectPotentialCompletionWords(const QDocument *doc,co
     return words;
 }
 
-void Texstudio::declareConflictResolved()
+void Iguana::declareConflictResolved()
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11743,7 +11743,7 @@ void Texstudio::declareConflictResolved()
 /*!
  * \brief mark svn conflict of current file resolved
  */
-void Texstudio::fileInConflictShowDiff()
+void Iguana::fileInConflictShowDiff()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
 	REQUIRE(mEditor);
@@ -11769,7 +11769,7 @@ void Texstudio::fileInConflictShowDiff()
 	}
 }
 
-bool Texstudio::checkSVNConflicted(bool substituteContents)
+bool Iguana::checkSVNConflicted(bool substituteContents)
 {
 	LatexDocument *doc = documents.currentDocument;
 	if (!doc)
@@ -11824,10 +11824,10 @@ QThread *lastCrashedThread = nullptr;
 
 void recover()
 {
-	Texstudio::recoverFromCrash();
+	Iguana::recoverFromCrash();
 }
 
-void Texstudio::recoverFromCrash()
+void Iguana::recoverFromCrash()
 {
 	bool wasLoop;
 	QString backtraceFilename;
@@ -11879,18 +11879,18 @@ void Texstudio::recoverFromCrash()
 
 
 	QMessageBox *mb = new QMessageBox();  //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or continuing a paused loop can crash
-	mb->setWindowTitle(tr("TeXstudio Emergency"));
+	mb->setWindowTitle(tr("Iguana Emergency"));
 	QString backtraceMsg;
 	if (QFileInfo(backtraceFilename).exists()) {
 		qDebug() << backtraceFilename;
 		backtraceMsg = tr("A backtrace was written to\n%1\nPlease provide this file if you send a bug report.\n\n").arg(QDir::toNativeSeparators(backtraceFilename));
 	}
 	if (!wasLoop) {
-        mb->setText(tr( "TeXstudio has CRASHED due to a %1.\n\n%2Do you want to keep TeXstudio running? This may cause data corruption.").arg(name,backtraceMsg));
+        mb->setText(tr( "Iguana has CRASHED due to a %1.\n\n%2Do you want to keep Iguana running? This may cause data corruption.").arg(name,backtraceMsg));
 		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("No, kill the program"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
 	} else {
-		mb->setText(tr( "TeXstudio has been paused due to a possible endless loop.\n\n%1Do you want to keep the program running? This may cause data corruption.").arg(backtraceMsg));
+		mb->setText(tr( "Iguana has been paused due to a possible endless loop.\n\n%1Do you want to keep the program running? This may cause data corruption.").arg(backtraceMsg));
 		mb->setDefaultButton(mb->addButton(tr("Yes, stop the loop and try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("Yes, continue the loop"), QMessageBox::RejectRole);
 		mb->addButton(tr("No, kill the program"), QMessageBox::DestructiveRole);
@@ -11957,7 +11957,7 @@ void Texstudio::recoverFromCrash()
 	exit(0);
 }
 
-void Texstudio::threadCrashed()
+void Iguana::threadCrashed()
 {
 	bool wasLoop;
 	QString signal = getLastCrashInformation(wasLoop);
@@ -11970,34 +11970,34 @@ void Texstudio::threadCrashed()
 
 	fprintf(stderr, "crashed with signal %s in thread %s\n", qPrintable(signal), qPrintable(threadName));
 
-	int btn = QMessageBox::warning(this, tr("TeXstudio Emergency"),
-                                   tr("TeXstudio has CRASHED due to a %1 in thread %2.\nThe thread has been stopped.\nDo you want to keep TeXstudio running? This may cause data corruption.").arg(signal,threadId),
+	int btn = QMessageBox::warning(this, tr("Iguana Emergency"),
+                                   tr("Iguana has CRASHED due to a %1 in thread %2.\nThe thread has been stopped.\nDo you want to keep Iguana running? This may cause data corruption.").arg(signal,threadId),
                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes);
     if (btn == QMessageBox::No) {
 		killAtCrashedThread = thread;
 		ThreadBreaker::sleep(10);
-		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
+		QMessageBox::warning(this, tr("Iguana Emergency"), tr("I tried to die, but nothing happened."));
 	}
 }
 
-void Texstudio::iamalive()
+void Iguana::iamalive()
 {
 	Guardian::calm();
 }
 
-void Texstudio::slowOperationStarted()
+void Iguana::slowOperationStarted()
 {
 	Guardian::instance()->slowOperationStarted();
 }
 
-void Texstudio::slowOperationEnded()
+void Iguana::slowOperationEnded()
 {
 	Guardian::instance()->slowOperationEnded();
 }
 /*!
  * \brief check current latex install as it is visible from txs
  */
-void Texstudio::checkLatexInstall()
+void Iguana::checkLatexInstall()
 {
 
 	QString result;
@@ -12048,7 +12048,7 @@ void Texstudio::checkLatexInstall()
 	result += "Program call: " + QCoreApplication::arguments().join(" ") + "\n";
 	result += "Setting file: " + QDir::toNativeSeparators(configManager.configFileName) + "\n";
 
-	result += "\nCommand configuration in TeXstudio:\n";
+	result += "\nCommand configuration in Iguana:\n";
 	const CommandMapping &cmds = buildManager.getAllCommands();
 	foreach (const CommandInfo &ci, cmds)
 		result += QString("    %1 (%2)%3: %4\n").arg(ci.displayName).arg(ci.id).arg(ci.rerunCompiler ? " (r)" : "").arg(ci.commandLine);
@@ -12067,7 +12067,7 @@ void Texstudio::checkLatexInstall()
  *
  * This function is for debugging.
  */
-void Texstudio::checkCWLs()
+void Iguana::checkCWLs()
 {
 	bool newFile = currentEditor();
 	if (!newFile) fileNew();
@@ -12138,7 +12138,7 @@ void Texstudio::checkCWLs()
 /*!
  * \brief check if Language tool is set-up correctly and running
  */
-void Texstudio::checkLanguageTool()
+void Iguana::checkLanguageTool()
 {
 
     QString result;
@@ -12225,7 +12225,7 @@ void Texstudio::checkLanguageTool()
  * \param package package name
  * \param command latex command to search within that documentation
  */
-void Texstudio::openInternalDocViewer(QString package, const QString command)
+void Iguana::openInternalDocViewer(QString package, const QString command)
 {
 #ifndef NO_POPPLER_PREVIEW
 	runInternalCommand("txs:///view-pdf-internal", QFileInfo(package), "--embedded");
@@ -12251,7 +12251,7 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
  * This function uses information which is generated by the syntax checker.
  * As the syntaxchecker works asynchronously, a small delay between typing and functioning of this action is mandatory though that delay is probably too small for any user to notice.
  */
-void Texstudio::closeEnvironment()
+void Iguana::closeEnvironment()
 {
 	LatexEditorView *edView = currentEditorView();
 	if (!edView)
@@ -12374,7 +12374,7 @@ void Texstudio::closeEnvironment()
  * \brief make embedded viewer larger so that it covers the text edit
  * If the viewer is not embedded, no action is performed.
  */
-void Texstudio::enlargeEmbeddedPDFViewer()
+void Iguana::enlargeEmbeddedPDFViewer()
 {
 #ifndef NO_POPPLER_PREVIEW
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
@@ -12400,7 +12400,7 @@ void Texstudio::enlargeEmbeddedPDFViewer()
  * \brief set size of embedded viewer back to previous value
  * \param preserveConfig note change in config
  */
-void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
+void Iguana::shrinkEmbeddedPDFViewer(bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
     centralVSplitter->show();
@@ -12425,7 +12425,7 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 #endif
 }
 
-void Texstudio::setEnabledMenusEnlargeShrink(bool enabledEnlarge, bool enabledShrink)
+void Iguana::setEnabledMenusEnlargeShrink(bool enabledEnlarge, bool enabledShrink)
 {
 	QAction *act=configManager.getManagedAction("main/view/enlargePDF");
 	act->setEnabled(enabledEnlarge);
@@ -12433,7 +12433,7 @@ void Texstudio::setEnabledMenusEnlargeShrink(bool enabledEnlarge, bool enabledSh
 	act->setEnabled(enabledShrink);
 }
 
-void Texstudio::showStatusbar()
+void Iguana::showStatusbar()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act) {
@@ -12446,7 +12446,7 @@ void Texstudio::showStatusbar()
  *
  * This is called from the editor search panel by pressing '+'.
  */
-void Texstudio::showExtendedSearch()
+void Iguana::showExtendedSearch()
 {
 	LatexEditorView *edView = currentEditorView();
 	if (!edView) return;
@@ -12473,7 +12473,7 @@ void Texstudio::showExtendedSearch()
  * The change is instantly performed from the config dialog as visual feed-back.
  * \param value size in points
  */
-void Texstudio::changeIconSize(int value)
+void Iguana::changeIconSize(int value)
 {
 	// adapt icon size to dpi
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
@@ -12495,7 +12495,7 @@ void Texstudio::changeIconSize(int value)
  * The change is instantly performed from the config dialog as visual feed-back.
  * \param value size in points
  */
-void Texstudio::changeSecondaryIconSize(int value)
+void Iguana::changeSecondaryIconSize(int value)
 {
 	// adapt icon size to dpi
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
@@ -12520,7 +12520,7 @@ void Texstudio::changeSecondaryIconSize(int value)
  * \brief change icon size of embbedded pdf viewer toolbar
  * \param value
  */
-void Texstudio::changePDFIconSize(int value){
+void Iguana::changePDFIconSize(int value){
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
@@ -12541,7 +12541,7 @@ void Texstudio::changePDFIconSize(int value){
  * \param value size in points
  * \param changePanel change to a symbolgrid in sidepanel in order to make the change directly visible
  */
-void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
+void Iguana::changeSymbolGridIconSize(int value, bool changePanel)
 {
 	// adapt icon size to dpi
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
@@ -12562,7 +12562,7 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
  * \param message
  */
 
-void Texstudio::LTErrorMessage(QString message){
+void Iguana::LTErrorMessage(QString message){
 	// adapt icon size to dpi
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
 	double scale=dpi/96;
@@ -12580,7 +12580,7 @@ void Texstudio::LTErrorMessage(QString message){
  * i.e. change form light- to dark-mode and vice-versa
  * \param palette new palette
  */
-void Texstudio::paletteChanged(const QPalette &palette){
+void Iguana::paletteChanged(const QPalette &palette){
     if(ignoreSystemPalette) return; // ignore palette changes from OS (dark/ligh mode switch)
     bool oldDarkMode=darkMode;
     bool newDarkMode=configManager.systemUsesDarkMode(palette);
@@ -12622,7 +12622,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
  * i.e. change form light- to dark-mode and vice-versa
  * \param palette new palette
  */
-void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
+void Iguana::colorSchemeChanged(Qt::ColorScheme colorScheme)
 {
     if(ignoreSystemPalette) return; // ignore palette changes from OS (dark/ligh mode switch)
     // only style Fusion & Windows support autochange
@@ -12661,13 +12661,13 @@ void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
 /*!
  * \brief open webpage with txs issue submit
  */
-void Texstudio::openBugsAndFeatures() {
-	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
+void Iguana::openBugsAndFeatures() {
+	QDesktopServices::openUrl(QUrl("https://github.com/iguana-org/iguana/issues/"));
 }
 /*!
  * \brief manipulate QMainWindowTabBar which contains the tabbed QDockWidget to only show icons
  */
-void Texstudio::maniplateDockingTabBars() {
+void Iguana::maniplateDockingTabBars() {
     QList<QTabBar*>lst=this->findChildren<QTabBar*>(QString(),Qt::FindDirectChildrenOnly);
     const double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     const double scale=dpi/96;
@@ -12693,14 +12693,14 @@ void Texstudio::maniplateDockingTabBars() {
  * \brief add widget as a dock on the left side
  * register icon and name.
  */
-QDockWidget *Texstudio::addDock(const QString &name,const QString &iconName,const QString &title,QWidget *wgt)
+QDockWidget *Iguana::addDock(const QString &name,const QString &iconName,const QString &title,QWidget *wgt)
 {
     QDockWidget *dock = new QDockWidget("", this);
     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     dock->setFeatures(QDockWidget::DockWidgetMovable);
     dock->setWidget(wgt);
     dock->setObjectName(name);
-    connect(dock,&QDockWidget::visibilityChanged,this,&Texstudio::updateDockVisibility);
+    connect(dock,&QDockWidget::visibilityChanged,this,&Iguana::updateDockVisibility);
     QLabel *lbl=new QLabel(title);
     dock->setTitleBarWidget(lbl);
     m_dockIcons.insert(name,iconName);
@@ -12719,7 +12719,7 @@ QDockWidget *Texstudio::addDock(const QString &name,const QString &iconName,cons
  * Former leftPanel
  * \param visible
  */
-void Texstudio::toggleDocks(bool visible)
+void Iguana::toggleDocks(bool visible)
 {
     QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
     const QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
@@ -12756,7 +12756,7 @@ void Texstudio::toggleDocks(bool visible)
 /*!
  * \brief reset docks to default order (tabified,left hand side)
  */
-void Texstudio::resetDocks()
+void Iguana::resetDocks()
 {
     addDockWidget(Qt::LeftDockWidgetArea, m_firstDockWidget);
     foreach(QDockWidget* dw,m_docksOrder){
@@ -12768,7 +12768,7 @@ void Texstudio::resetDocks()
  * \brief toggle visibility of dock
  * search for dock with name and toggle visibility
  */
-void Texstudio::toggleDockVisibility()
+void Iguana::toggleDockVisibility()
 {
     QAction *act = qobject_cast<QAction *>(sender());
     bool visible=act->isChecked();
@@ -12790,7 +12790,7 @@ void Texstudio::toggleDockVisibility()
 
 }
 
-void Texstudio::updateDockVisibility(bool visible)
+void Iguana::updateDockVisibility(bool visible)
 {
     QDockWidget *dock = qobject_cast<QDockWidget *>(sender());
     if (dock) {
@@ -12814,7 +12814,7 @@ void Texstudio::updateDockVisibility(bool visible)
  * This is checked here.
  * \return true if no dock is tabified
  */
-bool Texstudio::checkDockSpread()
+bool Iguana::checkDockSpread()
 {
     QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
     QList<QDockWidget*>tabifiedWidgets;
@@ -12826,7 +12826,7 @@ bool Texstudio::checkDockSpread()
 /*!
     \brief call updateTOC & updateStructureLocally as only one call works with a signal
  */
-void Texstudio::updateTOCs(){
+void Iguana::updateTOCs(){
     if(mDisableTOCupdates) return; // skip TOC update during multi file load /session restore
     updateTOC();
     updateStructureLocally();
@@ -12836,7 +12836,7 @@ void Texstudio::updateTOCs(){
  * \brief update global TOC and *all* local structure view
  * Otherwise only current doc is updated
  */
-void Texstudio::updateAllTOCs()
+void Iguana::updateAllTOCs()
 {
     updateTOC();
     updateStructureLocally(true);
@@ -12846,7 +12846,7 @@ void Texstudio::updateAllTOCs()
  * \brief Collect structure info from all subfiles and create a toplevel TOC
  *
  */
-void Texstudio::updateTOC(){
+void Iguana::updateTOC(){
     if(!topTOCDockWidget->property("isVisible").toBool()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
     StructureEntry *selectedEntry=nullptr;
@@ -12922,7 +12922,7 @@ void Texstudio::updateTOC(){
  * \param old  previously marked section of which the mark needs to be removed
  * \param selected  selected section
  */
-void Texstudio::updateCurrentPosInTOC(StructureEntry *old, StructureEntry *selected)
+void Iguana::updateCurrentPosInTOC(StructureEntry *old, StructureEntry *selected)
 {
     QTreeWidgetItem* root=topTOCTreeWidget->topLevelItem(0);
     if(root){
@@ -12935,7 +12935,7 @@ void Texstudio::updateCurrentPosInTOC(StructureEntry *old, StructureEntry *selec
  * \param old  previously marked section of which the mark needs to be removed
  * \param selected  selected section
  */
-void Texstudio::updateCurrentPosInStructure(StructureEntry *old, StructureEntry *selected)
+void Iguana::updateCurrentPosInStructure(StructureEntry *old, StructureEntry *selected)
 {
     QTreeWidgetItem* root=nullptr;
     for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
@@ -12961,7 +12961,7 @@ void Texstudio::updateCurrentPosInStructure(StructureEntry *old, StructureEntry 
  * \param old  previously marked section of which the mark needs to be removed
  * \param selected  selected section
  */
-void Texstudio::updateCurrentPosInTOCHelper(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected,bool tocMode)
+void Iguana::updateCurrentPosInTOCHelper(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected,bool tocMode)
 {
     const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
     if(!root){
@@ -13002,7 +13002,7 @@ void Texstudio::updateCurrentPosInTOCHelper(QTreeWidgetItem* root, StructureEntr
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,QList<QTreeWidgetItem*> *biblioList,int currentColor) {
+bool Iguana::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,QList<QTreeWidgetItem*> *biblioList,int currentColor) {
     bool elementsAdded=false;
     bool deleteVisitedDocs=false;
     if (!visited) {
@@ -13118,7 +13118,7 @@ bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> 
  * \brief sync expanded state to structure entry
  * \param item
  */
-void Texstudio::syncExpanded(QTreeWidgetItem *item){
+void Iguana::syncExpanded(QTreeWidgetItem *item){
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se) {
         // Check if this is an unfilled document root item; if so, populate it just-in-time
@@ -13137,7 +13137,7 @@ void Texstudio::syncExpanded(QTreeWidgetItem *item){
  * \brief sync collapsed state to structure entry
  * \param item
  */
-void Texstudio::syncCollapsed(QTreeWidgetItem *item){
+void Iguana::syncCollapsed(QTreeWidgetItem *item){
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se) return;
     se->expanded=false;
@@ -13149,7 +13149,7 @@ void Texstudio::syncCollapsed(QTreeWidgetItem *item){
  * \brief custom context menu for structureWidget
  * \param pos mouse position when clicked
  */
-void Texstudio::customMenuStructure(const QPoint &pos){
+void Iguana::customMenuStructure(const QPoint &pos){
     QTreeWidget* w = qobject_cast<QTreeWidget*>(sender());
     QTreeWidgetItem *item = w->itemAt(pos);
     if(!item) return;
@@ -13264,7 +13264,7 @@ void Texstudio::customMenuStructure(const QPoint &pos){
 /*!
  * \brief create label from structure/toc context menu
  */
-void Texstudio::createLabelFromAction()
+void Iguana::createLabelFromAction()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13323,7 +13323,7 @@ void Texstudio::createLabelFromAction()
     edView->editor->setCursor(cur);
 }
 
-void Texstudio::closeDocument()
+void Iguana::closeDocument()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13333,7 +13333,7 @@ void Texstudio::closeDocument()
     else if (document == documents.masterDocument) structureContextMenuToggleMasterDocument(document);
 }
 
-void Texstudio::toggleMasterDocument()
+void Iguana::toggleMasterDocument()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13346,7 +13346,7 @@ void Texstudio::toggleMasterDocument()
  * context menu action: Select the selected section and copy it to the clipboard.
  * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
  */
-void Texstudio::editSectionCopy()
+void Iguana::editSectionCopy()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13375,7 +13375,7 @@ void Texstudio::editSectionCopy()
  * context menu action: Cut the selected section to the clipboard.
  * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
  */
-void Texstudio::editSectionCut()
+void Iguana::editSectionCut()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13404,7 +13404,7 @@ void Texstudio::editSectionCut()
  * context menu action: Paste the clipboard contents before the selected section.
  * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
  */
-void Texstudio::editSectionPasteBefore()
+void Iguana::editSectionPasteBefore()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13429,7 +13429,7 @@ void Texstudio::editSectionPasteBefore()
  * context menu action: Paste the clipboard contents after the selected section.
  * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
  */
-void Texstudio::editSectionPasteAfter()
+void Iguana::editSectionPasteAfter()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13466,7 +13466,7 @@ void Texstudio::editSectionPasteAfter()
  *     \chapter -> \section
  * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
  */
-void Texstudio::editIndentSection()
+void Iguana::editIndentSection()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13510,7 +13510,7 @@ void Texstudio::editIndentSection()
  *     \section -> \chapter
  * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
  */
-void Texstudio::editUnIndentSection()
+void Iguana::editUnIndentSection()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13550,7 +13550,7 @@ void Texstudio::editUnIndentSection()
 /*! \brief move cursor to position given in calling action (TOC/structure context menu)
  *
  */
-void Texstudio::gotoLineFromAction()
+void Iguana::gotoLineFromAction()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13570,7 +13570,7 @@ void Texstudio::gotoLineFromAction()
  * This approach avoid the model/view which repeatedly led to crashes because the view component caches info from the actual model and is not kept up-to-date properly
  *
  */
-void Texstudio::updateStructureLocally(bool updateAll, LatexDocument *specificDoc){
+void Iguana::updateStructureLocally(bool updateAll, LatexDocument *specificDoc){
     if(!structureDockWidget->property("isVisible").toBool()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root= nullptr;
 
@@ -13810,7 +13810,7 @@ void Texstudio::updateStructureLocally(bool updateAll, LatexDocument *specificDo
  * \param se root structureentry
  * \param rootVector
  */
-void Texstudio::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList, QList<QTreeWidgetItem *> *blockList) {
+void Iguana::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList, QList<QTreeWidgetItem *> *blockList) {
     const QColor beyondEndColor = darkMode ? QColor(255, 170, 0)  : QColor(255, 170, 0);
     const QColor inAppendixColor= darkMode ? QColor(0, 102,   0): QColor(200, 230, 200);
 
@@ -13882,7 +13882,7 @@ void Texstudio::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *
 /*!
  * \brief check all currently defined shortcuts for main window for duplicates
  */
-void Texstudio::checkForShortcutDuplicate()
+void Iguana::checkForShortcutDuplicate()
 {
     QHash<QString, QKeySequence>  ms=configManager.managedMenuShortcuts;
     QMultiMap<QString,QString> shortcuts;
@@ -13897,7 +13897,7 @@ void Texstudio::checkForShortcutDuplicate()
 }
 #endif
 
-void Texstudio::openAllRelatedDocuments()
+void Iguana::openAllRelatedDocuments()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13924,7 +13924,7 @@ void Texstudio::openAllRelatedDocuments()
     }
 }
 
-void Texstudio::closeAllRelatedDocuments()
+void Iguana::closeAllRelatedDocuments()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13946,7 +13946,7 @@ void Texstudio::closeAllRelatedDocuments()
  *
  * Called from structure view
  */
-void Texstudio::copyFileName()
+void Iguana::copyFileName()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13962,7 +13962,7 @@ void Texstudio::copyFileName()
  *
  * Called from structure view
  */
-void Texstudio::copyFilePath()
+void Iguana::copyFilePath()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13978,7 +13978,7 @@ void Texstudio::copyFilePath()
  * Called from structure view
  */
 
-void Texstudio::showInGraphicalShell_()
+void Iguana::showInGraphicalShell_()
 {
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
@@ -13993,7 +13993,7 @@ void Texstudio::showInGraphicalShell_()
  * \brief toggle single/multiple documents view in structureWidget
  */
 
-void Texstudio::toggleSingleDocMode()
+void Iguana::toggleSingleDocMode()
 {
     bool mode = configManager.structureShowSingleDoc;
     configManager.structureShowSingleDoc= !mode;
@@ -14007,7 +14007,7 @@ void Texstudio::toggleSingleDocMode()
   - there are multiple labels on one line (always the first label is chosen)
   - the label is more than one line after the entry (label not detected)
 */
-StructureEntry* Texstudio::labelForStructureEntry(const StructureEntry *entry)
+StructureEntry* Iguana::labelForStructureEntry(const StructureEntry *entry)
 {
     REQUIRE_RET(entry && entry->document, nullptr );
     QDocumentLineHandle *dlh = entry->getLineHandle();
@@ -14028,7 +14028,7 @@ StructureEntry* Texstudio::labelForStructureEntry(const StructureEntry *entry)
 /*!
  * \brief expand item and subitems in structureWidget
  */
-void Texstudio::expandSubitems()
+void Iguana::expandSubitems()
 {
     QTreeWidgetItem *item = nullptr;
     if(topTOCTreeWidget->isVisible()){
@@ -14042,7 +14042,7 @@ void Texstudio::expandSubitems()
 /*!
  * \brief collapse item and subitems in structureWidget
  */
-void Texstudio::collapseSubitems()
+void Iguana::collapseSubitems()
 {
     QTreeWidgetItem *item = nullptr;
     if(topTOCTreeWidget->isVisible()){

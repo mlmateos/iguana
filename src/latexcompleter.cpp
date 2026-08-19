@@ -1481,7 +1481,7 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget *>(parent()))
         QMessageBox::critical(nullptr, "Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n") +
-		                      QString("Please report it ASAP to the bug tracker on texstudio.sf.net and check if your computer is going to explode!\n") +
+		                      QString("Please report it ASAP to the bug tracker on iguana.sf.net and check if your computer is going to explode!\n") +
 		                      QString("(please report the bug *before* going to a safe place, you could rescue others)"), QMessageBox::Ok);
 	list = new QListView(qobject_cast<QWidget *>(parent()));
 	listModel = new CompletionListModel(list);

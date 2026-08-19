@@ -18,7 +18,7 @@
 #include "qeditor.h"
 //#include "latexeditorview.h"
 class BuildManager;
-class Texstudio;
+class Iguana;
 class ProcessX;
 
 class LatexEditorView;
@@ -35,7 +35,7 @@ public:
 	void setEditorView(LatexEditorView *edView);
 
 	static BuildManager *buildManager;
-	static Texstudio *app;
+	static Iguana *app;
 
 	QStringList triggerMatches;
 	int triggerId;

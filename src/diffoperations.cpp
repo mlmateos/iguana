@@ -23,7 +23,7 @@ void diffDocs(LatexDocument *doc, LatexDocument *doc2, bool dontAddLines)
 	} catch (const QString &s) {
 		error = s;
 	} catch (...) {
-		error = LatexDocument::tr("Unknown error. Potential crash. You are advised to restart TeXstudio");
+		error = LatexDocument::tr("Unknown error. Potential crash. You are advised to restart Iguana");
 	}
 
 	if (!error.isEmpty()) {

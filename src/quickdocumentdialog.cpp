@@ -423,7 +423,7 @@ void QuickDocumentDialog::accept()
 
 void QuickDocumentDialog::geometryUnitsChanged()
 {
-	// it was decided not to recalculate number part (s. https://github.com/texstudio-org/texstudio/pull/3156) and to not use suffix in spinBoxGeometry...
+	// it was decided not to recalculate number part (s. https://github.com/iguana-org/iguana/pull/3156) and to not use suffix in spinBoxGeometry...
 	geometryValuesChanged();
 }
 

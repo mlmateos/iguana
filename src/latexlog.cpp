@@ -39,7 +39,7 @@ QVariant LatexLogModel::data(const QModelIndex &index, int role) const
 		case LT_BADBOX:
 			return tr("bad box");
 		default:
-			return QVariant(); //return Texstudio::tr("unknown");
+			return QVariant(); //return Iguana::tr("unknown");
 		}
 	case 2: {
 		int line = log.at(index.row()).oldline;

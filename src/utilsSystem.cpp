@@ -136,8 +136,8 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 	if (!dn.startsWith('/') && !dn.startsWith(QDir::separator())) dn = "/" + dn; //add / at beginning
 	searchFiles << ":" + dn; //resource fall back
 	searchFiles.append(additionalPreferredPaths);
-	searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio"; //appimage relative path
-    searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/texstudio"; //go-appimage relative path
+	searchFiles << QCoreApplication::applicationDirPath() + "/../share/iguana"; //appimage relative path
+    searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/iguana"; //go-appimage relative path
 	searchFiles << QCoreApplication::applicationDirPath() + dn; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
 	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
@@ -155,8 +155,8 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 #endif
 
 #if defined( Q_WS_X11 ) || defined (Q_OS_LINUX)
-    searchFiles << PREFIX"/" CMAKE_INSTALL_DATADIR"/texstudio" + dn; //X_11
-	searchFiles << PREFIX"/share/texstudio" + dn; //X_11
+    searchFiles << PREFIX"/" CMAKE_INSTALL_DATADIR"/iguana" + dn; //X_11
+	searchFiles << PREFIX"/share/iguana" + dn; //X_11
 #endif
 #ifdef Q_OS_MAC
 	CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
@@ -198,13 +198,13 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
-    searchFiles << PREFIX"/" CMAKE_INSTALL_DATADIR "/texstudio"; //CMAKE definitin
-	searchFiles << PREFIX"/share/texstudio/"; //X_11
-	searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
-    searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/texstudio/"; // relative path for appimage
-    searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/doc/texstudio/"; // relative path for appimage
-	if (fileName.endsWith(".html")) searchFiles << PREFIX"/share/doc/texstudio/html/"; //for Debian package
-	searchFiles << PREFIX"/share/doc/texstudio/"; //for Debian package
+    searchFiles << PREFIX"/" CMAKE_INSTALL_DATADIR "/iguana"; //CMAKE definitin
+	searchFiles << PREFIX"/share/iguana/"; //X_11
+	searchFiles << QCoreApplication::applicationDirPath() + "/../share/iguana/"; // relative path for appimage
+    searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/iguana/"; // relative path for appimage
+    searchFiles << QCoreApplication::applicationDirPath() + "/../usr/share/doc/iguana/"; // relative path for appimage
+	if (fileName.endsWith(".html")) searchFiles << PREFIX"/share/doc/iguana/html/"; //for Debian package
+	searchFiles << PREFIX"/share/doc/iguana/"; //for Debian package
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 	searchFiles << QLibraryInfo::path(QLibraryInfo::TranslationsPath) + "/"; //for systemwise qt_*.qm
 #else
@@ -660,9 +660,9 @@ void showInGraphicalShell(QWidget *parent, const QString &pathIn)
 	QFileInfo fiExplorer(QProcessEnvironment::systemEnvironment().value("WINDIR"), "explorer.exe");
 	if (!fiExplorer.exists()) {
 		QMessageBox::warning(parent,
-							 QApplication::translate("Texstudio",
+							 QApplication::translate("Iguana",
 													 "Launching Windows Explorer Failed"),
-							 QApplication::translate("Texstudio",
+							 QApplication::translate("Iguana",
 													 "Could not find explorer.exe in path to launch Windows Explorer."));
 		return;
 	}
@@ -712,11 +712,11 @@ void showInGraphicalShell(QWidget *parent, const QString &pathIn)
 QString msgGraphicalShellAction()
 {
 #if defined(Q_OS_WIN)
-	return QApplication::translate("Texstudio", "Show in Explorer");
+	return QApplication::translate("Iguana", "Show in Explorer");
 #elif defined(Q_OS_MAC)
-	return QApplication::translate("Texstudio", "Show in Finder");
+	return QApplication::translate("Iguana", "Show in Finder");
 #else
-	return QApplication::translate("Texstudio", "Show Containing Folder");
+	return QApplication::translate("Iguana", "Show Containing Folder");
 #endif
 }
 /*!

@@ -509,7 +509,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Spell/UsedLanguages", &previouslyUsedDictionaries, QStringList{"en_US","fr_FR","de_DE"}, nullptr);
 
     //macro repository
-    registerOption("Macros/RepositoryURL", &URLmacroRepository, "https://api.github.com/repos/texstudio-org/texstudio-macro/contents/", nullptr);
+    registerOption("Macros/RepositoryURL", &URLmacroRepository, "https://api.github.com/repos/iguana-org/iguana-macro/contents/", nullptr);
 
 	//updates
 	registerOption("Update/AutoCheck", &autoUpdateCheck, true, &pseudoDialog->checkBoxAutoUpdateCheck);
@@ -559,7 +559,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/MonitorFilesForExternalChanges", &editorConfig->monitorFilesForExternalChanges, true, &pseudoDialog->checkBoxMonitorFilesForExternalChanges);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);
 #ifdef Q_OS_WIN
-	// QSaveFile does not work with dropbox on windows: https://sourceforge.net/p/texstudio/bugs/1933/, https://bugreports.qt.io/browse/QTBUG-57299
+	// QSaveFile does not work with dropbox on windows: https://sourceforge.net/p/iguana/bugs/1933/, https://bugreports.qt.io/browse/QTBUG-57299
 	// We disable usage of QSaveFile and revert to our own file saving mechanism until the problem gets fixed.
 	// Note: When deleting this, also delete ui.checkBoxUseQSaveWrite->setVisible(false);
 	editorConfig->useQSaveFile = false;
@@ -833,7 +833,7 @@ QString ConfigManager::iniPath()
 	if (!persistentConfig) {
 		QString configDir = configDirOverride;
 		if (configDir.isEmpty()) configDir = portableConfigDir();
-		return configDir + "/texstudio.ini";
+		return configDir + "/iguana.ini";
 	}
 	return configFileName;
 }
@@ -856,7 +856,7 @@ QSettings *ConfigManager::newQSettings()
 	if (isPortableMode()) {
 		return new QSettings(iniPath(), QSettings::IniFormat);
 	} else {
-		return new QSettings(QSettings::IniFormat, QSettings::UserScope, "texstudio", "texstudio");
+		return new QSettings(QSettings::IniFormat, QSettings::UserScope, "iguana", "iguana");
 	}
 }
 
@@ -934,11 +934,11 @@ QSettings *ConfigManager::readSettings(bool reread)
 #endif
 			fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
                           << "/usr/share/hunspell" << "/usr/share/myspell"
-                          << parseDir("[txs-app-dir]/../share/texstudio")
-                          << parseDir("[txs-app-dir]/../usr/share/texstudio") ;
+                          << parseDir("[txs-app-dir]/../share/iguana")
+                          << parseDir("[txs-app-dir]/../usr/share/iguana") ;
 #endif
 #ifdef Q_OS_MAC
-            fallBackPaths << parseDir("[txs-app-dir]/../Resources") << "/Applications/texstudio.app/Contents/Resources";
+            fallBackPaths << parseDir("[txs-app-dir]/../Resources") << "/Applications/iguana.app/Contents/Resources";
 #endif
 			dic = findResourceFile(QString(QLocale::system().name()) + ".dic", true, temp, fallBackPaths);
             if (dic == "") dic = findResourceFile("en_US.dic", true, temp, fallBackPaths);
@@ -975,8 +975,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 		QStringList fallBackPaths;
 #ifdef Q_OS_LINUX
         fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes"
-                      << parseDir("[txs-app-dir]/../share/texstudio")
-                      << parseDir("[txs-app-dir]/../usr/share/texstudio") ;
+                      << parseDir("[txs-app-dir]/../share/iguana")
+                      << parseDir("[txs-app-dir]/../usr/share/iguana") ;
 #endif
 		thesaurus_database = findResourceFile("th_" + QString(QLocale::system().name()) + "_v2.dat", true, preferredPaths, fallBackPaths);
 		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_US_v2.dat", true, preferredPaths, fallBackPaths);
@@ -1644,7 +1644,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	foreach (const ManagedToolBar &mtb, managedToolBars) {
 		Q_ASSERT(mtb.toolbar);
 		confDlg->customizableToolbars.append(mtb.actualActions);
-		confDlg->ui.comboBoxToolbars->addItem(qApp->translate("Texstudio", qPrintable(mtb.name)));
+		confDlg->ui.comboBoxToolbars->addItem(qApp->translate("Iguana", qPrintable(mtb.name)));
 	}
 	confDlg->allMenus = managedMenus;
 	confDlg->standardToolbarMenus = QList<QMenu *>() << getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/macros");
@@ -2036,7 +2036,7 @@ void ConfigManager::activateInternalViewer(bool activated)
 	QLineEdit *le = pdflatexEdit;
 	REQUIRE(le);
 	if (le->text().contains("synctex")) return;
-	if (!UtilsUi::txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?")))
+	if (!UtilsUi::txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall Iguana do it now?")))
 		return;
 	QString zw = le->text();
 	zw.replace("pdflatex ", "pdflatex -synctex=1 ", Qt::CaseSensitive);
@@ -2214,7 +2214,7 @@ void ConfigManager::updateUserMacroMenu()
         i++;
     }
     recreatedMenu->addSeparator();
-    newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
+    newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Iguana", "Edit &Macros..."), SLOT(editMacros()));
     // update quote replacement
 	const int autoQuoteCount = 10;
 	if (replaceQuotes >= 1 && replaceQuotes < autoQuoteCount) {
