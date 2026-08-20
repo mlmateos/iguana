@@ -13,11 +13,10 @@
 
 #include "mostQtHeaders.h"
 /*! \mainpage TexStudio
- *
- * \see Iguana
- * \see PDFDocument
- */
-
+*
+\see Iguana
+\see PDFDocument
+*/
 #include "iguana.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
@@ -25,7 +24,7 @@
 #include "utilsVersion.h"
 #include <qtsingleapplication.h>
 #include <QSplashScreen>
-
+#include <QThread>          // <--- ¡AGREGA ESTA LÍNEA!
 #ifdef CPP_CRASH_HANDLER
 #include <signal.h>
 #endif
@@ -75,23 +74,30 @@ TexstudioApp::TexstudioApp(QString &id, int &argc, char **argv) : QtSingleApplic
 
 void TexstudioApp::init(QStringList &cmdLine)
 {
-	QPixmap pixmap(":/images/splash.png");
-	QSplashScreen *splash = new QSplashScreen(pixmap);
-	splash->show();
-	processEvents();
+    // 1. Mostrar el splash con el logo de Iguana
+    QPixmap pixmap(":/images/logo128.png"); 
+    QSplashScreen *splash = new QSplashScreen(pixmap, Qt::WindowStaysOnTopHint);
+    splash->show();
+    QApplication::processEvents();
 
+    // 2. ¡CRUCIAL! Crear la ventana principal (esto faltaba y causaba el segfault)
     mw = new Iguana(nullptr, Qt::WindowFlags(), splash);
-	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
-	splash->finish(mw);
-	delete splash;
+    
+    connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
+    
+    // 3. Mantener el splash visible 1 segundo (1000 ms)
+    QThread::msleep(1000);
+    
+    splash->finish(mw);
+    delete splash;
 
-	initialized = true;
+    initialized = true;
 
-	if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
-	mw->executeCommandLine(cmdLine, true);
-	if(!cmdLine.contains("--auto-tests")){
-		mw->startupCompleted();
-	}
+    if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
+    mw->executeCommandLine(cmdLine, true);
+    if(!cmdLine.contains("--auto-tests")){
+        mw->startupCompleted();
+    }
 }
 
 TexstudioApp::~TexstudioApp()

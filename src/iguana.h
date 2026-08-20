@@ -102,6 +102,7 @@ public slots:
 	void fuzzCursorHistory();
 	void fuzzBackForward();
     void setBuildButtonsDisabled(bool c);
+      void buildCorpus();
 
 
 protected:

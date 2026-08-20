@@ -26,7 +26,8 @@
         <file alias="style.css">utilities/html-conversion/style.css</file>
         <file alias="up.gif">utilities/html-conversion/up.gif</file>
         <file alias="up_d.gif">utilities/html-conversion/up_d.gif</file>
-        <file>images/logo128.png</file>
+				<file>images/logo128.png</file>
+				<file>images/iguana-hires.png</file>
         <file>images/webpublish.png</file>
         <file>images/egg.png</file>
         <file>images/egg-santa.png</file>

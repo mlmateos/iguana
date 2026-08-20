@@ -1270,10 +1270,15 @@ void Iguana::setupMenus()
 	act->setCheckable(true);
 	connect(act, SIGNAL(triggered(bool)), SLOT(setLogMarksVisible(bool)));
 	menu->addSeparator();
-	newManagedAction(menu, "htmlexport", tr("C&onvert to Html..."), SLOT(webPublish()));
-	newManagedAction(menu, "htmlsourceexport", tr("C&onvert Source to Html..."), SLOT(webPublishSource()));
-	menu->addSeparator();
-	newManagedAction(menu, "textexport", tr("Convert to Abridged Plaintext"), SLOT(convertToPlainText()));
+  newManagedAction(menu, "htmlexport", tr("C&onvert to Html..."), SLOT(webPublish()));
+  newManagedAction(menu, "htmlsourceexport", tr("C&onvert Source to Html..."), SLOT(webPublishSource()));
+  menu->addSeparator();
+        
+// Iguana: Build Corpus (First-class citizen in Tools menu)
+   newManagedAction(menu, "buildcorpus", tr("Build &Corpus..."), SLOT(buildCorpus()), QKeySequence(), "buildcorpus");
+        
+  menu->addSeparator();
+  newManagedAction(menu, "textexport", tr("Convert to Abridged Plaintext"), SLOT(convertToPlainText()));
 	newManagedAction(menu, "analysetext", tr("A&nalyse Text..."), SLOT(analyseText()));
 	newManagedAction(menu, "generaterandomtext", tr("Generate &Random Text..."), SLOT(generateRandomText()));
 	menu->addSeparator();
@@ -7467,6 +7472,61 @@ void Iguana::viewLogOrReRun(LatexCompileResult *result)
 	}
 }
 
+// ========================================================================
+// Iguana: Build Corpus Pipeline
+// ========================================================================
+void Iguana::buildCorpus() {
+    QString mainFile = getCurrentFileName();
+    if (mainFile.isEmpty()) {
+        outputView->insertMessageLine(tr("❌ No file is currently open."));
+        return;
+    }
+
+    QFileInfo fi(mainFile);
+    QString dir = fi.absolutePath();
+    QString fileName = fi.fileName();
+    QString baseName = fi.completeBaseName();
+    QString outputPath = dir + "/" + baseName + "_corpus.md";
+
+    QString scriptPath = qgetenv("TEX2WALDO_PATH");
+    if (scriptPath.isEmpty()) {
+        scriptPath = QDir::homePath() + "/projects/tex2waldo/tex2waldo.sh";
+    }
+
+    QStringList arguments;
+    arguments << "--strip-frontmatter" << dir << fileName << outputPath;
+
+    outputView->insertMessageLine(tr("=== Iguana Build Corpus ==="));
+    outputView->insertMessageLine(tr("Pipeline : %1").arg(scriptPath));
+    outputView->insertMessageLine(tr("Directorio: %1").arg(dir));
+    outputView->insertMessageLine(tr("Main     : %1").arg(fileName));
+    outputView->insertMessageLine(tr("Salida   : %1").arg(outputPath));
+
+    QProcess *proc = new QProcess(this);
+    proc->setProcessChannelMode(QProcess::MergedChannels);
+
+    connect(proc, &QProcess::readyReadStandardOutput, this, [proc, this]() {
+        QString output = QString::fromUtf8(proc->readAllStandardOutput());
+        QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+        for (const QString &line : lines) {
+            outputView->insertMessageLine(line);
+        }
+    });
+
+    connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this, [proc, this](int exitCode, QProcess::ExitStatus exitStatus) {
+        if (exitStatus == QProcess::NormalExit && exitCode == 0) {
+            outputView->insertMessageLine(tr("✅ Corpus generated successfully!"));
+        } else {
+            outputView->insertMessageLine(
+                tr("❌ Corpus generation failed with code %1").arg(exitCode));
+        }
+        proc->deleteLater();
+    });
+
+    proc->start(scriptPath, arguments);
+}
+
 ////////////////////////// ERRORS /////////////////////////////
 /*!
  * \brief post processing after latex compilation errors are detected
@@ -7574,23 +7634,14 @@ void Iguana::clearMarkers()
 
 void Iguana::latexHelp()
 {
-	QString latexHelp = findResourceFile("latex2e.html");
-	if (latexHelp == "")
-		QMessageBox::warning(this, tr("Error"), tr("File not found"));
-	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
-		QMessageBox::warning(this, tr("Error"), tr("Could not open browser"));
+    // Abrir referencia LaTeX externa
+    QDesktopServices::openUrl(QUrl("https://en.wikibooks.org/wiki/LaTeX"));
 }
-/*!
- * \brief open user manual in external browser
- * The usermanual is present as html. An external browser is called via QDesktopService to open that file.
- */
+
 void Iguana::userManualHelp()
 {
-    QString latexHelp = findResourceFile("getting_started.html");
-	if (latexHelp == "")
-		QMessageBox::warning(this, tr("Error"), tr("File not found"));
-	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
-		QMessageBox::warning(this, tr("Error"), tr("Could not open browser"));
+    // Abrir manual de Iguana (cuando lo tengamos)
+    QDesktopServices::openUrl(QUrl("https://github.com/mlmateos/iguana/wiki"));
 }
 /*!
  * \brief exec Help

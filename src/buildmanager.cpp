@@ -391,8 +391,18 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("asy-dvi-chain", tr("Asymptote DVI Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
 	registerCommand("asy-pdf-chain", tr("Asymptote PDF Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
 
-	registerCommand("pre-compile", tr("Precompile"), QStringList() << "", "Tools/Precompile");
-	registerCommand("internal-pre-compile", tr("Internal Precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");
+    registerCommand("pre-compile", tr("Precompile"), QStringList() << "", "Tools/Precompile");
+    registerCommand("internal-pre-compile", tr("Internal Precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");
+
+    // ========================================================================
+    // Iguana: Build Corpus Command
+    // Invokes tex2waldo.sh to generate an auditable Markdown corpus.
+    // TxS Variables: ?d = directory, % = current file with ext, ? = current file without ext
+    // Supports TEX2WALDO_PATH env var for custom pipeline locations.
+    // ========================================================================
+    registerCommand("build-corpus", tr("Build Corpus"), 
+        QStringList() << "bash -c \"SCRIPT=${TEX2WALDO_PATH:-~/projects/tex2waldo/tex2waldo.sh}; \\\"$SCRIPT\\\" --strip-frontmatter '?d' '%' '?d'/'?'.md\"", 
+        "Tools/BuildCorpus", true);
 	registerCommand("recompile-bibliography", tr("Recompile Bibliography"), QStringList() << "txs:///compile | txs:///bibliography | txs:///compile");
 
 
