@@ -74,19 +74,16 @@ TexstudioApp::TexstudioApp(QString &id, int &argc, char **argv) : QtSingleApplic
 
 void TexstudioApp::init(QStringList &cmdLine)
 {
-    // 1. Mostrar el splash con el logo de Iguana
-    QPixmap pixmap(":/images/logo128.png"); 
+    // Usar la imagen de alta resolución para el splash
+    QPixmap pixmap(":/images/iguana.png"); 
     QSplashScreen *splash = new QSplashScreen(pixmap, Qt::WindowStaysOnTopHint);
     splash->show();
     QApplication::processEvents();
 
-    // 2. ¡CRUCIAL! Crear la ventana principal (esto faltaba y causaba el segfault)
     mw = new Iguana(nullptr, Qt::WindowFlags(), splash);
-    
     connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
     
-    // 3. Mantener el splash visible 1 segundo (1000 ms)
-    QThread::msleep(1000);
+    QThread::msleep(3000); // 3 segundos
     
     splash->finish(mw);
     delete splash;
@@ -230,7 +227,8 @@ int main(int argc, char **argv)
 		}
 	}
 
-	a.setApplicationName( TEXSTUDIO );
+a.setApplicationName( TEXSTUDIO );
+a.setWindowIcon(QIcon(":/images/logo128.png")); // <-- AGREGAR ESTA LÍNEA
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && defined(Q_OS_LINUX)
 	a.setDesktopFileName("iguana");
 #endif

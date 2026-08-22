@@ -337,8 +337,9 @@ Iguana::Iguana(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errornext"));
 	}
 
-	setupToolBars();
-	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
+setupToolBars();
+addBuildCorpusToolbarButton();
+connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
 
 	restoreState(windowstate, 0);
 	//workaround as toolbar central seems not be be handled by windowstate
@@ -1270,15 +1271,16 @@ void Iguana::setupMenus()
 	act->setCheckable(true);
 	connect(act, SIGNAL(triggered(bool)), SLOT(setLogMarksVisible(bool)));
 	menu->addSeparator();
-  newManagedAction(menu, "htmlexport", tr("C&onvert to Html..."), SLOT(webPublish()));
-  newManagedAction(menu, "htmlsourceexport", tr("C&onvert Source to Html..."), SLOT(webPublishSource()));
-  menu->addSeparator();
-        
-// Iguana: Build Corpus (First-class citizen in Tools menu)
-   newManagedAction(menu, "buildcorpus", tr("Build &Corpus..."), SLOT(buildCorpus()), QKeySequence(), "buildcorpus");
-        
-  menu->addSeparator();
-  newManagedAction(menu, "textexport", tr("Convert to Abridged Plaintext"), SLOT(convertToPlainText()));
+newManagedAction(menu, "htmlexport", tr("C&onvert to Html..."), SLOT(webPublish()));
+newManagedAction(menu, "htmlsourceexport", tr("C&onvert Source to Html..."), SLOT(webPublishSource()));
+menu->addSeparator();
+
+// Iguana: Build Corpus actions (First-class citizen in Tools menu)
+newManagedAction(menu, "buildandviewcorpus", tr("Build &Corpus && View MD..."), SLOT(buildAndViewCorpus()), QKeySequence(), "buildcorpus");
+newManagedAction(menu, "buildcorpus", tr("Build &Corpus Only..."), SLOT(buildCorpus()), QKeySequence(), "buildcorpus");
+menu->addSeparator();
+
+newManagedAction(menu, "textexport", tr("Convert to Abridged Plaintext"), SLOT(convertToPlainText()));
 	newManagedAction(menu, "analysetext", tr("A&nalyse Text..."), SLOT(analyseText()));
 	newManagedAction(menu, "generaterandomtext", tr("Generate &Random Text..."), SLOT(generateRandomText()));
 	menu->addSeparator();
@@ -1598,9 +1600,7 @@ void Iguana::setCheckedPreviewModeAction()
 void Iguana::setupToolBars()
 {
 	//This method will be called multiple times and must not create something if this something already exists
-
 	configManager.watchedMenus.clear();
-
 	//customizable toolbars
 	//first apply custom icons
 	QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
@@ -1667,7 +1667,6 @@ void Iguana::setupToolBars()
 							infos.append("");
 							icons.append(QIcon());
 						}
-					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
 					QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, infos, icons, 0, this, SLOT(callToolButtonAction()));
 					combo->setProperty("menuID", actionName);
 					mtb.toolbar->addWidget(combo);
@@ -1676,6 +1675,70 @@ void Iguana::setupToolBars()
 		}
 		if (mtb.actualActions.empty()) mtb.toolbar->setVisible(false);
 	}
+} // <--- ESTA LLAVE CIERRA setupToolBars() CORRECTAMENTE
+
+
+
+// ========================================================================
+// Iguana: Implementación del botón de toolbar para Build Corpus
+// ========================================================================
+void Iguana::addBuildCorpusToolbarButton() {
+    // 1. Crear el menú para el botón
+    QMenu *corpusMenu = new QMenu(tr("Build Corpus"), this);
+    corpusMenu->setObjectName("main/tools/corpus");
+
+    // 2. Obtener las acciones que registramos en setupMenus()
+    QAction *buildAndViewAction = getManagedAction("main/tools/buildandviewcorpus");
+    QAction *buildOnlyAction = getManagedAction("main/tools/buildcorpus");
+
+    if (buildAndViewAction) corpusMenu->addAction(buildAndViewAction);
+    if (buildOnlyAction)    corpusMenu->addAction(buildOnlyAction);
+
+    // 3. Preparar datos para el botón combo
+    QStringList actionTexts;
+    QStringList actionInfos;
+    QList<QIcon> actionIcons;
+
+    if (buildAndViewAction) {
+        actionTexts.append(buildAndViewAction->text());
+        actionInfos.append(buildAndViewAction->toolTip());
+        actionIcons.append(buildAndViewAction->icon());
+    }
+    if (buildOnlyAction) {
+        actionTexts.append(buildOnlyAction->text());
+        actionInfos.append(buildOnlyAction->toolTip());
+        actionIcons.append(buildOnlyAction->icon());
+    }
+
+    // 4. Crear el botón combo en la barra central
+    QToolButton *corpusButton = UtilsUi::createComboToolButton(
+        centralToolBar, actionTexts, actionInfos, actionIcons, 0,
+        this, SLOT(callToolButtonAction())
+    );
+    corpusButton->setProperty("menuID", "main/tools/corpus");
+
+    // 5. Insertar el botón después del botón de compile
+    QList<QAction *> centralActions = centralToolBar->actions();
+    for (int i = 0; i < centralActions.size(); ++i) {
+        if (centralActions[i]->objectName() == "compile" || 
+            centralActions[i]->data().toString().contains("compile")) {
+            
+            int insertPos = i + 1;
+            // Saltar separador si existe
+            if (insertPos < centralActions.size() && centralActions[insertPos]->isSeparator()) {
+                insertPos++;
+            }
+            
+            if (insertPos < centralActions.size()) {
+                centralToolBar->insertAction(centralActions[insertPos], corpusButton->defaultAction());
+            } else {
+                centralToolBar->addAction(corpusButton->defaultAction());
+            }
+            // Añadir el widget del botón a la toolbar
+            centralToolBar->addWidget(corpusButton);
+            break;
+        }
+    }
 }
 
 void Iguana::updateAvailableLanguages()
@@ -7473,20 +7536,30 @@ void Iguana::viewLogOrReRun(LatexCompileResult *result)
 }
 
 // ========================================================================
-// Iguana: Build Corpus Pipeline
+// Iguana: Build Corpus Pipeline (Root Document + Log + Error/Success handling)
 // ========================================================================
 void Iguana::buildCorpus() {
-    QString mainFile = getCurrentFileName();
+    // 1. Actuar sobre el Root Document, no sobre el archivo activo
+    LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+    if (!rootDoc) {
+        outputView->insertMessageLine(tr("❌ No root document found."));
+        return;
+    }
+
+    QString mainFile = rootDoc->getFileName();
     if (mainFile.isEmpty()) {
-        outputView->insertMessageLine(tr("❌ No file is currently open."));
+        outputView->insertMessageLine(tr("❌ Root document is not saved yet."));
         return;
     }
 
     QFileInfo fi(mainFile);
     QString dir = fi.absolutePath();
-    QString fileName = fi.fileName();
     QString baseName = fi.completeBaseName();
-    QString outputPath = dir + "/" + baseName + "_corpus.md";
+    
+    // Rutas de salida
+    QString outputPath = dir + "/" + baseName + ".md";
+    QString logPath = dir + "/" + baseName + ".pandoc.log";       // 4. Archivo de log
+    QString pandocTexPath = dir + "/" + baseName + ".pandoc.tex"; // 3. Archivo para inspección en error
 
     QString scriptPath = qgetenv("TEX2WALDO_PATH");
     if (scriptPath.isEmpty()) {
@@ -7494,19 +7567,28 @@ void Iguana::buildCorpus() {
     }
 
     QStringList arguments;
-    arguments << "--strip-frontmatter" << dir << fileName << outputPath;
+    arguments << "--strip-frontmatter" << dir << fi.fileName() << outputPath;
 
-    outputView->insertMessageLine(tr("=== Iguana Build Corpus ==="));
+    outputView->insertMessageLine(tr("=== Iguana Build Corpus (Root: %1) ===").arg(fi.fileName()));
     outputView->insertMessageLine(tr("Pipeline : %1").arg(scriptPath));
-    outputView->insertMessageLine(tr("Directorio: %1").arg(dir));
-    outputView->insertMessageLine(tr("Main     : %1").arg(fileName));
-    outputView->insertMessageLine(tr("Salida   : %1").arg(outputPath));
 
     QProcess *proc = new QProcess(this);
     proc->setProcessChannelMode(QProcess::MergedChannels);
 
-    connect(proc, &QProcess::readyReadStandardOutput, this, [proc, this]() {
+    // 4. Preparar el archivo de log
+    QFile *logFile = new QFile(logPath, this);
+    if (!logFile->open(QIODevice::WriteOnly | QIODevice::Text)) {
+        outputView->insertMessageLine(tr("⚠️ Could not open log file: %1").arg(logPath));
+        logFile = nullptr;
+    } else {
+        logFile->write(QString("=== Iguana Build Corpus Log ===\n").toUtf8());
+    }
+
+    connect(proc, &QProcess::readyReadStandardOutput, this, [proc, this, logFile]() {
         QString output = QString::fromUtf8(proc->readAllStandardOutput());
+        if (logFile && logFile->isOpen()) {
+            logFile->write(output.toUtf8());
+        }
         QStringList lines = output.split('\n', Qt::SkipEmptyParts);
         for (const QString &line : lines) {
             outputView->insertMessageLine(line);
@@ -7514,12 +7596,26 @@ void Iguana::buildCorpus() {
     });
 
     connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            this, [proc, this](int exitCode, QProcess::ExitStatus exitStatus) {
+            this, [proc, this, logFile, pandocTexPath, outputPath](int exitCode, QProcess::ExitStatus exitStatus) {
+        
+        if (logFile) {
+            logFile->write(QString("\n=== Process finished with code: %1 ===\n").arg(exitCode).toUtf8());
+            logFile->close();
+        }
+
         if (exitStatus == QProcess::NormalExit && exitCode == 0) {
             outputView->insertMessageLine(tr("✅ Corpus generated successfully!"));
+            // 5. Abrir el documento.md con el editor predeterminado del sistema (ej. gedit)
+            QDesktopServices::openUrl(QUrl::fromLocalFile(outputPath));
         } else {
-            outputView->insertMessageLine(
-                tr("❌ Corpus generation failed with code %1").arg(exitCode));
+            outputView->insertMessageLine(tr("❌ Corpus generation failed with code %1").arg(exitCode));
+            // 3. Si falla, abrir documento.pandoc.tex para inspección
+            if (QFileInfo::exists(pandocTexPath)) {
+                outputView->insertMessageLine(tr("🔍 Opening %1 for inspection...").arg(pandocTexPath));
+                load(pandocTexPath);
+            } else {
+                outputView->insertMessageLine(tr("⚠️ %1 not found.").arg(pandocTexPath));
+            }
         }
         proc->deleteLater();
     });
@@ -7527,6 +7623,12 @@ void Iguana::buildCorpus() {
     proc->start(scriptPath, arguments);
 }
 
+// ========================================================================
+// Iguana: Build and View Corpus (Alias que reutiliza buildCorpus)
+// ========================================================================
+void Iguana::buildAndViewCorpus() {
+    buildCorpus();  // buildCorpus ya abre el .md al terminar exitosamente
+}
 ////////////////////////// ERRORS /////////////////////////////
 /*!
  * \brief post processing after latex compilation errors are detected
@@ -7634,14 +7736,12 @@ void Iguana::clearMarkers()
 
 void Iguana::latexHelp()
 {
-    // Abrir referencia LaTeX externa
     QDesktopServices::openUrl(QUrl("https://en.wikibooks.org/wiki/LaTeX"));
 }
 
 void Iguana::userManualHelp()
 {
-    // Abrir manual de Iguana (cuando lo tengamos)
-    QDesktopServices::openUrl(QUrl("https://github.com/mlmateos/iguana/wiki"));
+    QDesktopServices::openUrl(QUrl("https://github.com/mlmateos/iguana"));
 }
 /*!
  * \brief exec Help

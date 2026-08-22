@@ -19,35 +19,27 @@ AboutDialog::AboutDialog(QWidget *parent)
 {
     ui.setupUi(this);
     
-    // Cargar imagen de alta resolución y escalar al ancho del About dialog
+    // FORZAR EL NUEVO LOGO DE IGUANA EN EL ABOUT DIALOG (75% del ancho)
     if (ui.label) {
-        // Cargar imagen de alta resolución
-        QPixmap highResLogo(":/images/iguana-hires.png");
+        int targetWidth = qRound(this->width() * 0.75);
+        if (targetWidth < 250) targetWidth = 350; // Mínimo razonable por si la ventana es muy pequeña
         
-        // Calcular el ancho disponible (75% del ancho del diálogo)
-        int availableWidth = qRound(this->width() * 0.75);
-        
-        // Escalar manteniendo la proporción con transformación suave
-        QPixmap scaledLogo = highResLogo.scaled(
-            availableWidth, 
-            availableWidth,
-            Qt::KeepAspectRatio,
-            Qt::SmoothTransformation
-        );
+        // Usamos iguana.png (512x512) en lugar de logo128.png para máxima nitidez
+        QPixmap highResLogo(":/images/iguana.png");
+        QPixmap scaledLogo = highResLogo.scaled(targetWidth, targetWidth, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         
         ui.label->setPixmap(scaledLogo);
         ui.label->setAlignment(Qt::AlignCenter);
+        
+        QAction *act = new QAction("large", this);
+        connect(act, SIGNAL(triggered()), SLOT(largeLogo()));
+        ui.label->addAction(act);
+        ui.label->setContextMenuPolicy(Qt::ActionsContextMenu);
     }
     
     setText();
     connect(UpdateChecker::instance(), SIGNAL(dataParsed(QString)), SLOT(setText(QString)));
     UpdateChecker::instance()->check(true, -2);
-    QAction *act = new QAction("large", this);
-    connect(act, SIGNAL(triggered()), SLOT(largeLogo()));
-    if (ui.label) {
-        ui.label->addAction(act);
-        ui.label->setContextMenuPolicy(Qt::ActionsContextMenu);
-    }
 }
 
 AboutDialog::~AboutDialog()
@@ -78,8 +70,6 @@ void AboutDialog::setText(QString latestVersion) {
     }
     if (latestVersion=="") latestVersion = tr("couldn't retrieve data");
     
-    QString latexRefPath = findResourceFile("latex2e.html");
-    QString userManualPath = findResourceFile("getting_started.html");
     
     ui.textBrowser->setOpenExternalLinks(true);
     ui.textBrowser->setHtml(
@@ -105,15 +95,16 @@ void AboutDialog::setText(QString latestVersion) {
                 "with Zenodo DOIs and CC-BY-4.0 licensing</li>"
                 "</ul>"
                 "<hr>"
-                "<p><b>Documentation:</b></p>"
-                "<ul>"
-                "<li><a href=\"file:///%7\">LaTeX Reference</a></li>"
-                "<li><a href=\"file:///%8\">User Manual</a></li>"
-                "<li><a href=\"https://github.com/mlmateos/iguana\">Iguana Project Home</a></li>"
-                "<li><a href=\"https://github.com/mlmateos/tex2waldo\">tex2waldo Pipeline</a></li>"
-                "<li>Latest stable version: %5<br>"
-                "<a href=\"%6\">Changelog</a></li>"
-                "</ul>"
+// Busca la sección "<p><b>Documentation:</b></p>" y cámbiala por:
+"<p><b>Documentation:</b></p>"
+"<ul>"
+"<li><a href=\"https://en.wikibooks.org/wiki/LaTeX\">LaTeX Reference</a></li>"
+"<li><a href=\"https://github.com/mlmateos/iguana\">Iguana User Manual (Wiki)</a></li>"
+"<li><a href=\"https://github.com/mlmateos/iguana\">Iguana Project Home</a></li>"
+"<li><a href=\"https://github.com/mlmateos/tex2waldo\">tex2waldo Pipeline</a></li>"
+"<li>Latest stable version: %5<br>"
+"<a href=\"%6\">Changelog</a></li>"
+"</ul>"
                 "<hr>"
                 "<p><i>Original TeXstudio credits:</i> Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>"
                 "TeXmaker: Pascal Brachet<br>"
@@ -127,7 +118,5 @@ void AboutDialog::setText(QString latestVersion) {
         .arg(COMPILED_DEBUG_OR_RELEASE)
         .arg(latestVersion)
         .arg(changelogPath)
-        .arg(latexRefPath)
-        .arg(userManualPath)
     );
 }
