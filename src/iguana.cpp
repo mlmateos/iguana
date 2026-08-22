@@ -7559,7 +7559,7 @@ void Iguana::buildCorpus() {
     // Rutas de salida
     QString outputPath = dir + "/" + baseName + ".md";
     QString logPath = dir + "/" + baseName + ".pandoc.log";       // 4. Archivo de log
-    QString pandocTexPath = dir + "/" + baseName + ".pandoc.tex"; // 3. Archivo para inspección en error
+		QString pandocTexPath = dir + ".pandoc/" + fi.fileName();
 
     QString scriptPath = qgetenv("TEX2WALDO_PATH");
     if (scriptPath.isEmpty()) {
