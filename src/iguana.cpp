@@ -88,6 +88,7 @@
 #include <set>
 #include <QStyleHints>
 #include <QtConcurrentMap>
+#include <QRegularExpression>
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -7539,7 +7540,6 @@ void Iguana::viewLogOrReRun(LatexCompileResult *result)
 // Iguana: Build Corpus Pipeline (Root Document + Log + Error/Success handling)
 // ========================================================================
 void Iguana::buildCorpus() {
-    // 1. Actuar sobre el Root Document, no sobre el archivo activo
     LatexDocument *rootDoc = documents.getRootDocumentForDoc();
     if (!rootDoc) {
         outputView->insertMessageLine(tr("❌ No root document found."));
@@ -7555,11 +7555,10 @@ void Iguana::buildCorpus() {
     QFileInfo fi(mainFile);
     QString dir = fi.absolutePath();
     QString baseName = fi.completeBaseName();
-    
-    // Rutas de salida
+
     QString outputPath = dir + "/" + baseName + ".md";
-    QString logPath = dir + "/" + baseName + ".pandoc.log";       // 4. Archivo de log
-		QString pandocTexPath = dir + ".pandoc/" + fi.fileName();
+    QString logPath = dir + "/" + baseName + ".pandoc.log";
+		QString pandocTexPath = dir + ".pandoc/" + baseName + ".pandoc.tex";
 
     QString scriptPath = qgetenv("TEX2WALDO_PATH");
     if (scriptPath.isEmpty()) {
@@ -7575,7 +7574,13 @@ void Iguana::buildCorpus() {
     QProcess *proc = new QProcess(this);
     proc->setProcessChannelMode(QProcess::MergedChannels);
 
-    // 4. Preparar el archivo de log
+    // Regex del error de Pandoc (static: visible en lambdas sin capturar)
+    static const QRegularExpression rxPandocError(
+        QStringLiteral(R"RX(Error at "([^"]+)" \(line (\d+), column (\d+)\))RX"));
+
+    // Buffer con la salida COMPLETA: readyRead entrega trozos, no líneas
+    auto fullOutput = QSharedPointer<QString>::create();
+
     QFile *logFile = new QFile(logPath, this);
     if (!logFile->open(QIODevice::WriteOnly | QIODevice::Text)) {
         outputView->insertMessageLine(tr("⚠️ Could not open log file: %1").arg(logPath));
@@ -7584,20 +7589,20 @@ void Iguana::buildCorpus() {
         logFile->write(QString("=== Iguana Build Corpus Log ===\n").toUtf8());
     }
 
-    connect(proc, &QProcess::readyReadStandardOutput, this, [proc, this, logFile]() {
+    connect(proc, &QProcess::readyReadStandardOutput, this, [proc, this, logFile, fullOutput]() {
         QString output = QString::fromUtf8(proc->readAllStandardOutput());
+        *fullOutput += output;
         if (logFile && logFile->isOpen()) {
             logFile->write(output.toUtf8());
         }
-        QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+        const QStringList lines = output.split('\n', Qt::SkipEmptyParts);
         for (const QString &line : lines) {
             outputView->insertMessageLine(line);
         }
     });
 
     connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            this, [proc, this, logFile, pandocTexPath, outputPath](int exitCode, QProcess::ExitStatus exitStatus) {
-        
+            this, [proc, this, logFile, pandocTexPath, outputPath, fullOutput](int exitCode, QProcess::ExitStatus exitStatus) {
         if (logFile) {
             logFile->write(QString("\n=== Process finished with code: %1 ===\n").arg(exitCode).toUtf8());
             logFile->close();
@@ -7605,16 +7610,28 @@ void Iguana::buildCorpus() {
 
         if (exitStatus == QProcess::NormalExit && exitCode == 0) {
             outputView->insertMessageLine(tr("✅ Corpus generated successfully!"));
-            // 5. Abrir el documento.md con el editor predeterminado del sistema (ej. gedit)
             QDesktopServices::openUrl(QUrl::fromLocalFile(outputPath));
         } else {
             outputView->insertMessageLine(tr("❌ Corpus generation failed with code %1").arg(exitCode));
-            // 3. Si falla, abrir documento.pandoc.tex para inspección
-            if (QFileInfo::exists(pandocTexPath)) {
-                outputView->insertMessageLine(tr("🔍 Opening %1 for inspection...").arg(pandocTexPath));
-                load(pandocTexPath);
+
+            // Parsear la salida completa (los trozos de readyRead rompen las líneas)
+            QString fileToOpen = pandocTexPath;
+            int ln = -1, col = 0;
+            const QRegularExpressionMatch m = rxPandocError.match(*fullOutput);
+            if (m.hasMatch()) {
+                const QString quarantine = QFileInfo(pandocTexPath).absolutePath();
+                const QString resolved = quarantine + QLatin1Char('/') + m.captured(1);
+                if (QFileInfo::exists(resolved)) fileToOpen = resolved;
+                ln  = m.captured(2).toInt() - 1;   // Pandoc reporta 1-based
+                col = qMax(0, m.captured(3).toInt() - 1);
+            }
+
+            if (QFileInfo::exists(fileToOpen)) {
+                outputView->insertMessageLine(tr("🔍 Opening %1 (line %2)...").arg(fileToOpen).arg(ln + 1));
+                load(fileToOpen);
+                if (ln >= 0) gotoLine(ln, col, nullptr);
             } else {
-                outputView->insertMessageLine(tr("⚠️ %1 not found.").arg(pandocTexPath));
+                outputView->insertMessageLine(tr("⚠️ %1 not found.").arg(fileToOpen));
             }
         }
         proc->deleteLater();
