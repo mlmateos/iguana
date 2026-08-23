@@ -1,41 +1,60 @@
 
-[CI]: https://github.com/texstudio-org/texstudio/workflows/CI/badge.svg
-[Codacy Badge]: https://app.codacy.com/project/badge/Grade/892de515e8c54a7a99bd836743c4510c
-[Codacy TeXstudio]: https://app.codacy.com/gh/texstudio-org/texstudio/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+# Iguana
 
-[Website]: https://www.texstudio.org
+**An IDE for LaTeX with AI Corpus Integration — fork of TeXstudio.**
 
-[Download]: https://www.texstudio.org/#download
-[Releases]: https://github.com/texstudio-org/texstudio/releases/
-[News]: https://www.texstudio.org/#news
-[Contribute]: https://github.com/texstudio-org/texstudio/wiki/Contribute
-[User Manual]: https://texstudio-org.github.io/getting_started.html
-[Dev Builds]: https://github.com/texstudio-org/texstudio/actions/workflows/cd.yml
+Iguana extends TeXstudio with a **Build Corpus** feature that turns LaTeX books into auditable, provenance-rich Markdown suitable for AI training — compatible with the [OpenWALDO](https://github.com/openwaldo) commons.
 
+## ✨ Features
 
-# TeXstudio
-![CI] [![Codacy Badge]][Codacy TeXstudio]
+- **Build Corpus**: One-click LaTeX → Markdown pipeline via [tex2waldo](https://github.com/mlmateos/tex2waldo).
+  - Acts on the **Root Document** (not the active file).
+  - Preserves full provenance: Zenodo DOIs, CC-BY-4.0 licensing, author attribution.
+  - Generates a `.pandoc.log` for inspection.
+  - On error, opens the flattened `.pandoc/` artifact for diagnosis.
+  - On success, opens the resulting `.md` with your default viewer.
+- **Rebranded UI**: Custom logo, splash screen, and dark-mode palette (Emerald green + Jacaranda accents).
+- **Help links**: LaTeX Reference (Wikibooks) and User Manual (GitHub).
 
-**TeXstudio** is a fully featured **LaTeX** editor.
+Everything else you love from TeXstudio — syntax highlighting, live PDF preview, structure view, Git integration, spell/grammar checking — is still there.
 
-Our goal is to make ***writing LaTeX documents as easy and comfortable*** as possible.
+## 🛠 Building from source
+
+Iguana uses the same build system as TeXstudio (CMake + Qt 6).
+
+```bash
+git clone https://github.com/mlmateos/iguana.git
+cd iguana
+mkdir build && cd build
+cmake .. -DTEXSTUDIO_USE_QT6=ON
+make -j$(nproc)
+./iguana
+```
+
+See [`BUILD.md`](BUILD.md) for full dependencies (Poppler, Qt 6.8 LTS, Python 3.13).
+
+## 🔗 Companion project
+
+Iguana's Build Corpus feature relies on **[tex2waldo](https://github.com/mlmateos/tex2waldo)**, the LaTeX → Markdown pipeline for producing auditable AI training corpora.
+
+## 🗺 Roadmap to 1.0
+
+- [ ] Sidebar and taskbar icon integration
+- [ ] UI refinement for the Build Corpus toolbar button
+- [ ] Language tagging (`es-MX`) in corpus manifest
+- [ ] AppImage distribution (glibc ≥ 2.38)
+- [ ] Qt 6.8 LTS build matrix
+
+## 📄 License
+
+GPL-3.0 — same as TeXstudio. See [`COPYING`](COPYING).
+
+## 🙏 Credits
+
+- Original TeXstudio project and its contributors.
+- The Zapotec community of Juchitán, whose philosophy and language live in the first book processed with this tool.
 
 ---
-#### 〔 [Download] / [Releases] / [Dev Builds] 〕〔 [News] 〕〔 [User Manual] 〕〔 [Contribute] 〕
----
 
-
-### Features
-- Advanced **Syntax Highlighting**
-- Live **Reference Checking**
-- An integrated **PDF viewer**
-- Live **Inline Preview**
-- **Latex Commands completion and syntax checking**
-- Live **Grammar checking**
-- Local and global **structure view**
-- **Citations checking and completion**
-- **Spellchecking**
-
-<br>
-
-#### Find out more at our [Website].
+## 🤖 Acknowledgments
+This project was developed with the assistance of [Qwen](https://qwenlm.github.io/), a large language model by Alibaba Group.
