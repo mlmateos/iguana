@@ -14221,7 +14221,7 @@ void Iguana::addBuildCorpusToolbarButton()
 	}
 	if (!bar && quickAct) {
 		for (QToolBar *tb : findChildren<QToolBar*>()) {
-			if (tb->actions().contains(quickAct)) { bar = tb; break; }
+			if (tb->actions().contains(quickAct)) { bar = tb; greenAction = quickAct; break; }
 		}
 	}
 	if (!bar) { qWarning("corpus combo: no hay toolbar donde montarlo"); return; }
