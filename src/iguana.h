@@ -104,6 +104,7 @@ public slots:
     void setBuildButtonsDisabled(bool c);
 	void buildCorpus();
 	void buildAndViewCorpus();
+	void addBuildCorpusToolbarButton();
 
 
 protected:
@@ -130,7 +131,6 @@ private slots:
 	void updateToolBarMenu(const QString &menuName);
 	void showTestProgress(const QString &message);
     void leftPanelChanged(QWidget* widget);
-    void addBuildCorpusToolbarButton();
 private:
     bool executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
 	void generateAdditionalTranslations();

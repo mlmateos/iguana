@@ -336,8 +336,9 @@ if(${TEXSTUDIO_ENABLE_TESTS})
 		src/tests/tablemanipulation_t.cpp
 		src/tests/testmanager.cpp
 		src/tests/testutil.cpp
-                src/tests/texstudio_t.cpp
+    src/tests/texstudio_t.cpp
 		src/tests/usermacro_t.cpp
+		src/iguana.cpp
 	)
 else()
 	message(STATUS "tests disabled.")

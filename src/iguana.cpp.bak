@@ -1558,6 +1558,8 @@ newManagedAction(menu, "textexport", tr("Convert to Abridged Plaintext"), SLOT(c
 */
 void Iguana::setPreviewMode()
 {
+void Iguana::setPreviewMode()
+{
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act) {
 		configManager.previewMode = act->data().value<ConfigManager::PreviewMode>();
@@ -1594,93 +1596,173 @@ void Iguana::setCheckedPreviewModeAction()
  */
 void Iguana::setupToolBars()
 {
-    //This method will be called multiple times and must not create something if this something already exists
-    configManager.watchedMenus.clear();
-    
-    //customizable toolbars
-    //first apply custom icons
-    QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
-    while (i != configManager.replacedIconsOnMenus.constEnd()) {
-        QString id = i.key();
-        QString iconFilename = configManager.parseDir(i.value().toString());
-        QObject *obj = configManager.menuParent->findChild<QObject*>(id);
-        QAction *act = qobject_cast<QAction*>(obj);
-        if (act && !iconFilename.isEmpty()) act->setIcon(QIcon(iconFilename));
-        ++i;
-    }
-    
-    //setup customizable toolbars
-    for (int i = 0; i < configManager.managedToolBars.size(); i++) {
-        ManagedToolBar &mtb = configManager.managedToolBars[i];
-        if (!mtb.toolbar) { //create actual toolbar on first call
-            if (mtb.name == "Central") mtb.toolbar = centralToolBar;
-            else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
-            mtb.toolbar->setObjectName(mtb.name);
-            addAction(mtb.toolbar->toggleViewAction());
-            if (mtb.name == "Spelling") addToolBarBreak();
-        } else {
-            mtb.toolbar->clear();
-        }
-        
-        foreach (const QString &actionName, mtb.actualActions) {
-            if (actionName == "separator") {
-                mtb.toolbar->addSeparator(); //Case 1: Separator
-            } else if (actionName.startsWith("tags/")) {
-                //Case 2: One of the xml tag widgets mapped on a toolbutton
-                int tagCategorySep = actionName.indexOf("/", 5);
-                XmlTagsListWidget *tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
-                if (!tagsWidget) continue;
-                if (!tagsWidget->isPopulated())
-                    tagsWidget->populate();
-                QStringList list = tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep + 1));
-                if (list.isEmpty()) continue;
-                QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, QStringList(), QList<QIcon>(), 0, this, SLOT(insertXmlTagFromToolButtonAction()));
-                combo->setProperty("tagsID", actionName);
-                mtb.toolbar->addWidget(combo);
-            } else {
-                QObject *obj = configManager.menuParent->findChild<QObject*>(actionName);
-                QAction *act = qobject_cast<QAction*>(obj);
-                if (act) {
-                    //Case 3: A normal QAction
-                    if (act->icon().isNull())
-                        act->setIcon(QIcon(APPICON));
-                    UtilsUi::updateToolTipWithShortcut(act, configManager.showShortcutsInTooltips);
-                    mtb.toolbar->addAction(act);
-                } else {
-                    QMenu *menu = qobject_cast<QMenu*>(obj);
-                    if (!menu) {
-                        qWarning("Unknown toolbar command %s", qPrintable(actionName));
-                        continue;
-                    }
-                    //Case 4: A submenu mapped on a toolbutton
-                    configManager.watchedMenus << actionName;
-                    QStringList list;
-                    QStringList infos;
-                    QList<QIcon> icons;
-                    foreach (const QAction *act, menu->actions()) {
-                        if (!act->isSeparator()) {
-                            list.append(act->text());
-                            infos.append(act->toolTip());
-                            icons.append(act->icon());
-                        } else {
-                            list.append(" ");
-                            infos.append(" ");
-                            icons.append(QIcon());
-                        }
-                    }
-                    QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, infos, icons, 0, this, SLOT(callToolButtonAction()));
-                    combo->setProperty("menuID", actionName);
-                    mtb.toolbar->addWidget(combo);
-                }
-            }
-        }
-        if (mtb.actualActions.empty()) mtb.toolbar->setVisible(false);
-    }
-    
-    addBuildCorpusToolbarButton();
-} // ✅ Cierre correcto y balanceado de setupToolBars()
+	//This method will be called multiple times and must not create something if this something already exists
+	configManager.watchedMenus.clear();
+	//customizable toolbars
+	//first apply custom icons
+	QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
+	while (i != configManager.replacedIconsOnMenus.constEnd()) {
+		QString id = i.key();
+		QString iconFilename = configManager.parseDir(i.value().toString());
+		QObject *obj = configManager.menuParent->findChild<QObject *>(id);
+		QAction *act = qobject_cast<QAction *>(obj);
+		if (act && !iconFilename.isEmpty()) act->setIcon(QIcon(iconFilename));
+		++i;
+	}
+	//setup customizable toolbars
+	for (int i = 0; i < configManager.managedToolBars.size(); i++) {
+		ManagedToolBar &mtb = configManager.managedToolBars[i];
+		if (!mtb.toolbar) { //create actual toolbar on first call
+			if (mtb.name == "Central") mtb.toolbar = centralToolBar;
+			else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
+			mtb.toolbar->setObjectName(mtb.name);
+			addAction(mtb.toolbar->toggleViewAction());
+			if (mtb.name == "Spelling") addToolBarBreak();
+		} else mtb.toolbar->clear();
+		foreach (const QString &actionName, mtb.actualActions) {
+			if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
+			else if (actionName.startsWith("tags/")) {
+				//Case 2: One of the xml tag widgets mapped on a toolbutton
+				int tagCategorySep = actionName.indexOf("/", 5);
+				XmlTagsListWidget *tagsWidget = findChild<XmlTagsListWidget *>(actionName.left(tagCategorySep));
+				if (!tagsWidget) continue;
+				if (!tagsWidget->isPopulated())
+					tagsWidget->populate();
+				QStringList list = tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep + 1));
+				if (list.isEmpty()) continue;
+				QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, QStringList(), QList<QIcon>(), 0, this, SLOT(insertXmlTagFromToolButtonAction()));
+				combo->setProperty("tagsID", actionName);
+				mtb.toolbar->addWidget(combo);
+			} else {
+				QObject *obj = configManager.menuParent->findChild<QObject *>(actionName);
+				QAction *act = qobject_cast<QAction *>(obj);
+				if (act) {
+					//Case 3: A normal QAction
+					if (act->icon().isNull())
+						act->setIcon(QIcon(APPICON));
+					UtilsUi::updateToolTipWithShortcut(act, configManager.showShortcutsInTooltips);
+					mtb.toolbar->addAction(act);
+				} else {
+					QMenu *menu = qobject_cast<QMenu *>(obj);
+					if (!menu) {
+						qWarning("Unknown toolbar command %s", qPrintable(actionName));
+						continue;
+					}
+					//Case 4: A submenu mapped on a toolbutton
+					configManager.watchedMenus << actionName;
+					QStringList list;
+					QStringList infos;
+					QList<QIcon> icons;
+					foreach (const QAction *act, menu->actions())
+						if (!act->isSeparator()) {
+							list.append(act->text());
+							infos.append(act->toolTip());
+							icons.append(act->icon());
+						}
+						else {
+							list.append("");
+							infos.append("");
+							icons.append(QIcon());
+						}
+					QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, infos, icons, 0, this, SLOT(callToolButtonAction()));
+					combo->setProperty("menuID", actionName);
+					mtb.toolbar->addWidget(combo);
+				}
+			}
+		}
+		if (mtb.actualActions.empty()) mtb.toolbar->setVisible(false);
+	}
+	addBuildCorpusToolbarButton();
+} //  <--- ESTA LLAVE CIERRA setupToolBars() CORRECTAMENTE
 
 
+
+// ========================================================================
+// Iguana: Implementación del botón de toolbar para Build Corpus
+// ========================================================================
+// Helper: tinta un ícono existente a jacaranda (sin assets nuevos)
+static QIcon tintIcon(const QIcon &base, const QColor &color, const QSize &size)
+{
+    if (base.isNull()) return base;
+    const qreal dpr = qGuiApp ? qGuiApp->devicePixelRatio() : 1.0;
+    const QPixmap pm = base.pixmap(size * dpr);
+    if (pm.isNull()) return base;
+    QPixmap out(pm.size());
+    out.fill(Qt::transparent);
+    QPainter p(&out);
+    p.drawPixmap(0, 0, pm);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(out.rect(), color);
+    p.end();
+    out.setDevicePixelRatio(dpr);
+    return QIcon(out);
+}
+
+// ========================================================================
+// Iguana: Build Corpus toolbar button (combo morado junto al combo verde)
+// ========================================================================
+void Iguana::addBuildCorpusToolbarButton()
+{
+	// Idempotencia: no duplicar en re-ejecuciones
+	if (findChild<QToolButton*>("corpusComboButton")) return;
+
+	// Acciones verdes de referencia (ids estándar de TeXstudio)
+	QAction *quickAct = getManagedAction("main/tools/quickbuild");
+	QAction *compAct  = getManagedAction("main/tools/compile");
+
+	// Íconos jacaranda derivados de los verdes
+	const QColor jacaranda(0x8A, 0x63, 0xD2);
+	const QSize sz = iconSize();
+	const QIcon iconDouble = quickAct ? tintIcon(quickAct->icon(), jacaranda, sz) : QIcon();
+	const QIcon iconSingle = compAct  ? tintIcon(compAct->icon(),  jacaranda, sz) : QIcon();
+
+	// 1. Localizar el combo verde POR TEXTO de menú (no por properties)
+	QToolBar *bar = nullptr;
+	QToolButton *green = nullptr;
+	for (QToolBar *tb : findChildren<QToolBar*>()) {
+		for (QObject *o : tb->children()) {
+			QToolButton *btn = qobject_cast<QToolButton*>(o);
+			if (!btn || !btn->menu()) continue;
+			bool isGreen = false;
+			if (quickAct) {
+				for (QAction *ma : btn->menu()->actions()) {
+					if (ma->text() == quickAct->text()) { isGreen = true; break; }
+				}
+			}
+			if (isGreen) { bar = tb; green = btn; break; }
+		}
+		if (bar) break;
+	}
+	if (!bar) { qWarning() << "corpus combo: toolbar verde NO encontrada"; return; }
+
+	// 2. Acciones propias, conexión directa a los slots (sin managed ids)
+	QToolButton *combo = new QToolButton(bar);
+	combo->setObjectName("corpusComboButton");
+	QAction *viewAct = new QAction(iconDouble, tr("Build && View Corpus"), combo);
+	connect(viewAct, &QAction::triggered, this, &Iguana::buildAndViewCorpus);
+	QAction *onlyAct = new QAction(iconSingle, tr("Build Corpus Only"), combo);
+	connect(onlyAct, &QAction::triggered, this, &Iguana::buildCorpus);
+
+	// 3. Combo morado análogo al verde: doble morada + flecha blanca
+	combo->setDefaultAction(viewAct);
+	combo->setPopupMode(QToolButton::MenuButtonPopup);
+	QMenu *m = new QMenu(combo);
+	m->addAction(onlyAct);
+	combo->setMenu(m);
+
+	// 4. Insertar justo a la derecha del combo verde
+	QAction *greenAction = nullptr;
+	for (QAction *a : bar->actions()) {
+		if (bar->widgetForAction(a) == green) { greenAction = a; break; }
+	}
+	const QList<QAction*> acts = bar->actions();
+	const int i = acts.indexOf(greenAction);
+	QAction *after = (i >= 0 && i + 1 < acts.size()) ? acts.at(i + 1) : nullptr;
+	if (after) bar->insertWidget(after, combo);
+	else bar->addWidget(combo);
+
+	qWarning() << "corpus combo: montado en" << bar->objectName();
+}
 
 void Iguana::updateAvailableLanguages()
 {
@@ -14167,75 +14249,3 @@ void Iguana::collapseSubitems()
 
 
 #undef MAC_OR_DEFAULT
-#include "iguana.h"
-#include <QToolBar>
-#include <QToolButton>
-#include <QMenu>
-#include <QAction>
-#include <QPainter>
-#include <QPixmap>
-#include <QGuiApplication>
-
-static QIcon tintIcon(const QIcon &base, const QColor &color, const QSize &size)
-{
-	if (base.isNull()) return base;
-	const qreal dpr = qGuiApp ? qGuiApp->devicePixelRatio() : 1.0;
-	const QPixmap pm = base.pixmap(size * dpr);
-	if (pm.isNull()) return base;
-	QPixmap out(pm.size());
-	out.fill(Qt::transparent);
-	QPainter p(&out);
-	p.drawPixmap(0, 0, pm);
-	p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-	p.fillRect(out.rect(), color);
-	p.end();
-	out.setDevicePixelRatio(dpr);
-	return QIcon(out);
-}
-
-void Iguana::addBuildCorpusToolbarButton()
-{
-	if (findChild<QToolButton*>("corpusComboButton")) return;
-	QAction *viewAct  = getManagedAction("main/tools/corpus/buildandviewcorpus");
-	QAction *buildAct = getManagedAction("main/tools/corpus/buildcorpus");
-	QAction *quickAct = getManagedAction("main/tools/quickbuild");
-	if (!viewAct || !buildAct) { qWarning("corpus combo: acciones no encontradas"); return; }
-	const QColor jacaranda(0x8A, 0x63, 0xD2);
-	const QSize sz = iconSize();
-	if (quickAct) viewAct->setIcon(tintIcon(quickAct->icon(), jacaranda, sz));
-	if (QAction *cp = getManagedAction("main/tools/compile"))
-		buildAct->setIcon(tintIcon(cp->icon(), jacaranda, sz));
-	QToolBar *bar = nullptr;
-	QAction *greenAction = nullptr;
-	for (QToolBar *tb : findChildren<QToolBar*>()) {
-		for (QAction *a : tb->actions()) {
-			QToolButton *btn = qobject_cast<QToolButton*>(tb->widgetForAction(a));
-			if (btn && btn->menu() && quickAct) {
-				for (QAction *ma : btn->menu()->actions()) {
-					if (ma->text() == quickAct->text()) { bar = tb; greenAction = a; break; }
-				}
-			}
-			if (bar) break;
-		}
-		if (bar) break;
-	}
-	if (!bar && quickAct) {
-		for (QToolBar *tb : findChildren<QToolBar*>()) {
-			if (tb->actions().contains(quickAct)) { bar = tb; break; }
-		}
-	}
-	if (!bar) { qWarning("corpus combo: no hay toolbar donde montarlo"); return; }
-	QToolButton *combo = new QToolButton(bar);
-	combo->setObjectName("corpusComboButton");
-	combo->setDefaultAction(viewAct);
-	combo->setPopupMode(QToolButton::MenuButtonPopup);
-	QMenu *m = new QMenu(combo);
-	m->addAction(buildAct);
-	combo->setMenu(m);
-	const QList<QAction*> acts = bar->actions();
-	const int i = acts.indexOf(greenAction);
-	QAction *after = (i >= 0 && i + 1 < acts.size()) ? acts.at(i + 1) : nullptr;
-	if (after) bar->insertWidget(after, combo);
-	else bar->addWidget(combo);
-	qWarning("corpus combo: montado en %s", qPrintable(bar->objectName()));
-}
